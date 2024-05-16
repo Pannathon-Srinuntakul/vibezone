@@ -1,10 +1,9 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
-import { WebhookEvent } from "@clerk/nextjs/server";
 import { createOrUpdateUser, deleteUser } from "@lib/actions/user";
 
 export async function POST(req) {
-  // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
+  // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
@@ -49,13 +48,13 @@ export async function POST(req) {
     });
   }
 
-  //   Habdle the Event
-
+  // Handle the event
   const eventType = evt?.type;
 
   if (eventType === "user.created" || eventType === "user.updated") {
     const { id, first_name, last_name, image_url, email_addresses, username } =
       evt?.data;
+
     try {
       await createOrUpdateUser(
         id,
@@ -69,8 +68,8 @@ export async function POST(req) {
       return new Response("User is created or updated", {
         status: 200,
       });
-    } catch (error) {
-      console.error("Error creating or updating user:", error);
+    } catch (err) {
+      console.error("Error creating or updating user:", err);
       return new Response("Error occured", {
         status: 500,
       });
@@ -85,8 +84,8 @@ export async function POST(req) {
       return new Response("User is deleted", {
         status: 200,
       });
-    } catch (error) {
-      console.error("Error deleting user:", error);
+    } catch (err) {
+      console.error("Error deleting user:", err);
       return new Response("Error occured", {
         status: 500,
       });
