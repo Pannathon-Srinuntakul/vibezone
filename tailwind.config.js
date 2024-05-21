@@ -96,7 +96,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        "purple-1": "#7857FF",
+        "green-1": "#A9CEC2",
         "purple-2": "#1D1928",
         "pink-1": "#FF0073",
         "light-1": "#FFFFFF",
@@ -105,6 +105,10 @@ module.exports = {
         "dark-1": "#121212",
         "dark-2": "#34303E",
         "blue-1": "#016FD5",
+        "subtext": "#5F5C6D",
+        "subbg": "#D9D9D9",
+        "active": "#E1FFFA",
+        glassmorphism: "rgba(255, 255, 255, 0.60)"
       }
     },
   },

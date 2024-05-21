@@ -1,31 +1,43 @@
 "use client"
 
-import { sidebarLinks } from "@constance";
+import { topbarLinks } from "@/constants";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const BottomBar = () => {
-  const pathname = usePathname();
+function Bottombar() {
+    const pathname = usePathname()
 
   return (
-    <div className="flex bottom-0 z-20 w-full bg-dark-1 px-6 py-3 items-center justify-between md:hidden">
-      {sidebarLinks.map((link) => {
-        const isActive = pathname === link.route;
+    <section className="bottombar">
+      <div className="bottombar_container">
+        {topbarLinks.map((link) => {
+          const isActive =
+            (pathname.includes(link.route) && link.route.length > 1) ||
+            pathname === link.route;
 
-        return (
-          <Link
-            key={link.label}
-            href={link.route}
-            className={`flex gap-2 items-center rounded-lg py-2 px-4 ${
-              isActive && "bg-purple-1"
-            }`}
-          >
-            {link.icon} <p className="text-small-medium max-sm:hidden text-light-1">{link.label}</p>
-          </Link>
-        );
-      })}
-    </div>
+          return (
+            <Link
+              href={link.route}
+              key={link.label}
+              className={`bottombar_link ${isActive && "bg-active"}`}
+            >
+              <Image
+                src={link.icon}
+                alt={link.label}
+                width={24}
+                height={24}
+              />
+                
+              <p className='text-subtle-medium text-subtle max-sm:hidden'>
+                {link.label.split(/\s+/)[0]}
+              </p>
+            </Link>
+          );
+        })}
+      </div>
+    </section>
   );
-};
+}
 
-export default BottomBar;
+export default Bottombar;
