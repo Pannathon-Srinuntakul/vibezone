@@ -6,7 +6,7 @@ import Topbar from "@components/layout/Topbar";
 import AdBar from "@components/layout/Adbar";
 import Leftbar from "@components/layout/Leftbar";
 import RightBar from "@components/layout/Rightbar";
-import Bottombar from "@components/layout/Bottombar";
+import Bottombar from "@components/layout/BottomBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
