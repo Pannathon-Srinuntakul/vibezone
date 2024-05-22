@@ -4,7 +4,7 @@
 
 @layer components {
   .main-container {
-    @apply flex min-h-screen flex-1 flex-col items-center justify-center px-6 pb-10 border border-red-600 pt-10 lg:pt-28 max-md:pb-32 sm:px-10;
+    @apply flex min-h-screen flex-1 flex-col items-center justify-center px-6 pb-10 pt-10 lg:pt-28 max-md:pb-32 sm:px-10;
   }
 
   .topsidebar_link {

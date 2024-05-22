@@ -5,7 +5,7 @@ import React from "react";
 const RightBar = () => {
   return (
     <div className="rightbar scrollbar-thin">
-      <div className="fixed flex justify-between items-center w-1/2 top-20">
+      <div className="fixed flex justify-between items-center w-2/3 top-20">
       <p className="text-x-small-semibold text-light-2">ADS</p>
         <Add />
       </div>

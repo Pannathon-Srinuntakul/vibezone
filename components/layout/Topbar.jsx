@@ -4,11 +4,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { topbarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
-import { SignedIn, SignOutButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignOutButton, UserButton, useUser } from "@clerk/nextjs";
 import { Logout } from "@mui/icons-material";
+import { useEffect, useState } from "react";
 
 const Topbar = () => {
   const pathname = usePathname();
+  const { user, isLoaded } = useUser();
+  const [userData, setUserData] = useState({});
+
+
+  
+  const getUser = async () => {
+    const response = await fetch(`/api/user/${user.id}`);
+    const data = await response.json();
+    setUserData(data);
+  };
+
+  useEffect(() => {
+    if (user) {
+      getUser();
+    }
+  }, [user]);
 
   return (
     <div className="topbar">
@@ -27,14 +44,14 @@ const Topbar = () => {
             <Link
               href={link.route}
               key={link.label}
-              className={`topsidebar_link items-center ${
+              className={`topsidebar_link items-center hover:bg-active ${
                 isActive && "bg-active"
               }`}
             >
               <Image src={link.icon} alt={link.label} width={24} height={24} />
               <p
-                className={`text-subtext max-lg:hidden ${
-                  isActive && "text-black"
+                className={`text-subtext max-lg:hidden text-small-semibold ${
+                  isActive && "text-black text-small-bold"
                 }`}
               >
                 {link.label}
@@ -44,6 +61,20 @@ const Topbar = () => {
         })}
         </div>
         <div className="flex items-center gap-4 lg:hidden">
+          {user? (
+        <div className="flex items-center gap-2">
+          <Image 
+            src="/assets/coin.svg"
+            width={30}
+            height={30}
+            alt="credit"
+          />
+          <p className="text-subtext text-small-semibold">{userData?.credit}</p>
+        </div>
+          ) : (
+            null
+          )}
+          <UserButton />
           <div className="block">
             <SignedIn>
               <SignOutButton redirectUrl="/sign-in">
@@ -53,7 +84,6 @@ const Topbar = () => {
               </SignOutButton>
             </SignedIn>
           </div>
-          <UserButton />
         </div>
       
     </div>
