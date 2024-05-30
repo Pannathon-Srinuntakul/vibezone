@@ -1,4 +1,3 @@
-import { Add, BookmarksOutlined, Home, Person2Outlined, Search } from '@mui/icons-material';
 
 export const topbarLinks = [
     {

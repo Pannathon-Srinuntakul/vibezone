@@ -1,6 +1,6 @@
 "use client";
 
-import { UserButton, SignedIn, SignOutButton } from "@clerk/nextjs";
+import { UserButton, SignedIn, SignOutButton, useAuth } from "@clerk/nextjs";
 import { Login, Logout, Menu } from "@mui/icons-material";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,8 +12,13 @@ const Leftbar = () => {
   const { user, isLoaded } = useUser();
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({});
+  const { userId } = useAuth();
 
-
+  useEffect(() => {
+    if (user) {
+      getUser();
+    }
+  }, [user]);
   
   const getUser = async () => {
     const response = await fetch(`/api/user/${user.id}`);
@@ -22,27 +27,27 @@ const Leftbar = () => {
     setLoading(false);
   };
 
-  useEffect(() => {
-    if (user) {
-      getUser();
-    }
-  }, [user]);
 
-  if(!user) return (
-    <div className="leftbar items-center">
-      <Link href="/sign-in" className="mt-36 "><p className="text-heading4-bold flex gap-3"><Login />Sign in</p></Link>
-    </div>
-  )
-  console.log(userData)
+  if (!user)
+    return (
+      <div className="leftbar items-center">
+        <Link href="/sign-in" className="mt-36 ">
+          <p className="text-heading4-bold flex gap-3">
+            <Login />
+            Sign in
+          </p>
+        </Link>
+      </div>
+    );
 
   return loading || !isLoaded ? (
     <Loader />
   ) : (
     <div className="leftbar">
       <div className="flex flex-col gap-6">
-        <div className="flex flex-col items-center text-subtext">
+        <div className="flex flex-col items-center">
           <Link
-            href="/"
+            href={`/profile/${userId}`}
             className="flex flex-col items-center justify-between gap-2 w-full"
           >
             <div className="relative w-[60px] h-[60px]">
@@ -53,9 +58,16 @@ const Leftbar = () => {
                 className="rounded-full object-cover"
               />
             </div>
-            <p className="text-center text-body-normal mt-2">{userData?.firstName} {userData?.lastName}</p>
+            <p className="text-center text-body-normal mt-2">
+              {userData?.firstName} {userData?.lastName}
+            </p>
           </Link>
-            <p className="text-subtle-medium text-light-2">{userData?.username}</p>
+          <p className="text-subtle-medium text-light-2">
+            {userData?.username}
+          </p>
+          <p className="text-small-semibold">
+            {userData?.bio}
+          </p>
         </div>
         <div className="flex text-subtext justify-around">
           <div className="flex flex-col items-center">
@@ -74,17 +86,17 @@ const Leftbar = () => {
             <UserButton afterSignOutUrl="/sign-in" />
             <p className="text-subtext text-small-bold">Manage Account</p>
           </div>
-  
-        <div className="flex items-center gap-4">
-          <Image 
-            src="/assets/coin.svg"
-            width={30}
-            height={30}
-            alt="credit"
-          />
-          <p className="text-subtext text-small-semibold">{userData?.credit}</p>
-        </div>
-        <hr />
+
+          <div className="flex items-center gap-4 justify-between">
+            <Image src="/assets/coin.svg" width={30} height={30} alt="credit" />
+            <p className="text-subtext text-small-semibold">
+              {userData?.credit}
+            </p>
+            <div className="relative">
+            <a href="/credit">+</a>
+            </div>
+          </div>
+          <hr />
           <SignedIn>
             <SignOutButton redirectUrl="/sign-in">
               <div className="flex cursor-pointer gap-4 items-center">

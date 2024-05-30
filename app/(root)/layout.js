@@ -3,10 +3,10 @@ import "../globals.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
 import Topbar from "@components/layout/Topbar";
-import AdBar from "@components/layout/Adbar";
 import Leftbar from "@components/layout/Leftbar";
 import RightBar from "@components/layout/Rightbar";
 import Bottombar from "@components/layout/BottomBar";
+import AdBar from "@components/layout/Adbar";
 
 const inter = Inter({ subsets: ["latin"] });
 

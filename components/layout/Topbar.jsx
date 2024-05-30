@@ -4,26 +4,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { topbarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
-import { SignedIn, SignOutButton, UserButton, useUser } from "@clerk/nextjs";
-import { Logout } from "@mui/icons-material";
+import { SignedIn, SignOutButton, useAuth, UserButton, useUser } from "@clerk/nextjs";
+import { Login, Logout } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 
 const Topbar = () => {
   const pathname = usePathname();
   const { user, isLoaded } = useUser();
   const [userData, setUserData] = useState({});
+  const { userId } = useAuth();
 
-
-  
   const getUser = async () => {
     const response = await fetch(`/api/user/${user.id}`);
     const data = await response.json();
     setUserData(data);
+    
   };
-
+  
   useEffect(() => {
     if (user) {
-      getUser();
+      getUser()
     }
   }, [user]);
 
@@ -40,6 +40,9 @@ const Topbar = () => {
           const isActive =
             (pathname.includes(link.route) && link.route.length > 1) ||
             pathname === link.route;
+            
+            if (link.route === "/profile") return null
+            
           return (
             <Link
               href={link.route}
@@ -51,7 +54,7 @@ const Topbar = () => {
               <Image src={link.icon} alt={link.label} width={24} height={24} />
               <p
                 className={`text-subtext max-lg:hidden text-small-semibold ${
-                  isActive && "text-black text-small-bold"
+                  isActive && "text-small-bold"
                 }`}
               >
                 {link.label}
@@ -59,6 +62,18 @@ const Topbar = () => {
             </Link>
           );
         })}
+        <Link
+              href={`/profile/${userId}`}
+              key="Profile"
+              className={`topsidebar_link items-center hover:bg-active`}
+            >
+              <Image src="/assets/user.svg" alt="Profile" width={24} height={24} />
+              <p
+                className={`text-subtext max-lg:hidden text-small-semibold`}
+              >
+                Profile
+              </p>
+            </Link>
         </div>
         <div className="flex items-center gap-4 lg:hidden">
           {user? (
@@ -70,20 +85,14 @@ const Topbar = () => {
             alt="credit"
           />
           <p className="text-subtext text-small-semibold">{userData?.credit}</p>
+          <a href="/credit">+</a>
         </div>
           ) : (
-            null
+            <Link href="/sign-in">
+              <Login />
+            </Link>
           )}
           <UserButton />
-          <div className="block">
-            <SignedIn>
-              <SignOutButton redirectUrl="/sign-in">
-                <div className="flex cursor-pointer">
-                <Logout sx={{ color: "subtext", fontSize: "32px" }} />
-                </div>
-              </SignOutButton>
-            </SignedIn>
-          </div>
         </div>
       
     </div>
