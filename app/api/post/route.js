@@ -9,13 +9,14 @@ export const GET = async (req) => {
 
     const url = new URL(req.url);
     const offset = parseInt(url.searchParams.get("offset")) || 0;
-    const limit = parseInt(url.searchParams.get("limit")) || 10;
+    const limitParam = parseInt(url.searchParams.get("limit")) || 10;
+    const limit = limitParam ? parseInt(limitParam) : null;
 
-    const feedPosts = await Post.find()
-      .sort({ createdAt: -1 })
-      .skip(offset)
-      .limit(limit)
-      .exec();
+    const query = Post.find().sort({ createdAt: -1 }).skip(offset);
+    if (limit !== null) {
+      query.limit(limit);
+    }
+    const feedPosts = await query.exec();
 
     const populatedPosts = await Promise.all(
       feedPosts.map(async (post) => {

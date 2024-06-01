@@ -71,7 +71,7 @@ const AdBar = () => {
         <div className="px-3 pt-1 flex justify-between items-center w-full">
           <p className="text-x-small-semibold text-light-2">ADS</p>
           <a href="/create-ads">
-            <Add href="/create-ads"/>
+            <Add href="/create-ads" />
           </a>
         </div>
         <div className="flex overflow-auto gap-5 p-5 bg-gray-100">
