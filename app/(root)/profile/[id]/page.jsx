@@ -48,7 +48,7 @@ const profile = () => {
   const fetchMoreData = async () => {
     try {
       const response = await fetch(
-        `/api/user/${user.id}?offset=${userData.posts.length}&limit=10`
+        `/api/user/${userData.clerkId}?offset=${userData.posts.length}&limit=10`
       );
       const newData = await response.json();
 
@@ -112,7 +112,7 @@ const profile = () => {
                 />
               ))}
             </div>
-          </InfiniteScroll>s
+          </InfiniteScroll>
         </div>
       ) : (
         <p>No User</p>

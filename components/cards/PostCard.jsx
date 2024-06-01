@@ -163,8 +163,8 @@ const PostCard = ({
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      <div className="card-container bg-white drop-shadow-xl">
-        <div className="w-full flex justify-end pb-3 gap-3">
+      <div className="card-container bg-white shadow-lg">
+        <div className="w-full relative flex justify-end pb-3 gap-3">
           <p className="date text-subtext">{date}</p>
           {loggedInUser &&
           Object.keys(loggedInUser).length > 0 &&
@@ -196,7 +196,7 @@ const PostCard = ({
                     color: "black",
                     cursor: "pointer",
                     position: "absolute",
-                    left: 20,
+                    left: 0
                   }}
                   onClick={() => router.push('/upgrade')}
                 />
@@ -274,7 +274,7 @@ const PostCard = ({
         </div>
       </div>
       {isExpand ? (
-        <div className="card-container gap-3 rounded-b-xl bg-white/70 drop-shadow-xl">
+        <div className="card-container gap-3 rounded-b-xl bg-white/70 shadow-lg">
           <div className="w-full">
             <div className="flex justify-between">
               {post.creatorType === "User" ? (
@@ -359,19 +359,19 @@ const PostCard = ({
       {showPreview && (
         <div className="fixed inset-0 bg-green-1 z-30 overflow-auto">
           <p
-            className="fixed top-3 right-3 lg:top-6 lg:right-6 text-heading3-bold cursor-pointer"
+            className="close-preview"
             onClick={() => setShowPreview(false)}
           >
             x
           </p>
-          <div className="w-full h-full flex justify-center py-10">
+          <div className="preview-container">
             <div className="flex flex-col items-center">
               <div
                 ref={postRef}
                 id="postToSave"
                 className="flex flex-col w-1/2"
               >
-                <div className="p-5 sm:p-7 md:p-7 lg:p-6 bg-white relative drop-shadow-xl">
+                <div className="p-5 sm:p-7 md:p-7 lg:p-6 bg-white relative shadow-lg">
                   <p className="absolute right-1 top-1 text-subtle-medium text-subtext">
                     {date}
                   </p>
@@ -427,7 +427,7 @@ const PostCard = ({
                   ) : null}
                 </div>
                 {isExpand ? (
-                  <div className="p-5 sm:p-7 md:p-7 lg:p-6 flex flex-col gap-3 bg-[#e1ece8] drop-shadow-xl">
+                  <div className="p-5 sm:p-7 md:p-7 lg:p-6 flex flex-col gap-3 bg-[#e1ece8] shadow-lg">
                     <div className="w-full">
                       <div className="flex justify-between">
                         {showProfile ? (
@@ -498,7 +498,7 @@ const PostCard = ({
                 id="postToSave"
                 className="flex flex-col w-[2000px] invisible"
               >
-                <div className="p-28 bg-white relative drop-shadow-xl">
+                <div className="p-28 bg-white relative shadow-lg">
                   <div
                     className={`w-full flex flex-col items-center ${
                       showLikes ? "pb-0 " : "pb-44"
@@ -557,7 +557,7 @@ const PostCard = ({
                   )}
                 </div>
                 {isExpand ? (
-                  <div className="p-28 flex flex-col gap-8 bg-[#e1ece8] drop-shadow-xl">
+                  <div className="p-28 flex flex-col gap-8 bg-[#e1ece8] shadow-lg">
                     <div className="w-full">
                       <div className="flex justify-between">
                         {showProfile ? (

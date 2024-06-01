@@ -56,6 +56,18 @@
   }
 
   .date {
-    @apply absolute left-1/2 transform -translate-x-1/2 top-2 text-small-semibold
+    @apply absolute left-1/2 transform -translate-x-1/2 -top-3 text-small-semibold
+  }
+
+  .close-preview {
+    @apply fixed top-20 right-10 lg:top-6 lg:right-6 text-heading3-bold cursor-pointer
+  }
+
+  .preview-container {
+    @apply w-full h-full flex max-lg:mt-32 justify-center py-10
+  }
+
+  .frame-container {
+    @apply p-5 md:p-8 flex flex-col justify-center pb-20 items-center relative shadow-lg z-10
   }
 }

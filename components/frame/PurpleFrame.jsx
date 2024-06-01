@@ -165,8 +165,8 @@ const PurpleFrame = ({
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      <div className="card-container pb-14 bg-[#d495f6] drop-shadow-xl z-10">
-        <div className="w-full flex justify-end pb-3 gap-3">
+      <div className="card-container relative pb-14 bg-[#d495f6] shadow-lg z-10">
+        <div className="w-full relative flex justify-end pb-3 gap-3">
           <p className="date text-white">{date}</p>
           {loggedInUser &&
           Object.keys(loggedInUser).length > 0 &&
@@ -198,7 +198,7 @@ const PurpleFrame = ({
                     color: "white",
                     cursor: "pointer",
                     position: "absolute",
-                    left: 20,
+                    left: 0,
                   }}
                   onClick={() => router.push("/upgrade")}
                 />
@@ -275,7 +275,7 @@ const PurpleFrame = ({
         </div>
       </div>
       {isExpand ? (
-        <div className="card-container gap-3 rounded-b-xl bg-[#e1b1fb] drop-shadow-xl">
+        <div className="card-container gap-3 rounded-b-xl bg-[#e1b1fb] shadow-lg">
           <div className="w-full">
             <div className="flex justify-between">
               <Link href={`/profile/${creator.clerkId}`}>
@@ -341,19 +341,19 @@ const PurpleFrame = ({
       {showPreview && (
         <div className="fixed inset-0 bg-green-1 z-30 overflow-auto">
           <p
-            className="fixed top-3 right-3 lg:top-6 lg:right-6 text-heading3-bold cursor-pointer"
+            className="close-preview"
             onClick={() => setShowPreview(false)}
           >
             x
           </p>
-          <div className="w-full h-full flex justify-center py-10">
+          <div className="preview-container">
             <div className="flex flex-col items-center">
               <div
                 ref={postRef}
                 id="postToSave"
                 className="flex flex-col w-1/2"
               >
-                <div className="p-8 bg-[#d495f6] flex flex-col justify-center pb-20 items-center relative drop-shadow-xl z-10">
+                <div className="frame-container bg-[#d495f6]">
                   <p className="absolute right-1 top-1 text-subtle-medium text-white">
                     {date}
                   </p>
@@ -413,7 +413,7 @@ const PurpleFrame = ({
                   </div>
                 </div>
                 {isExpand ? (
-                  <div className="p-5 sm:p-7 md:p-7 lg:p-6 flex flex-col gap-3 bg-[#e1b1fb] drop-shadow-xl">
+                  <div className="p-5 sm:p-7 md:p-7 lg:p-6 flex flex-col gap-3 bg-[#e1b1fb] shadow-lg">
                     <div className="w-full">
                       <div className="flex relative w-full ">
                         {showProfile ? (
@@ -486,7 +486,7 @@ const PurpleFrame = ({
                 id="postToSave"
                 className="flex flex-col w-[2000px] invisible"
               >
-                <div className="p-28 pb-44 bg-[#d495f6] flex flex-col justify-center items-center relative drop-shadow-xl z-10">
+                <div className="p-28 pb-44 bg-[#d495f6] flex flex-col justify-center items-center relative shadow-lg z-10">
                   <p className="absolute right-12 top-12 text-heading1-bold text-white">
                     {date}
                   </p>
@@ -535,7 +535,7 @@ const PurpleFrame = ({
                   )}
                 </div>
                 {isExpand ? (
-                  <div className="p-28 flex flex-col gap-8 bg-[#e1b1fb] drop-shadow-xl">
+                  <div className="p-28 flex flex-col gap-8 bg-[#e1b1fb] shadow-lg">
                     <div className="w-full">
                       <div className="flex justify-between">
                         {showProfile ? (

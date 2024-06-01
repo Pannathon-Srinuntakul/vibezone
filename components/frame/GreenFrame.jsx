@@ -165,8 +165,8 @@ const GreenFrame = ({
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      <div className="card-container pb-14 bg-[#adf695] drop-shadow-xl z-10">
-        <div className="w-full flex justify-end pb-3 gap-3">
+      <div className="card-container relative pb-14 bg-[#adf695] shadow-lg z-10">
+        <div className="w-full relative flex justify-end pb-3 gap-3">
           <p className="date text-[#6E6692]">{date}</p>
           {loggedInUser &&
           Object.keys(loggedInUser).length > 0 &&
@@ -198,7 +198,7 @@ const GreenFrame = ({
                     color: "#6E6692",
                     cursor: "pointer",
                     position: "absolute",
-                    left: 20,
+                    left: 0,
                   }}
                   onClick={() => router.push("/upgrade")}
                 />
@@ -277,7 +277,7 @@ const GreenFrame = ({
         </div>
       </div>
       {isExpand ? (
-        <div className="card-container gap-3 rounded-b-xl bg-[#c7f3b8] drop-shadow-xl">
+        <div className="card-container gap-3 rounded-b-xl bg-[#c7f3b8] shadow-lg">
           <div className="w-full">
             <div className="flex justify-between">
               <Link href={`/profile/${creator.clerkId}`}>
@@ -343,19 +343,19 @@ const GreenFrame = ({
       {showPreview && (
         <div className="fixed inset-0 bg-green-1 z-30 overflow-auto">
           <p
-            className="fixed top-3 right-3 lg:top-6 lg:right-6 text-heading3-bold cursor-pointer"
+            className="close-previewr"
             onClick={() => setShowPreview(false)}
           >
             x
           </p>
-          <div className="w-full h-full flex justify-center py-10">
+          <div className="preview-container">
             <div className="flex flex-col items-center">
               <div
                 ref={postRef}
                 id="postToSave"
                 className="flex flex-col w-1/2"
               >
-                <div className="p-8 bg-[#adf695] flex flex-col justify-center pb-20 items-center relative drop-shadow-xl z-10">
+                <div className="frame-container bg-[#adf695]">
                   <p className="absolute right-1 top-1 text-subtle-medium text-[#6E6692]">
                     {date}
                   </p>
@@ -415,7 +415,7 @@ const GreenFrame = ({
                   </div>
                 </div>
                 {isExpand ? (
-                  <div className="p-5 sm:p-7 md:p-7 lg:p-6 flex flex-col gap-3 bg-[#c7f3b8] drop-shadow-xl">
+                  <div className="p-5 sm:p-7 md:p-7 lg:p-6 flex flex-col gap-3 bg-[#c7f3b8] shadow-lg">
                     <div className="w-full">
                       <div className="flex relative w-full ">
                         {showProfile ? (
@@ -488,7 +488,7 @@ const GreenFrame = ({
                 id="postToSave"
                 className="flex flex-col w-[2000px] invisible"
               >
-                <div className="p-28 pb-44 bg-[#adf695] flex flex-col justify-center items-center relative drop-shadow-xl z-10">
+                <div className="p-28 pb-44 bg-[#adf695] flex flex-col justify-center items-center relative shadow-lg z-10">
                   <p className="absolute right-12 top-12 text-heading1-bold text-[#6E6692]">
                     {date}
                   </p>
@@ -537,7 +537,7 @@ const GreenFrame = ({
                   )}
                 </div>
                 {isExpand ? (
-                  <div className="p-28 flex flex-col gap-8 bg-[#c7f3b8] drop-shadow-xl">
+                  <div className="p-28 flex flex-col gap-8 bg-[#c7f3b8] shadow-lg">
                     <div className="w-full">
                       <div className="flex justify-between">
                         {showProfile ? (

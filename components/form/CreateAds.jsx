@@ -20,10 +20,13 @@ const CreateAds = ({ post }) => {
   const [formData, setFormData] = useState(null);
   const [adsData, setAdsData] = useState({});
   const [showFullAds, setShowFullAds] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handlePublish = async (data) => {
+    setIsLoading(true);
     if (adsData.length >= 10) {
       setShowFullAds(true);
+      setIsLoading(false);
       return;
     } else {
       try {
@@ -46,9 +49,11 @@ const CreateAds = ({ post }) => {
 
         if (response.ok) {
           router.push(`/`);
+          setIsLoading(false);
         }
       } catch (err) {
         console.log(err);
+        setIsLoading(false);
       }
     }
   };
@@ -66,6 +71,7 @@ const CreateAds = ({ post }) => {
   };
 
   const confirmSubmit = () => {
+    if (isLoading) return;
     setShowConfirmation(false);
     handlePublish(formData);
   };
@@ -256,7 +262,8 @@ const CreateAds = ({ post }) => {
                     required: "Required",
                     pattern: {
                       value: /^https?:\/\/\S+$/i,
-                      message: "Please enter a valid URL starting with http:// or https://",
+                      message:
+                        "Please enter a valid URL starting with http:// or https://",
                     },
                   })}
                   type="text"

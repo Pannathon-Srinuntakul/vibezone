@@ -71,10 +71,10 @@ const AdBar = () => {
         <div className="px-3 pt-1 flex justify-between items-center w-full">
           <p className="text-x-small-semibold text-light-2">ADS</p>
           <a href="/create-ads">
-            <Add />
+            <Add href="/create-ads"/>
           </a>
         </div>
-        <div className="flex overflow-auto gap-5 p-5">
+        <div className="flex overflow-auto gap-5 p-5 bg-gray-100">
           {ads.map((ad, index) => (
             <div key={index} className="flex flex-col gap-2 justify-end">
               <div className="flex justify-between w-[150px]">
@@ -90,7 +90,7 @@ const AdBar = () => {
                   />
                 ) : null}
               </div>
-              <Link
+              <a
                 href={
                   ad.link.startsWith("http") ? ad.link : `http://${ad.link}`
                 }
@@ -98,17 +98,18 @@ const AdBar = () => {
                 className="mt-3"
               >
                 <div
-                  className="flex justify-center items-center w-[150px] h-[150px] md:w-[200px] md:h-[200px] border 
-              border-black/50 drop-shadow-lg rounded-lg hover:bg-white "
+                  className="flex justify-center items-center w-[150px] h-[150px] md:w-[200px] overflow-hidden md:h-[200px] border 
+              border-black/50 drop-shadow-lg rounded-lg"
                 >
                   <Image
                     src={ad.postPhoto}
-                    fill
+                    width={150}
+                    height={150}
                     alt="ad"
                     className="object-cover rounded-lg p-3"
                   />
                 </div>
-              </Link>
+              </a>
             </div>
           ))}
         </div>
