@@ -6,14 +6,15 @@ import ProfileCard from "@components/cards/ProfileCard";
 import Loader from "@components/Loader";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const profile = () => {
   const { user, isLoaded } = useUser();
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState();
-  const [loggedInUserData, setLoggedInUserData] = useState()
-  const router = useRouter();
+  const [loggedInUserData, setLoggedInUserData] = useState();
+  const [hasMore, setHasMore] = useState(true);
 
   const getUserProfile = async () => {
     const response = await fetch(`/api/user/${id}`, {
@@ -35,12 +36,32 @@ const profile = () => {
       setLoggedInUserData(data);
     }
   };
-  
+
   const updateUser = async () => {
     if (userData.clerkId) {
       const response = await fetch(`/api/user/${userData.clerkId}`);
       const data = await response.json();
       setUserData(data);
+    }
+  };
+
+  const fetchMoreData = async () => {
+    try {
+      const response = await fetch(
+        `/api/user/${user.id}?offset=${userData.posts.length}&limit=10`
+      );
+      const newData = await response.json();
+
+      if (newData.posts.length === 0) {
+        setHasMore(false);
+      } else {
+        setUserData((prevData) => ({
+          ...prevData,
+          posts: [...prevData.posts, ...newData.posts],
+        }));
+      }
+    } catch (error) {
+      console.error("Error fetching more data:", error);
     }
   };
 
@@ -64,22 +85,34 @@ const profile = () => {
       {userData ? (
         <div className="flex flex-col w-full">
           <div className="flex items-center justify-center">
-            <div className="w-full lg:w-1/2 rounded-xl drop-shadow-lg p-5 bg-white">
+            <div className="w-full lg:w-1/2 rounded-2xl drop-shadow-lg p-5 bg-white">
               <ProfileCard userData={userData} />
             </div>
           </div>
-          <div className="flex flex-col gap-9 mt-12">
-            {userData.posts?.map((post) => (
-              <PostCard
-                key={post._id}
-                post={post}
-                creator={post.creator}
-                loggedInUser={loggedInUserData}
-                update={getUserProfile}
-                updateUser={updateUser}
-              />
-            ))}
-          </div>
+          <InfiniteScroll
+            dataLength={userData.posts.length}
+            next={fetchMoreData}
+            hasMore={hasMore}
+            loader={<Loader />}
+            endMessage={
+              <div className="w-full flex justify-center items-center mt-12">
+                <p className=" text-heading4-bold">No more posts</p>
+              </div>
+            }
+          >
+            <div className="flex flex-col gap-9 mt-12">
+              {userData.posts?.map((post) => (
+                <PostCard
+                  key={post._id}
+                  post={post}
+                  creator={post.creator}
+                  loggedInUser={loggedInUserData}
+                  update={getUserProfile}
+                  updateUser={updateUser}
+                />
+              ))}
+            </div>
+          </InfiniteScroll>s
         </div>
       ) : (
         <p>No User</p>

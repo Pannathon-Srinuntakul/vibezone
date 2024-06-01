@@ -7,14 +7,22 @@ export const GET = async (req) => {
   try {
     await connectToDB();
 
-    const feedPosts = await Post.find().exec();
+    const url = new URL(req.url);
+    const offset = parseInt(url.searchParams.get("offset")) || 0;
+    const limit = parseInt(url.searchParams.get("limit")) || 10;
+
+    const feedPosts = await Post.find()
+      .sort({ createdAt: -1 })
+      .skip(offset)
+      .limit(limit)
+      .exec();
 
     const populatedPosts = await Promise.all(
       feedPosts.map(async (post) => {
         let creator = null;
-        if (post.creatorType === 'User') {
+        if (post.creatorType === "User") {
           creator = await User.findById(post.creator).lean().exec();
-        } else if (post.creatorType === 'Guest') {
+        } else if (post.creatorType === "Guest") {
           creator = await Guest.findById(post.creator).lean().exec();
         }
         return {

@@ -2,8 +2,17 @@
 
 import { useUser } from "@clerk/nextjs";
 import PostCard from "@components/cards/PostCard";
+import BlueFrame from "@components/frame/BlueFrame";
+import GreenFrame from "@components/frame/GreenFrame";
+import PinkFrame from "@components/frame/PinkFrame";
+import PurpleFrame from "@components/frame/PurpleFrame";
+import YellowFrame from "@components/frame/YellowFrame";
 import Loader from "@components/Loader";
 import { useEffect, useState } from "react";
+import { Sriracha } from "next/font/google";
+import InfiniteScroll from "react-infinite-scroll-component";
+
+const sriracha = Sriracha({subsets: ['latin'], weight: "400"})
 
 const Home = () => {
   const { user, isLoaded } = useUser();
@@ -12,8 +21,8 @@ const Home = () => {
   const [clientIp, setClientIp] = useState("");
   const [userData, setUserData] = useState({});
   const [guestData, setGuestData] = useState({});
-  const [isUserDataLoaded, setIsUserDataLoaded] = useState(false); // เพิ่มสถานะนี้เพื่อเช็คว่าข้อมูล user ถูกโหลดแล้วหรือยัง
-  
+  const [isUserDataLoaded, setIsUserDataLoaded] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
   const getClientIp = async () => {
     if (!user) {
       try {
@@ -34,6 +43,22 @@ const Home = () => {
       setIsUserDataLoaded(true);
     }
   };
+
+  const fetchMoreData = async () => {
+    try {
+      const response = await fetch(
+        `/api/post?offset=${feedPost.length}&limit=10`
+      );
+      const newData = await response.json();
+      if (newData.length === 0) {
+        setHasMore(false);
+      } else {
+        setFeedPost((prevPosts) => [...prevPosts, ...newData]);
+      }
+    } catch (error) {
+      console.error("Error fetching more data:", error);
+    }
+  };  
 
   const getFeedPost = async () => {
     const response = await fetch("/api/post");
@@ -72,7 +97,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchGuestData = async () => {
-      if (clientIp && !user && !isUserDataLoaded) { // ดึงข้อมูล guest เฉพาะเมื่อ clientIp ถูกตั้งค่าและ user ไม่มีข้อมูลและ isUserDataLoaded เป็น false
+      if (clientIp && !user && !isUserDataLoaded) {
         try {
           const response = await fetch(`/api/guest/${clientIp}`);
           const data = await response.json();
@@ -86,12 +111,37 @@ const Home = () => {
     fetchGuestData();
   }, [clientIp, user, isUserDataLoaded]);
 
+  console.log('feedpost', feedPost.length)
+  
   return loading || !isLoaded ? (
     <Loader />
   ) : (
+    <div className="w-full">
+    <InfiniteScroll
+    dataLength={feedPost.length}
+    next={fetchMoreData}
+    hasMore={hasMore}
+    loader={<Loader />}
+    endMessage={<div className="w-full flex justify-center items-center mt-12">
+      <p className=" text-heading4-bold">
+      No more posts
+      </p>
+      </div>}
+  >
     <div className="flex flex-col w-full items-center gap-10">
       {feedPost.map((post) => (
+        <>
         <PostCard
+          key={post._id}
+          post={post}
+          creator={post.creator}
+          guest={clientIp}
+          loggedInGuest={guestData}
+          loggedInUser={userData}
+          update={updateUser}
+          updateUser={updateUser}
+        />
+        <BlueFrame          
           key={post._id}
           post={post}
           creator={post.creator}
@@ -100,8 +150,56 @@ const Home = () => {
           loggedInUser={userData}
           update={getFeedPost}
           updateUser={updateUser}
+          sriracha={sriracha}
         />
+        <PinkFrame          
+          key={post._id}
+          post={post}
+          creator={post.creator}
+          guest={clientIp}
+          loggedInGuest={guestData}
+          loggedInUser={userData}
+          update={getFeedPost}
+          updateUser={updateUser}
+          sriracha={sriracha}
+        />
+        <YellowFrame          
+          key={post._id}
+          post={post}
+          creator={post.creator}
+          guest={clientIp}
+          loggedInGuest={guestData}
+          loggedInUser={userData}
+          update={getFeedPost}
+          updateUser={updateUser}
+          sriracha={sriracha}
+        />
+        <PurpleFrame          
+          key={post._id}
+          post={post}
+          creator={post.creator}
+          guest={clientIp}
+          loggedInGuest={guestData}
+          loggedInUser={userData}
+          update={getFeedPost}
+          updateUser={updateUser}
+          sriracha={sriracha}
+        /> 
+        <GreenFrame          
+          key={post._id}
+          post={post}
+          creator={post.creator}
+          guest={clientIp}
+          loggedInGuest={guestData}
+          loggedInUser={userData}
+          update={getFeedPost}
+          updateUser={updateUser}
+          sriracha={sriracha}
+        /> 
+        </>
       ))}
+    </div>
+    </InfiniteScroll>
     </div>
   );
 };

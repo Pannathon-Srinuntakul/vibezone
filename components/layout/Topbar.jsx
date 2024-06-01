@@ -92,7 +92,7 @@ const Topbar = () => {
               <Login />
             </Link>
           )}
-          <UserButton />
+          <UserButton afterSignOutUrl="/sign-in"/>
         </div>
       
     </div>

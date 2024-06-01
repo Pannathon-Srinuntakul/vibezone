@@ -20,7 +20,7 @@ export const POST = async (req) => {
 
     // Create a new file name with the creatorId
     const fileExtension = path.extname(postPhoto.name);
-    const newFileName = `${creatorId}_${Date.now()}${fileExtension}`;
+    const newFileName = `${Date.now()}_${fileExtension}`;
 
     const postPhotoPath = path.join(
       currentWorkingDirectory,

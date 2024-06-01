@@ -13,7 +13,7 @@ const ProfileCard = ({ userData }) => {
   const handleEditBio = () => {
     setIsEditingBio(true);
   };
-
+console.log(userData)
   const handleSaveBio = async () => {
     try {
       const response = await fetch(`/api/user/${userData._id}/bio`, {
@@ -42,9 +42,9 @@ const ProfileCard = ({ userData }) => {
   };
 
   return (
-    <div className="flex flex-col gap-9">
-      <div className="flex gap-5 items-center">
-        <div className="w-[100px] h-[100px]">
+    <div className="flex flex-col">
+      <div className="flex gap-2 lg:gap-5 items-center">
+        <div className="w-[100px] h-[100px] flex items-center justify-center">
           <Image
             src={userData.profilePhoto}
             alt="profile photo"
@@ -95,12 +95,6 @@ const ProfileCard = ({ userData }) => {
                 ) : null}
               </>
             )}
-          </div>
-          <div className="flex gap-7 text-subtle-medium lg:text-small-semibold max-sm:gap-4">
-            <div className="flex text-black gap-2 items-center max-sm:gap-0.5">
-              <p className="text-subtle-medium">{userData.posts.length}</p>
-              <p className="text-subtle-medium">Posts</p>
-            </div>
           </div>
         </div>
       </div>

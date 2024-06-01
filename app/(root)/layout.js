@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
           <Topbar />
           <AdBar />
           <main className="flex flex-row">
-            <Leftbar />
+            <Leftbar className="max-lg:hidden" />
             <section className="main-container">{children}</section>
             <RightBar />
           </main>

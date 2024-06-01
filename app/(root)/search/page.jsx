@@ -7,6 +7,7 @@ import Loader from "@components/Loader";
 import { Search } from "@mui/icons-material";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const SearchComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -19,6 +20,7 @@ const SearchComponent = () => {
   const [isUserDataLoaded, setIsUserDataLoaded] = useState(false);
   const [showingUsers, setShowingUsers] = useState(true);
   const [searchLoading, setSearchLoading] = useState();
+  const [hasMore, setHasMore] = useState(true);
 
   const getClientIp = async () => {
     if (!user) {
@@ -78,41 +80,23 @@ const SearchComponent = () => {
     fetchGuestData();
   }, [clientIp, user, isUserDataLoaded]);
 
-  const handleSearch = async () => {
-    if (!searchQuery.trim()) {
-      setShowWarning(true);
-    } else {
-      setShowWarning(false);
-    try {
-      setSearchLoading(true);
-      const userResponse = await fetch(`/api/search/users/${searchQuery}`);
-      const users = await userResponse.json();
-
-      const postResponse = await fetch(`/api/search/posts/${searchQuery}`);
-      const posts = await postResponse.json();
-
-      setSearchResults({
-        users,
-        posts: posts.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        ),
-      });
-      setSearchLoading(false);
-    } catch (error) {
-      console.error("Error fetching search results:", error);
-    }
-  }
-  };
-
   const handleShowUsers = async () => {
     if (!searchQuery.trim()) {
       setShowWarning(true);
     } else {
       setShowWarning(false);
-    const userResponse = await fetch(`/api/search/users/${searchQuery}`);
-    const users = await userResponse.json();
-    setSearchResults({ users, posts: [] });
-    setShowingUsers(true);
+      try {
+        setSearchLoading(true);
+        const response = await fetch(
+          `/api/search/users/${searchQuery}?offset=0&limit=10`
+        );
+        const users = await response.json();
+        setSearchResults({ users, posts: [] });
+        setShowingUsers(true);
+        setSearchLoading(false);
+      } catch (error) {
+        console.error("Error fetching search users:", error);
+      }
     }
   };
 
@@ -121,40 +105,70 @@ const SearchComponent = () => {
       setShowWarning(true);
     } else {
       setShowWarning(false);
-    const postResponse = await fetch(`/api/search/posts/${searchQuery}`);
-    const posts = await postResponse.json();
-    setSearchResults({
-      users: [],
-      posts: posts.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      ),
-    });
-    setShowingUsers(false);
-  }
+      try {
+        setSearchLoading(true);
+        const response = await fetch(
+          `/api/search/posts/${searchQuery}?offset=0&limit=10`
+        );
+        const posts = await response.json();
+        setSearchResults({
+          users: [],
+          posts: posts.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          ),
+        });
+        setShowingUsers(false);
+        setSearchLoading(false);
+      } catch (error) {
+        console.error("Error fetching search posts:", error);
+      }
+    }
+  };
+
+  const fetchMoreData = async () => {
+    try {
+      const response = await fetch(
+        `/api/search/${
+          showingUsers ? "users" : "posts"
+        }/${searchQuery}?offset=${
+          searchResults[showingUsers ? "users" : "posts"].length
+        }&limit=10`
+      );
+      const newData = await response.json();
+
+      if (newData.length === 0) {
+        setHasMore(false);
+      } else {
+        setSearchResults((prevResults) => ({
+          ...prevResults,
+          [showingUsers ? "users" : "posts"]: [
+            ...prevResults[showingUsers ? "users" : "posts"],
+            ...newData,
+          ],
+        }));
+      }
+    } catch (error) {
+      console.error("Error fetching more data:", error);
+    }
   };
 
   return (
     <>
       <div className="w-4/5 md:w-2/3 lg:w-1/2 items-center justify-center flex flex-col pb-6">
-      <div className="relative w-full">
-      <input
-        type="text"
-        className={`w-full rounded-full p-2 pl-3 ${showWarning ? 'border border-red-500' : ''}`}
-        placeholder="Search"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      <Search
-        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 border-l pl-1 border-gray-400"
-        onClick={handleSearch}
-        style={{ cursor: "pointer" }}
-      />
-    </div>
-      {showWarning && (
-        <div className="text-red-500 mt-1">
-          This field is required.
+        <div className="relative w-full">
+          <input
+            type="text"
+            className={`w-full rounded-full p-2 pl-3 ${
+              showWarning ? "border border-red-500" : ""
+            }`}
+            placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
         </div>
-      )}
+        {showWarning && (
+          <div className="text-red-500 mt-1">This field is required.</div>
+        )}
       </div>
       <div className="flex gap-10 sm:gap-36 pb-10">
         <button
@@ -166,6 +180,10 @@ const SearchComponent = () => {
           }
         >
           Show Users
+          <Search
+            className="ml-1 text-gray-400 border-l pl-1 border-gray-400"
+            style={{ cursor: "pointer" }}
+          />
         </button>
         <button
           onClick={handleShowPosts}
@@ -176,51 +194,87 @@ const SearchComponent = () => {
           }
         >
           Show Posts
+          <Search
+            className="ml-1 text-gray-400 border-l pl-1 border-gray-400"
+            style={{ cursor: "pointer" }}
+          />
         </button>
       </div>
-        {!searchLoading ? (
-      <div className="flex flex-col items-center w-full">
-        <div className="w-4/5 lg:w-1/2 items-center flex flex-col pb-2 border-b-2 border-light-2">
-          {searchResults.users.length > 0 && (
-            <>
-              <h3 className="text-subtext text-heading3-bold p-5">Users</h3>
-              <div className="w-full flex flex-col justify-start items-start gap-10 pb-5">
-                {searchResults.users.map((user) => (
-                  <div className="bg-white rounded-full drop-shadow-lg p-2 flex w-full">
-                    <Link href={`/profile/${user.clerkId}`} className="">
-                      <ProfileCard key={user._id} userData={user} />
-                    </Link>
-                  </div>
-                ))}
+      {!searchLoading ? (
+        <div className="flex flex-col items-center w-full">
+          <div className="w-full lg:w-1/2 items-center flex flex-col pb-2 border-b-2 border-light-2">
+            {searchResults.users.length > 0 && (
+              <>
+                <h3 className="text-subtext text-heading3-bold p-5">Users</h3>
+                <div className="w-full">
+                  <InfiniteScroll
+                    dataLength={searchResults.users.length}
+                    next={fetchMoreData}
+                    hasMore={hasMore}
+                    loader={<Loader />}
+                    endMessage={
+                      <div className="w-full flex justify-center items-center mt-12">
+                        <p className=" text-heading4-bold">No more users</p>
+                      </div>
+                    }
+                    className="w-full flex flex-col justify-start items-start gap-10 pb-5 "
+                  >
+                    {searchResults.users.map((user) => (
+                      <div className="bg-white rounded-full drop-shadow-lg p-2 flex items-center w-full">
+                        <Link href={`/profile/${user.clerkId}`} className="flex">
+                          <ProfileCard key={user._id} userData={user} />
+                            <div className="flex text-black justify-center gap-2 p-2 items-center max-sm:gap-0.5">
+                              <p className="text-subtle-medium">
+                                {user.posts.length}
+                              </p>
+                              <p className="text-subtle-medium">Posts</p>
+                          </div>
+                        </Link>
+                      </div>
+                    ))}
+                  </InfiniteScroll>
+                </div>
+              </>
+            )}
+          </div>
+          <div className="w-full flex flex-col justify-center items-center">
+            {searchResults.posts.length > 0 && (
+              <div className="w-full flex flex-col justify-center items-center">
+                <h3 className="text-subtext text-heading3-bold p-5">Posts</h3>
+                <div className="flex flex-col w-full items-center gap-10">
+                  <InfiniteScroll
+                    dataLength={searchResults.posts.length}
+                    next={fetchMoreData}
+                    hasMore={hasMore}
+                    loader={<Loader />}
+                    endMessage={
+                      <div className="w-full flex justify-center items-center mt-12">
+                        <p className=" text-heading4-bold">No more posts</p>
+                      </div>
+                    }
+                    className="w-full flex flex-col justify-start items-start gap-10 pb-5 "
+                  >
+                    {searchResults.posts.map((post) => (
+                      <PostCard
+                        key={post._id}
+                        post={post}
+                        creator={post.creator}
+                        guest={clientIp}
+                        loggedInGuest={guestData}
+                        loggedInUser={userData}
+                        update={updateUser}
+                        updateUser={updateUser}
+                      />
+                    ))}
+                  </InfiniteScroll>
+                </div>
               </div>
-            </>
-          )}
+            )}
+          </div>
         </div>
-        <div className="w-full flex flex-col justify-center items-center">
-          {searchResults.posts.length > 0 && (
-            <div className="w-full flex flex-col justify-center items-center">
-              <h3 className="text-subtext text-heading3-bold p-5">Posts</h3>
-              <div className="flex flex-col w-full items-center gap-10">
-                {searchResults.posts.map((post) => (
-                  <PostCard
-                    key={post._id}
-                    post={post}
-                    creator={post.creator}
-                    guest={clientIp}
-                    loggedInGuest={guestData}
-                    loggedInUser={userData}
-                    update={updateUser}
-                    updateUser={updateUser}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-        ): (
-          <Loader />
-        )}
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };

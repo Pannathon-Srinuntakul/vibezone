@@ -69,17 +69,6 @@ const Leftbar = () => {
             {userData?.bio}
           </p>
         </div>
-        <div className="flex text-subtext justify-around">
-          <div className="flex flex-col items-center">
-            <p className="text-base-bold">{userData?.posts.length}</p>
-            <p className="text-tiny-medium">Posts</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <p className="text-base-bold">{userData?.savedPosts.length}</p>
-            <p className="text-tiny-medium">Saved posts</p>
-          </div>
-        </div>
-
         <hr />
         <div className="flex flex-col gap-6">
           <div className="flex gap-4 items-center">

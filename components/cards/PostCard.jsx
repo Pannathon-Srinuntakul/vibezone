@@ -1,7 +1,9 @@
+"use client"
+
 import {
+  AutoAwesomeOutlined,
   Bookmark,
   BookmarkBorder,
-  BorderColor,
   Delete,
   ExpandLessOutlined,
   ExpandMoreOutlined,
@@ -15,6 +17,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import domtoimage from "dom-to-image";
+import { format } from "date-fns";
+import { useRouter } from "next/navigation";
 
 const PostCard = ({
   post,
@@ -39,6 +43,10 @@ const PostCard = ({
   const [showProfile, setShowProfile] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
   const postRef = useRef(null);
+  const router = useRouter()
+
+  const dateTime = post?.createdAt;
+  const date = format(new Date(dateTime), "yyyy.MM.dd");
 
   const expand = (e) => {
     setIsExpand(e);
@@ -157,6 +165,7 @@ const PostCard = ({
     <div className="w-full flex flex-col items-center justify-center">
       <div className="card-container bg-white drop-shadow-xl">
         <div className="w-full flex justify-end pb-3 gap-3">
+          <p className="date text-subtext">{date}</p>
           {loggedInUser &&
           Object.keys(loggedInUser).length > 0 &&
           post.creatorType !== "Guest" ? (
@@ -181,6 +190,15 @@ const PostCard = ({
                 <Preview
                   sx={{ color: "black", cursor: "pointer" }}
                   onClick={() => setShowPreview(true)}
+                />
+                <AutoAwesomeOutlined
+                  sx={{
+                    color: "black",
+                    cursor: "pointer",
+                    position: "absolute",
+                    left: 20,
+                  }}
+                  onClick={() => router.push('/upgrade')}
                 />
               </>
             )
@@ -337,6 +355,7 @@ const PostCard = ({
           </div>
         </div>
       )}
+
       {showPreview && (
         <div className="fixed inset-0 bg-green-1 z-30 overflow-auto">
           <p
@@ -353,6 +372,9 @@ const PostCard = ({
                 className="flex flex-col w-1/2"
               >
                 <div className="p-5 sm:p-7 md:p-7 lg:p-6 bg-white relative drop-shadow-xl">
+                  <p className="absolute right-1 top-1 text-subtle-medium text-subtext">
+                    {date}
+                  </p>
                   <div className="w-full md:min-h-[200px] xl:min-h-[300px] flex items-center pb-8">
                     <img
                       src={post.postPhoto}
@@ -482,6 +504,9 @@ const PostCard = ({
                       showLikes ? "pb-0 " : "pb-44"
                     }`}
                   >
+                    <p className="absolute right-5 top-5 text-heading1-bold text-subtext">
+                      {date}
+                    </p>
                     <img
                       src={post.postPhoto}
                       alt="post photo"

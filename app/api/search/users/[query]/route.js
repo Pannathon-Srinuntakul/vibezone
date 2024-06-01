@@ -6,6 +6,10 @@ export const GET = async (req, { params }) => {
   try {
     await connectToDB();
 
+    const url = new URL(req.url);
+    const offset = parseInt(url.searchParams.get("offset")) || 0; 
+    const limit = parseInt(url.searchParams.get("limit")) || 10;
+    
     const users = await User.find({
       $or: [
         { username: { $regex: query, $options: "i" } },
@@ -14,6 +18,8 @@ export const GET = async (req, { params }) => {
       ],
     })
       .populate("posts savedPosts likedPosts")
+      .skip(offset)
+      .limit(limit)
       .exec();
 
     return new Response(JSON.stringify(users), { status: 200 });
