@@ -470,13 +470,19 @@ const YellowFrame = ({
                   </div>
                 ) : null}
               </div>
-              <button
-                id="saveBtn"
-                onClick={handleSavePost}
-                className="px-4 py-2 bg-blue-500 text-white rounded-xl mt-5"
-              >
-                Save as Image
-              </button>
+              <div className="flex flex-col w-1/2 gap-2 items-center mt-10 pb-32">
+                <button
+                  id="saveBtn"
+                  onClick={handleSavePost}
+                  className="px-4 py-2 bg-blue-500 text-white rounded-xl"
+                >
+                  Save as Image
+                </button>
+                <p className="text-center text-subtle-medium text-subtext">
+                  If the image does not display, please wait a moment and try
+                  saving it again.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -486,10 +492,10 @@ const YellowFrame = ({
               <div
                 ref={postRef}
                 id="postToSave"
-                className="flex flex-col w-[2000px] invisible"
+                className="flex flex-col w-[800px] invisible"
               >
-                <div className="p-28 pb-44 bg-[#F3F0A8] flex flex-col justify-center items-center relative shadow-lg z-10">
-                  <p className="absolute right-12 top-12 text-heading1-bold text-[#6E6692]">
+                <div className="bg-[#F3F0A8] frame-container">
+                  <p className="absolute right-1 top-1 text-base-bold text-[#6E6692]">
                     {date}
                   </p>
                   <div className={`w-full flex flex-col items-center`}>
@@ -507,53 +513,36 @@ const YellowFrame = ({
                   >
                     <p>{post.caption}</p>
                   </div>
-                  <div className="flex absolute bottom-12 left-1/2 transform -translate-x-1/2 items-center gap-1">
+                  <div className="flex absolute bottom-8 left-1/2 transform -translate-x-1/2 items-center">
                     {showLikes ? (
-                      <p className="text-[#6E6692] text-[60px] flex justify-center items-center gap-3">
+                      <p className="text-[#6E6692] text-[20px] flex justify-center items-center gap-1">
                         <Favorite
-                          sx={{ color: "orange", width: 150, height: 150 }}
+                          sx={{ color: "orange", width: 60, height: 60 }}
                         />
                         {likesCount.toLocaleString()}{" "}
-                        <span className="text-[30px]">Liked</span>
+                        <span className="text-[15px]">Liked</span>
                       </p>
                     ) : null}
                   </div>
-                  {!isExpand ? (
-                    <div
-                      id="expandBtn"
-                      className="right-6 bottom-3 absolute"
-                      onClick={() => expand(true)}
-                    >
-                      <ExpandMoreOutlined sx={{ cursor: "pointer" }} />
-                    </div>
-                  ) : (
-                    <div
-                      id="expandBtn"
-                      className="right-6 bottom-3 absolute"
-                      onClick={() => expand(false)}
-                    >
-                      <ExpandLessOutlined sx={{ cursor: "pointer" }} />
-                    </div>
-                  )}
                 </div>
                 {isExpand ? (
-                  <div className="p-28 flex flex-col gap-8 bg-[#edea89] shadow-lg">
+                  <div className="p-10 flex flex-col gap-8 bg-[#edea89] shadow-lg">
                     <div className="w-full">
                       <div className="flex justify-between">
                         {showProfile ? (
-                          <div className="flex gap-12 items-center">
+                          <div className="flex gap-7 items-center">
                             <img
                               src={creator.profilePhoto}
                               alt="profile photo"
-                              width={190}
-                              height={190}
+                              width={90}
+                              height={90}
                               className="rounded-full"
                             />
                             <div className="flex flex-col gap-1">
-                              <p className="text-[70px] font-semibold text-black">
+                              <p className="text-[26px] font-semibold text-black">
                                 {creator.firstName} {creator.lastName}
                               </p>
-                              <p className="text-[50px] text-light-3">
+                              <p className="text-[18px] text-light-3">
                                 {creator.username}
                               </p>
                             </div>
@@ -562,13 +551,13 @@ const YellowFrame = ({
                       </div>
                     </div>
                     <div className="w-full flex flex-col justify-center items-center">
-                      <p className="text-[80px] font-bold">{post.caption}</p>
+                      <p className="text-[50px] font-bold">{post.caption}</p>
                       <p className="border border-subtext/75 font-thin w-full"></p>
                     </div>
-                    <div className="flex flex-col gap-6 pl-4 justify-start">
+                    <div className="flex flex-col gap-5 pl-4 justify-start">
                       {details.map((detail, index) => (
                         <div key={index}>
-                          <p className="text-[50px] break-words whitespace-normal">
+                          <p className="text-[28px] break-words whitespace-normal">
                             {detail}
                           </p>
                         </div>

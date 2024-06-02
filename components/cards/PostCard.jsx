@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   AutoAwesomeOutlined,
@@ -43,7 +43,7 @@ const PostCard = ({
   const [showProfile, setShowProfile] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
   const postRef = useRef(null);
-  const router = useRouter()
+  const router = useRouter();
 
   const dateTime = post?.createdAt;
   const date = format(new Date(dateTime), "yyyy.MM.dd");
@@ -196,9 +196,9 @@ const PostCard = ({
                     color: "black",
                     cursor: "pointer",
                     position: "absolute",
-                    left: 0
+                    left: 0,
                   }}
-                  onClick={() => router.push('/upgrade')}
+                  onClick={() => router.push("/upgrade")}
                 />
               </>
             )
@@ -358,10 +358,7 @@ const PostCard = ({
 
       {showPreview && (
         <div className="fixed inset-0 bg-green-1 z-30 overflow-auto">
-          <p
-            className="close-preview"
-            onClick={() => setShowPreview(false)}
-          >
+          <p className="close-preview" onClick={() => setShowPreview(false)}>
             x
           </p>
           <div className="preview-container">
@@ -480,128 +477,83 @@ const PostCard = ({
                   </div>
                 ) : null}
               </div>
-              <button
-                id="saveBtn"
-                onClick={handleSavePost}
-                className="px-4 py-2 bg-blue-500 text-white rounded-xl mt-5"
-              >
-                Save as Image
-              </button>
+              <div className="flex flex-col w-1/2 gap-2 items-center mt-10 pb-32">
+                <button
+                  id="saveBtn"
+                  onClick={handleSavePost}
+                  className="px-4 py-2 bg-blue-500 text-white rounded-xl"
+                >
+                  Save as Image
+                </button>
+                <p className="text-center text-subtle-medium text-subtext">
+                  If the image does not display, please wait a moment and try
+                  saving it again.
+                </p>
+              </div>
             </div>
           </div>
 
           {/* To save */}
-          <div className="w-full h-full absolute -top-[9999999px] -right-[99999999px] py-10 overflow-hidden">
+          <div className="w-full h-full absolute -top-[9999999px] -right-[99999999px] flex justify-center items-center py-10">
             <div className="mt-96">
               <div
                 ref={postRef}
                 id="postToSave"
-                className="flex flex-col w-[2000px] invisible"
+                className="flex flex-col w-[800px] invisible"
               >
-                <div className="p-28 bg-white relative shadow-lg">
-                  <div
-                    className={`w-full flex flex-col items-center ${
-                      showLikes ? "pb-0 " : "pb-44"
-                    }`}
-                  >
-                    <p className="absolute right-5 top-5 text-heading1-bold text-subtext">
-                      {date}
+                <div className="bg-white frame-container">
+                  <p className="absolute right-1 top-1 text-base-bold text-subtext">
+                    {date}
+                  </p>
+                  <img
+                    src={post.postPhoto}
+                    alt="post photo"
+                    width={200}
+                    height={150}
+                    layout="responsive"
+                    className="w-full"
+                  />
+                  {showLikes ? (
+                    <p className="text-black text-[20px] flex justify-center items-center gap-1 mt-16">
+                      <Favorite sx={{ color: "red", width: 60, height: 60 }} />
+                      {likesCount.toLocaleString()}{" "}
+                      <span className="text-subtext text-[15px]">Liked</span>
                     </p>
-                    <img
-                      src={post.postPhoto}
-                      alt="post photo"
-                      width={200}
-                      height={150}
-                      layout="responsive"
-                      className="w-full"
-                    />
-                    {showLikes ? (
-                      <p className="text-black text-[60px] flex justify-center items-center gap-3 mt-32">
-                        <Favorite
-                          sx={{ color: "red", width: 100, height: 100 }}
-                        />
-                        {likesCount.toLocaleString()}{" "}
-                        <span className="text-subtext text-[30px]">Liked</span>
-                      </p>
-                    ) : null}
-                    {showLikes ? (
-                      <VisibilityOff
-                        id="hideOnSave"
-                        onClick={() => setShowLikes(false)}
-                        sx={{ cursor: "pointer" }}
-                      />
-                    ) : (
-                      <Visibility
-                        id="hideOnSave"
-                        onClick={() => setShowLikes(true)}
-                        sx={{ cursor: "pointer" }}
-                      />
-                    )}
-                  </div>
-                  {!isExpand ? (
-                    <div
-                      id="expandBtn"
-                      className="right-6 bottom-3 absolute"
-                      onClick={() => expand(true)}
-                    >
-                      <ExpandMoreOutlined sx={{ cursor: "pointer" }} />
-                    </div>
-                  ) : (
-                    <div
-                      id="expandBtn"
-                      className="right-6 bottom-3 absolute"
-                      onClick={() => expand(false)}
-                    >
-                      <ExpandLessOutlined sx={{ cursor: "pointer" }} />
-                    </div>
-                  )}
+                  ) : null}
                 </div>
                 {isExpand ? (
-                  <div className="p-28 flex flex-col gap-8 bg-[#e1ece8] shadow-lg">
+                  <div className="p-10 flex flex-col gap-8 bg-[#e1ece8] shadow-lg">
                     <div className="w-full">
                       <div className="flex justify-between">
                         {showProfile ? (
-                          <div className="flex gap-12 items-center">
+                          <div className="flex gap-7 items-center">
                             <img
                               src={creator.profilePhoto}
                               alt="profile photo"
-                              width={190}
-                              height={190}
+                              width={90}
+                              height={90}
                               className="rounded-full"
                             />
                             <div className="flex flex-col gap-1">
-                              <p className="text-[70px] font-semibold text-black">
+                              <p className="text-[26px] font-semibold text-black">
                                 {creator.firstName} {creator.lastName}
                               </p>
-                              <p className="text-[50px] text-light-3">
+                              <p className="text-[18px] text-light-3">
                                 {creator.username}
                               </p>
                             </div>
                           </div>
                         ) : null}
-                        {showProfile ? (
-                          <VisibilityOff
-                            id="hideOnSave"
-                            onClick={() => setShowProfile(false)}
-                            sx={{ cursor: "pointer" }}
-                          />
-                        ) : (
-                          <Visibility
-                            id="hideOnSave"
-                            onClick={() => setShowProfile(true)}
-                            sx={{ cursor: "pointer" }}
-                          />
-                        )}
                       </div>
                     </div>
                     <div className="w-full flex flex-col justify-center items-center">
-                      <p className="text-[80px] font-bold">{post.caption}</p>
+                      <p className="text-[50px] font-bold">{post.caption}</p>
                       <p className="border border-subtext/75 font-thin w-full"></p>
                     </div>
-                    <div className="flex flex-col gap-6 pl-4 justify-start">
+                    <div className="flex flex-col gap-5 pl-4 justify-start">
                       {details.map((detail, index) => (
                         <div key={index}>
-                          <p className="text-[50px] break-words whitespace-normal">
+                          <p className="text-[28px] break-words whitespace-normal">
                             {detail}
                           </p>
                         </div>

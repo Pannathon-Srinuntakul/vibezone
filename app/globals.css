@@ -52,7 +52,7 @@
   }
 
   .post-caption-save {
-    @apply text-[150px] font-extralight w-[110%] text-center text-ellipsis overflow-hidden
+    @apply text-[90px] font-extralight w-[110%] text-center text-ellipsis overflow-hidden
   }
 
   .date {
@@ -68,6 +68,6 @@
   }
 
   .frame-container {
-    @apply p-5 md:p-8 flex flex-col justify-center pb-20 items-center relative shadow-lg z-10
+    @apply p-8 flex flex-col justify-center pb-20 items-center relative shadow-lg z-10
   }
 }
