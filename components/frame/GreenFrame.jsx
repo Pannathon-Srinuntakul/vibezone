@@ -343,7 +343,7 @@ const GreenFrame = ({
       {showPreview && (
         <div className="fixed inset-0 bg-green-1 z-30 overflow-auto">
           <p
-            className="close-previewr"
+            className="close-preview"
             onClick={() => setShowPreview(false)}
           >
             x
