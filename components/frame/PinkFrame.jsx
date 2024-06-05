@@ -218,7 +218,13 @@ const Pinkframe = ({
 
         <div className="w-full flex items-center relative">
           <Image
-            src="/assets/ad.jpg"
+            src="/components/blue/cloud.png"
+            className="absolute -top-7 -left-5 w-[150px]"
+            width={200}
+            height={50}
+          />
+          <Image
+            src="/components/pink/heart.png"
             className="absolute -top-7 -left-5 w-[60px]"
             width={200}
             height={50}
