@@ -21,7 +21,7 @@ import domtoimage from "dom-to-image";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 
-const PinkFrame = ({
+const Pinkframe = ({
   post,
   creator,
   guest,
@@ -218,49 +218,49 @@ const PinkFrame = ({
 
         <div className="w-full flex items-center relative">
           <Image
-            src="/components/Pink/heart.png"
+            src="/components/pink/heart.png"
             className="absolute -top-7 -left-5 w-[60px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Pink/flowers.png"
+            src="/components/pink/flowers.png"
             className="absolute bottom-16 -left-5 w-[50px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Pink/hearts2.png"
+            src="/components/pink/hearts2.png"
             className="absolute -bottom-4 left-2 w-[80px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Pink/heartline.png"
+            src="/components/pink/heartline.png"
             className="absolute -bottom-4 -right-2 w-[150px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Pink/star.png"
+            src="/components/pink/star.png"
             className="absolute bottom-5 -left-3 w-[30px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Pink/dots1.png"
+            src="/components/pink/dots1.png"
             className="absolute top-0 -right-5 w-[150px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Pink/dots2.png"
+            src="/components/pink/dots2.png"
             className="absolute -top-10 right-14 w-[300px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Pink/dots3.png"
+            src="/components/pink/dots3.png"
             className="absolute top-8 -left-4 w-[50px]"
             width={200}
             height={50}
@@ -401,49 +401,49 @@ const PinkFrame = ({
                   </p>
                   <div className="w-full md:min-h-[200px] xl:min-h-[300px] flex items-center relative">
                     <Image
-                      src="/components/Pink/heart.png"
+                      src="/components/pink/heart.png"
                       className="absolute -top-5 -left-5 w-[40px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Pink/flowers.png"
+                      src="/components/pink/flowers.png"
                       className="absolute bottom-16 -left-5 w-[50px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Pink/hearts2.png"
+                      src="/components/pink/hearts2.png"
                       className="absolute -bottom-4 left-5 w-[80px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Pink/heartline.png"
+                      src="/components/pink/heartline.png"
                       className="absolute -bottom-2 -right-2 w-[100px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Pink/star.png"
+                      src="/components/pink/star.png"
                       className="absolute -bottom-2 -left-3 w-[30px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Pink/dots1.png"
+                      src="/components/pink/dots1.png"
                       className="absolute top-0 -right-5 w-[150px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Pink/dots2.png"
+                      src="/components/pink/dots2.png"
                       className="absolute -top-10 right-14 w-[300px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Pink/dots3.png"
+                      src="/components/pink/dots3.png"
                       className="absolute top-8 -left-4 w-[50px]"
                       width={200}
                       height={50}
@@ -588,49 +588,49 @@ const PinkFrame = ({
                   </p>
                   <div className="w-full flex flex-col items-center relative">
                   <img
-                      src="/components/Pink/heart.png"
+                      src="/components/pink/heart.png"
                       className="absolute -top-7 -left-8 w-[80px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Pink/flowers.png"
+                      src="/components/pink/flowers.png"
                       className="absolute bottom-24 -left-5 w-[80px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Pink/hearts2.png"
+                      src="/components/pink/hearts2.png"
                       className="absolute -bottom-8 left-20 w-[150px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Pink/heartline.png"
+                      src="/components/pink/heartline.png"
                       className="absolute -bottom-5 -right-1 w-[300px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Pink/star.png"
+                      src="/components/pink/star.png"
                       className="absolute -bottom-2 -left-5 w-[50px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Pink/dots1.png"
+                      src="/components/pink/dots1.png"
                       className="absolute top-9 -right-10 w-[300px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Pink/dots2.png"
+                      src="/components/pink/dots2.png"
                       className="absolute -top-10 right-32 w-[400px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Pink/dots3.png"
+                      src="/components/pink/dots3.png"
                       className="absolute top-28 -left-8 w-[180px]"
                       width={200}
                       height={50}
@@ -710,4 +710,4 @@ const PinkFrame = ({
   );
 };
 
-export default PinkFrame;
+export default Pinkframe;

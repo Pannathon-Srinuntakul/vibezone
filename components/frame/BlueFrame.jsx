@@ -21,7 +21,7 @@ import domtoimage from "dom-to-image";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 
-const BlueFrame = ({
+const Blueframe = ({
   post,
   creator,
   guest,
@@ -218,49 +218,49 @@ const BlueFrame = ({
 
         <div className="w-full flex items-center relative">
           <Image
-            src="/components/Blue/cloud.png"
+            src="/components/blue/cloud.png"
             className="absolute -top-7 -right-3 w-[100px] z-10"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Blue/line2.png"
+            src="/components/blue/line2.png"
             className="absolute -top-4 left-20 w-[60px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Blue/line3.png"
+            src="/components/blue/line3.png"
             className="absolute top-16 -left-5 w-[50px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Blue/flowers.png"
+            src="/components/blue/flowers.png"
             className="absolute -top-5 -left-5 w-[60px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Blue/flower2.png"
+            src="/components/blue/flower2.png"
             className="absolute bottom-16 -left-3 w-[24px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Blue/star.png"
+            src="/components/blue/star.png"
             className="absolute -bottom-2 -left-2 w-[24px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Blue/line.png"
+            src="/components/blue/line.png"
             className="absolute -bottom-2 -right-2 w-[100px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Blue/star2.png"
+            src="/components/blue/star2.png"
             className="absolute bottom-36 -right-4 w-[30px]"
             width={200}
             height={50}
@@ -400,49 +400,49 @@ const BlueFrame = ({
                   </p>
                   <div className="w-full md:min-h-[200px] xl:min-h-[300px] flex items-center relative">
                     <Image
-                      src="/components/Blue/cloud.png"
+                      src="/components/blue/cloud.png"
                       className="absolute -top-4 -right-3 w-[100px] z-10"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Blue/line2.png"
+                      src="/components/blue/line2.png"
                       className="absolute -top-4 left-20 w-[60px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Blue/line3.png"
+                      src="/components/blue/line3.png"
                       className="absolute top-16 -left-5 w-[50px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Blue/flowers.png"
+                      src="/components/blue/flowers.png"
                       className="absolute -top-5 -left-5 w-[60px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Blue/flower2.png"
+                      src="/components/blue/flower2.png"
                       className="absolute bottom-16 -left-3 w-[24px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Blue/star.png"
+                      src="/components/blue/star.png"
                       className="absolute -bottom-2 -left-2 w-[24px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Blue/line.png"
+                      src="/components/blue/line.png"
                       className="absolute -bottom-2 -right-2 w-[100px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Blue/star2.png"
+                      src="/components/blue/star2.png"
                       className="absolute bottom-36 -right-4 w-[30px]"
                       width={200}
                       height={50}
@@ -587,49 +587,49 @@ const BlueFrame = ({
                   </p>
                   <div className="w-full flex flex-col items-center relative">
                     <img
-                      src="/components/Blue/cloud.png"
+                      src="/components/blue/cloud.png"
                       className="absolute -top-7 -right-6 w-[200px] z-10"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Blue/line2.png"
+                      src="/components/blue/line2.png"
                       className="absolute -top-6 w-[150px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Blue/line3.png"
+                      src="/components/blue/line3.png"
                       className="absolute top-52 -left-9 w-[100px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Blue/flowers.png"
+                      src="/components/blue/flowers.png"
                       className="absolute -top-9 -left-8 w-[120px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Blue/flower2.png"
+                      src="/components/blue/flower2.png"
                       className="absolute bottom-60 -left-6 w-[54px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Blue/star.png"
+                      src="/components/blue/star.png"
                       className="absolute -bottom-5 -left-5 w-[54px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Blue/line.png"
+                      src="/components/blue/line.png"
                       className="absolute -bottom-2 -right-2 w-[230px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Blue/star2.png"
+                      src="/components/blue/star2.png"
                       className="absolute bottom-72 -right-7 w-[60px]"
                       width={200}
                       height={50}
@@ -709,4 +709,4 @@ const BlueFrame = ({
   );
 };
 
-export default BlueFrame;
+export default Blueframe;

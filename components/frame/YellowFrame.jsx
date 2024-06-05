@@ -21,7 +21,7 @@ import domtoimage from "dom-to-image";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 
-const YellowFrame = ({
+const Yellowframe = ({
   post,
   creator,
   guest,
@@ -167,7 +167,7 @@ const YellowFrame = ({
     <div className="w-full flex flex-col items-center justify-center">
       <div className="card-container relative pb-14 bg-[#F3F0A8] shadow-lg z-10 overflow-hidden">
         <Image
-          src="/components/Yellow/cactus.png"
+          src="/components/yellow/cactus.png"
           className="absolute bottom-0 left-0 w-[100px]"
           width={200}
           height={50}
@@ -224,49 +224,49 @@ const YellowFrame = ({
 
         <div className="w-full flex items-center relative">
           <Image
-            src="/components/Yellow/sun.png"
+            src="/components/yellow/sun.png"
             className="absolute -top-7 -left-5 w-[100px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Yellow/cloud.png"
+            src="/components/yellow/cloud.png"
             className="absolute -top-5 left-20 w-[80px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Yellow/line3.png"
+            src="/components/yellow/line3.png"
             className="absolute -bottom-4 -right-6 w-[120px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Pink/star.png"
+            src="/components/pink/star.png"
             className="absolute bottom-5 -left-3 w-[30px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Pink/star.png"
+            src="/components/pink/star.png"
             className="absolute top-16 -right-4 w-[30px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Yellow/flower.png"
+            src="/components/yellow/flower.png"
             className="absolute top-32 -right-5 w-[40px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Yellow/line1.png"
+            src="/components/yellow/line1.png"
             className="absolute -top-2 right-6 w-[120px]"
             width={200}
             height={50}
           />
           <Image
-            src="/components/Yellow/line2.png"
+            src="/components/yellow/line2.png"
             className="absolute top-20 -left-4 w-[80px]"
             width={200}
             height={50}
@@ -403,7 +403,7 @@ const YellowFrame = ({
               <div className="flex flex-col w-5/6 md:w-1/2 lg:w-1/3">
                 <div className="frame-container bg-[#F3F0A8]">
                   <Image
-                    src="/components/Yellow/cactus.png"
+                    src="/components/yellow/cactus.png"
                     className="absolute bottom-0 left-0 w-[100px]"
                     width={200}
                     height={50}
@@ -413,49 +413,49 @@ const YellowFrame = ({
                   </p>
                   <div className="w-full md:min-h-[200px] xl:min-h-[300px] flex items-center relative">
                     <Image
-                      src="/components/Yellow/sun.png"
+                      src="/components/yellow/sun.png"
                       className="absolute -top-7 -left-5 w-[80px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Yellow/cloud.png"
+                      src="/components/yellow/cloud.png"
                       className="absolute -top-5 left-14 w-[80px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Yellow/line3.png"
+                      src="/components/yellow/line3.png"
                       className="absolute -bottom-4 -right-10 w-[100px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Pink/star.png"
+                      src="/components/pink/star.png"
                       className="absolute bottom-5 -left-4 w-[30px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Pink/star.png"
+                      src="/components/pink/star.png"
                       className="absolute top-16 -right-4 w-[30px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Yellow/flower.png"
+                      src="/components/yellow/flower.png"
                       className="absolute top-32 -right-5 w-[40px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Yellow/line1.png"
+                      src="/components/yellow/line1.png"
                       className="absolute -top-2 right-3 w-[100px]"
                       width={200}
                       height={50}
                     />
                     <Image
-                      src="/components/Yellow/line2.png"
+                      src="/components/yellow/line2.png"
                       className="absolute top-20 -left-3 w-[50px]"
                       width={200}
                       height={50}
@@ -596,7 +596,7 @@ const YellowFrame = ({
               >
                 <div className="bg-[#F3F0A8] frame-container">
                   <img
-                    src="/components/Yellow/cactus.png"
+                    src="/components/yellow/cactus.png"
                     className="absolute bottom-0 left-0 w-[150px]"
                     width={200}
                     height={50}
@@ -606,49 +606,49 @@ const YellowFrame = ({
                   </p>
                   <div className="w-full flex flex-col items-center relative">
                     <img
-                      src="/components/Yellow/sun.png"
+                      src="/components/yellow/sun.png"
                       className="absolute -top-7 -left-8 w-[180px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Yellow/cloud.png"
+                      src="/components/yellow/cloud.png"
                       className="absolute -top-6 left-36 w-[150px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Yellow/line3.png"
+                      src="/components/yellow/line3.png"
                       className="absolute -bottom-4 -right-10 w-[200px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Pink/star.png"
+                      src="/components/pink/star.png"
                       className="absolute bottom-20 -left-7 w-[60px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Pink/star.png"
+                      src="/components/pink/star.png"
                       className="absolute top-32 -right-4 w-[60px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Yellow/flower.png"
+                      src="/components/yellow/flower.png"
                       className="absolute top-72 -right-8 w-[60px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Yellow/line1.png"
+                      src="/components/yellow/line1.png"
                       className="absolute -top-4 right-24 w-[250px]"
                       width={200}
                       height={50}
                     />
                     <img
-                      src="/components/Yellow/line2.png"
+                      src="/components/yellow/line2.png"
                       className="absolute top-44 -left-9 w-[180px]"
                       width={200}
                       height={50}
@@ -728,4 +728,4 @@ const YellowFrame = ({
   );
 };
 
-export default YellowFrame;
+export default Yellowframe;
