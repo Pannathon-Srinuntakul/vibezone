@@ -111,7 +111,7 @@ const updateUserCredit = async (userId, priceId) => {
       const user = await User.findOneAndUpdate(
         { clerkId: userId },
         {
-          $inc: { credit: 2050 },
+          $inc: { credit: 20500 },
         }
       );
       await user.save();
