@@ -3,9 +3,17 @@
 import { useUser } from "@clerk/nextjs";
 import Loader from "@components/Loader";
 import PostCard from "@components/cards/PostCard";
+import BlueFrame from "@components/frame/BlueFrame";
+import GreenFrame from "@components/frame/GreenFrame";
+import PinkFrame from "@components/frame/PinkFrame";
+import PurpleFrame from "@components/frame/PurpleFrame";
+import YellowFrame from "@components/frame/YellowFrame";
+import { Sriracha } from "next/font/google";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+
+const sriracha = Sriracha({ subsets: ["latin"], weight: "400" });
 
 const SavedPosts = () => {
   const { user, isLoaded } = useUser();
@@ -64,6 +72,7 @@ const SavedPosts = () => {
     return loading || !isLoaded ? (
       <Loader />
     ) : (
+      <div className="w-full">
       <InfiniteScroll
         dataLength={userData.savedPosts.length}
         next={fetchMoreData}
@@ -77,17 +86,77 @@ const SavedPosts = () => {
       >
         <div className="flex flex-col w-full items-center gap-10">
           {userData?.savedPosts?.map((post) => (
-            <PostCard
-              key={post._id}
-              post={post}
-              creator={post.creator}
-              loggedInUser={userData}
-              update={getUser}
-              updateUser={updateUser}
-            />
+            <>
+              {post.frame === "Blue" && (
+                <BlueFrame
+                  key={post._id}
+                  post={post}
+                  creator={post.creator}
+                  loggedInUser={userData}
+                  update={getUser}
+                  updateUser={updateUser}
+                  sriracha={sriracha}
+                />
+              )}
+              {post.frame === "Pink" && (
+                <PinkFrame
+                  key={post._id}
+                  post={post}
+                  creator={post.creator}
+                  loggedInUser={userData}
+                  update={getUser}
+                  updateUser={updateUser}
+                  sriracha={sriracha}
+                />
+              )}
+              {post.frame === "Yellow" && (
+                <YellowFrame
+                  key={post._id}
+                  post={post}
+                  creator={post.creator}
+                  loggedInUser={userData}
+                  update={getUser}
+                  updateUser={updateUser}
+                  sriracha={sriracha}
+                />
+              )}
+              {post.frame === "Purple" && (
+                <PurpleFrame
+                  key={post._id}
+                  post={post}
+                  creator={post.creator}
+                  loggedInUser={userData}
+                  update={getUser}
+                  updateUser={updateUser}
+                  sriracha={sriracha}
+                />
+              )}
+              {post.frame === "Green" && (
+                <GreenFrame
+                  key={post._id}
+                  post={post}
+                  creator={post.creator}
+                  loggedInUser={userData}
+                  update={getUser}
+                  updateUser={updateUser}
+                  sriracha={sriracha}
+                />
+              )}
+              {!post.frame && (
+                <PostCard
+                  key={post._id}
+                  post={post}
+                  creator={post.creator}
+                  loggedInUser={userData}
+                  update={getUser}
+                  updateUser={updateUser}
+                />
+              )}
+            </>
           ))}
         </div>
       </InfiniteScroll>
+      </div>
     );
   } else {
     return null;

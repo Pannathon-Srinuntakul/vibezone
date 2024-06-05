@@ -24,10 +24,7 @@ const RightBar = () => {
   const getAds = async () => {
     const response = await fetch("/api/ads");
     const data = await response.json();
-    const sortedData = data.sort(
-      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-    );
-    setAds(sortedData);
+    setAds(data);
   };
 
   useEffect(() => {
@@ -76,16 +73,7 @@ const RightBar = () => {
         </div>
         <div className="flex flex-col pb-12 gap-12">
           {ads.map((ad, index) => (
-            <div key={index}>
-              <div className="flex justify-between">
-                <p className="text-black ml-2">{ad.caption}</p>
-                {!user ? null : userData?._id === ad.creator ? (
-                  <Delete
-                    sx={{ color: "black", cursor: "pointer" }}
-                    onClick={() => confirmDelete(ad)}
-                  />
-                ) : null}
-              </div>
+            <div key={index} className="bg-black shadow-lg p-3">
               <Link
                 href={
                   ad.link.startsWith("http") ? ad.link : `http://${ad.link}`
@@ -93,8 +81,7 @@ const RightBar = () => {
                 target="_blank"
               >
                 <div
-                  className="flex justify-center items-center w-full h-full border 
-              border-black/50 drop-shadow-lg rounded-lg hover:bg-white "
+                  className="flex justify-center items-center max-h-[400px] overflow-hidden"
                 >
                   <Image
                     src={ad.postPhoto}
@@ -102,10 +89,19 @@ const RightBar = () => {
                     height={100}
                     layout="responsive"
                     alt="ad"
-                    className="object-cover rounded-lg p-3"
+                    className="object-cover"
                   />
                 </div>
               </Link>
+              <div className="flex justify-between my-3">
+                <p className="text-white ml-2">{ad.caption}</p>
+                {!user ? null : userData?._id === ad.creator ? (
+                  <Delete
+                    sx={{ color: "white", cursor: "pointer" }}
+                    onClick={() => confirmDelete(ad)}
+                  />
+                ) : null}
+              </div>
             </div>
           ))}
         </div>

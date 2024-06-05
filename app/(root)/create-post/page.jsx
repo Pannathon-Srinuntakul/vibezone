@@ -65,7 +65,7 @@ const CreatePost = () => {
   };
   
   return (
-    <div className="pt-6 flex items-center w-full justify-center">
+    <div className="pt-16 px-5 sm:pt-6 flex items-center w-full justify-center">
       {user || guestData ? (
         <Posting post={postData} apiEndpoint={"/api/post/new"} />
       ) : (

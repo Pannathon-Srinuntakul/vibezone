@@ -3,11 +3,19 @@
 import { useUser } from "@clerk/nextjs";
 import PostCard from "@components/cards/PostCard";
 import ProfileCard from "@components/cards/ProfileCard";
+import BlueFrame from "@components/frame/BlueFrame";
+import GreenFrame from "@components/frame/GreenFrame";
+import PinkFrame from "@components/frame/PinkFrame";
+import PurpleFrame from "@components/frame/PurpleFrame";
+import YellowFrame from "@components/frame/YellowFrame";
 import Loader from "@components/Loader";
 import { Search } from "@mui/icons-material";
+import { Sriracha } from "next/font/google";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+
+const sriracha = Sriracha({ subsets: ["latin"], weight: "400" });
 
 const SearchComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -154,7 +162,7 @@ const SearchComponent = () => {
 
   return (
     <>
-      <div className="w-4/5 md:w-2/3 lg:w-1/2 items-center justify-center flex flex-col pb-6">
+      <div className="w-4/5 md:w-2/3 lg:w-1/2 items-center justify-center flex flex-col mt-20 pb-6">
         <div className="relative w-full">
           <input
             type="text"
@@ -221,13 +229,16 @@ const SearchComponent = () => {
                   >
                     {searchResults.users.map((user) => (
                       <div className="bg-white rounded-full drop-shadow-lg p-2 flex items-center w-full">
-                        <Link href={`/profile/${user.clerkId}`} className="flex">
+                        <Link
+                          href={`/profile/${user.clerkId}`}
+                          className="flex"
+                        >
                           <ProfileCard key={user._id} userData={user} />
-                            <div className="flex text-black justify-center gap-2 p-2 items-center max-sm:gap-0.5">
-                              <p className="text-subtle-medium">
-                                {user.posts.length}
-                              </p>
-                              <p className="text-subtle-medium">Posts</p>
+                          <div className="flex text-black justify-center gap-2 p-2 items-center max-sm:gap-0.5">
+                            <p className="text-subtle-medium">
+                              {user.posts.length}
+                            </p>
+                            <p className="text-subtle-medium">Posts</p>
                           </div>
                         </Link>
                       </div>
@@ -242,6 +253,7 @@ const SearchComponent = () => {
               <div className="w-full flex flex-col justify-center items-center">
                 <h3 className="text-subtext text-heading3-bold p-5">Posts</h3>
                 <div className="flex flex-col w-full items-center gap-10">
+                  <div className="w-full">
                   <InfiniteScroll
                     dataLength={searchResults.posts.length}
                     next={fetchMoreData}
@@ -252,21 +264,90 @@ const SearchComponent = () => {
                         <p className=" text-heading4-bold">No more posts</p>
                       </div>
                     }
-                    className="w-full flex flex-col justify-start items-start gap-10 pb-5 "
                   >
                     {searchResults.posts.map((post) => (
-                      <PostCard
-                        key={post._id}
-                        post={post}
-                        creator={post.creator}
-                        guest={clientIp}
-                        loggedInGuest={guestData}
-                        loggedInUser={userData}
-                        update={updateUser}
-                        updateUser={updateUser}
-                      />
+                      <div className="flex flex-col justify-start items-start gap-10 pb-5">
+                        {post.frame === "Blue" && (
+                          <BlueFrame
+                            key={post._id}
+                            post={post}
+                            creator={post.creator}
+                            guest={clientIp}
+                            loggedInGuest={guestData}
+                            loggedInUser={userData}
+                            update={updateUser}
+                            updateUser={updateUser}
+                            sriracha={sriracha}
+                          />
+                        )}
+                        {post.frame === "Pink" && (
+                          <PinkFrame
+                            key={post._id}
+                            post={post}
+                            creator={post.creator}
+                            guest={clientIp}
+                            loggedInGuest={guestData}
+                            loggedInUser={userData}
+                            update={updateUser}
+                            updateUser={updateUser}
+                            sriracha={sriracha}
+                          />
+                        )}
+                        {post.frame === "Yellow" && (
+                          <YellowFrame
+                            key={post._id}
+                            post={post}
+                            creator={post.creator}
+                            guest={clientIp}
+                            loggedInGuest={guestData}
+                            loggedInUser={userData}
+                            update={updateUser}
+                            updateUser={updateUser}
+                            sriracha={sriracha}
+                          />
+                        )}
+                        {post.frame === "Purple" && (
+                          <PurpleFrame
+                            key={post._id}
+                            post={post}
+                            creator={post.creator}
+                            guest={clientIp}
+                            loggedInGuest={guestData}
+                            loggedInUser={userData}
+                            update={updateUser}
+                            updateUser={updateUser}
+                            sriracha={sriracha}
+                          />
+                        )}
+                        {post.frame === "Green" && (
+                          <GreenFrame
+                            key={post._id}
+                            post={post}
+                            creator={post.creator}
+                            guest={clientIp}
+                            loggedInGuest={guestData}
+                            loggedInUser={userData}
+                            update={updateUser}
+                            updateUser={updateUser}
+                            sriracha={sriracha}
+                          />
+                        )}
+                        {!post.frame && (
+                          <PostCard
+                            key={post._id}
+                            post={post}
+                            creator={post.creator}
+                            guest={clientIp}
+                            loggedInGuest={guestData}
+                            loggedInUser={userData}
+                            update={updateUser}
+                            updateUser={updateUser}
+                          />
+                        )}
+                      </div>
                     ))}
                   </InfiniteScroll>
+                  </div>
                 </div>
               </div>
             )}

@@ -1,6 +1,5 @@
 import User from "@lib/models/User";
 import { connectToDB } from "@lib/mongodb/mongoose";
-import { buffer } from "micro";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -52,15 +51,7 @@ export async function POST(req, res) {
 const updateUserCredit = async (userId, priceId) => {
   await connectToDB();
   try {
-    if (priceId === process.env.STRIPE_SUNGLASSES_PRICE) {
-      const user = await User.findOneAndUpdate(
-        { clerkId: userId },
-        {
-          $inc: { credit: 120 },
-        }
-      );
-      await user.save();
-    } else if (priceId === process.env.STRIPE_GLASSES_PRICE) {
+    if (priceId === process.env.STRIPE_SIXTY_CREDITS) {
       const user = await User.findOneAndUpdate(
         { clerkId: userId },
         {
@@ -68,16 +59,72 @@ const updateUserCredit = async (userId, priceId) => {
         }
       );
       await user.save();
-    } else if (priceId === process.env.STRIPE_THREEHUNDRED_CREDITS) {
+    } else if (priceId === process.env.STRIPE_EIGHTYFIVE_CREDITS) {
       const user = await User.findOneAndUpdate(
         { clerkId: userId },
         {
-          $inc: { credit: 300 },
+          $inc: { credit: 85 },
         }
       );
-      await user.save()
+      await user.save();
+    } else if (priceId === process.env.STRIPE_ONEHUNDREDEIGHTY_CREDITS) {
+      const user = await User.findOneAndUpdate(
+        { clerkId: userId },
+        {
+          $inc: { credit: 180 },
+        }
+      );
+      await user.save();
+    } else if (priceId === process.env.STRIPE_THREEHUNDREDEIGHTY_CREDITS) {
+      const user = await User.findOneAndUpdate(
+        { clerkId: userId },
+        {
+          $inc: { credit: 380 },
+        }
+      );
+      await user.save();
+    } else if (priceId === process.env.STRIPE_FIVEHUNDREDSEVENTY_CREDITS) {
+      const user = await User.findOneAndUpdate(
+        { clerkId: userId },
+        {
+          $inc: { credit: 570 },
+        }
+      );
+      await user.save();
+    } else if (priceId === process.env.STRIPE_NINEHUNDREDSEVENTY_CREDITS) {
+      const user = await User.findOneAndUpdate(
+        { clerkId: userId },
+        {
+          $inc: { credit: 970 },
+        }
+      );
+      await user.save();
+    } else if (priceId === process.env.STRIPE_ONETHOUSANDFIVEHUNDRED_CREDITS) {
+      const user = await User.findOneAndUpdate(
+        { clerkId: userId },
+        {
+          $inc: { credit: 1500 },
+        }
+      );
+      await user.save();
+    } else if (priceId === process.env.STRIPE_TWOTHOUSANDFIFTY_CREDITS) {
+      const user = await User.findOneAndUpdate(
+        { clerkId: userId },
+        {
+          $inc: { credit: 2050 },
+        }
+      );
+      await user.save();
     }
-
+      else if (priceId === process.env.STRIPE_TEST) {
+      const user = await User.findOneAndUpdate(
+        { clerkId: userId },
+        {
+          $inc: { credit: 2050 },
+        }
+      );
+      await user.save();
+    }
   } catch (error) {
     console.log(error);
   }

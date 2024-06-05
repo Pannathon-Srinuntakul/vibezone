@@ -3,10 +3,18 @@
 import { useUser } from "@clerk/nextjs";
 import PostCard from "@components/cards/PostCard";
 import ProfileCard from "@components/cards/ProfileCard";
+import BlueFrame from "@components/frame/BlueFrame";
+import GreenFrame from "@components/frame/GreenFrame";
+import PinkFrame from "@components/frame/PinkFrame";
+import PurpleFrame from "@components/frame/PurpleFrame";
+import YellowFrame from "@components/frame/YellowFrame";
 import Loader from "@components/Loader";
+import { Sriracha } from "next/font/google";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+
+const sriracha = Sriracha({ subsets: ["latin"], weight: "400" });
 
 const profile = () => {
   const { user, isLoaded } = useUser();
@@ -83,7 +91,7 @@ const profile = () => {
   ) : (
     <>
       {userData ? (
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full mt-20 px-5 sm:px-0 sm:mt-5">
           <div className="flex items-center justify-center">
             <div className="w-full lg:w-1/2 rounded-2xl drop-shadow-lg p-5 bg-white">
               <ProfileCard userData={userData} />
@@ -102,6 +110,63 @@ const profile = () => {
           >
             <div className="flex flex-col gap-9 mt-12">
               {userData.posts?.map((post) => (
+                <>
+                 {post.frame === "Blue" && (
+                <BlueFrame
+                  key={post._id}
+                  post={post}
+                  creator={post.creator}
+                  loggedInUser={loggedInUserData}
+                  update={getUserProfile}
+                  updateUser={updateUser}
+                  sriracha={sriracha}
+                />
+              )}
+              {post.frame === "Pink" && (
+                <PinkFrame
+                  key={post._id}
+                  post={post}
+                  creator={post.creator}
+                  loggedInUser={loggedInUserData}
+                  update={getUserProfile}
+                  updateUser={updateUser}
+                  sriracha={sriracha}
+                />
+              )}
+              {post.frame === "Yellow" && (
+                <YellowFrame
+                  key={post._id}
+                  post={post}
+                  creator={post.creator}
+                  loggedInUser={loggedInUserData}
+                  update={getUserProfile}
+                  updateUser={updateUser}
+                  sriracha={sriracha}
+                />
+              )}
+              {post.frame === "Purple" && (
+                <PurpleFrame
+                  key={post._id}
+                  post={post}
+                  creator={post.creator}
+                  loggedInUser={loggedInUserData}
+                  update={getUserProfile}
+                  updateUser={updateUser}
+                  sriracha={sriracha}
+                />
+              )}
+              {post.frame === "Green" && (
+                <GreenFrame
+                  key={post._id}
+                  post={post}
+                  creator={post.creator}
+                  loggedInUser={loggedInUserData}
+                  update={getUserProfile}
+                  updateUser={updateUser}
+                  sriracha={sriracha}
+                />
+              )}
+              {!post.frame && (
                 <PostCard
                   key={post._id}
                   post={post}
@@ -110,6 +175,8 @@ const profile = () => {
                   update={getUserProfile}
                   updateUser={updateUser}
                 />
+              )}
+                </>
               ))}
             </div>
           </InfiniteScroll>

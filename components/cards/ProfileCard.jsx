@@ -13,15 +13,15 @@ const ProfileCard = ({ userData }) => {
   const handleEditBio = () => {
     setIsEditingBio(true);
   };
-console.log(userData)
+
   const handleSaveBio = async () => {
     try {
       const response = await fetch(`/api/user/${userData._id}/bio`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json", // ระบุ Content-Type เป็น application/json
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ bio }), // ส่งข้อมูลในรูปแบบ JSON
+        body: JSON.stringify({ bio }),
       });
 
       if (response.ok) {

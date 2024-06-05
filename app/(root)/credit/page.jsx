@@ -23,7 +23,7 @@ const page = () => {
 
   return (
     <div className="w-full lg:w-1/2">
-         <div className="flex gap-20 w-full">
+         <div className="grid grid-cols-2 grid-rows-4 sm:grid-cols-3 sm:grid-rows-3 lg:grid-cols-2 lg:grid-rows-4 xl:grid-cols-3 xl:grid-rows-3 p-5 mt-20 lg:mt-0 gap-8 w-full">
            {prices && prices.map((price) => (
             <PricingCard price={price} key={price.id} />
            ))}

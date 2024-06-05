@@ -165,55 +165,55 @@ const YellowFrame = ({
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      <div className="card-container relative pb-14 bg-[#F3F0A8] shadow-lg z-10">
-        <div className="w-full relative flex justify-end pb-3 gap-3">
+      <div className="card-container relative pb-14 bg-[#F3F0A8] shadow-lg z-10 overflow-hidden">
+        <Image
+          src="/components/Yellow/cactus.png"
+          className="absolute bottom-0 left-0 w-[100px]"
+          width={200}
+          height={50}
+        />
+        <div className="w-full relative flex justify-end pb-3 gap-3 z-20">
           <p className="date text-[#6E6692]">{date}</p>
           {loggedInUser &&
           Object.keys(loggedInUser).length > 0 &&
           post.creatorType !== "Guest" ? (
-            loggedInUser.clerkId !== creator.clerkId ? (
+            loggedInUser.clerkId !== creator?.clerkId ? (
               isSaved ? (
                 <Bookmark
-                  sx={{ color: "purple", cursor: "pointer" }}
+                  sx={{ color: "purple", cursor: "pointer", zIndex: "50" }}
                   onClick={() => handleSave()}
                 />
               ) : (
                 <BookmarkBorder
-                  sx={{ color: "#6E6692", cursor: "pointer" }}
+                  sx={{ color: "#6E6692", cursor: "pointer", zIndex: "50" }}
                   onClick={() => handleSave()}
                 />
               )
             ) : (
               <>
                 <DeleteOutline
-                  sx={{ color: "#6E6692", cursor: "pointer" }}
+                  sx={{ color: "#6E6692", cursor: "pointer", zIndex: "50" }}
                   onClick={() => confirmDelete()}
                 />
                 <CameraAltOutlined
-                  sx={{ color: "#6E6692", cursor: "pointer" }}
+                  sx={{ color: "#6E6692", cursor: "pointer", zIndex: "50" }}
                   onClick={() => setShowPreview(true)}
                 />
-                <AutoAwesomeOutlined
-                  sx={{
-                    color: "#6E6692",
-                    cursor: "pointer",
-                    position: "absolute",
-                    left: 0,
-                  }}
-                  onClick={() => router.push("/upgrade")}
-                />
+                <Link href={`/upgrade/${post._id}`}>
+                  <AutoAwesomeOutlined
+                    sx={{
+                      color: "black",
+                      cursor: "pointer",
+                      position: "absolute",
+                      left: 0,
+                      zIndex: "50"
+                    }}
+                  />
+                </Link>
               </>
             )
-          ) : loggedInGuest?.ipAddress === creator?.ipAddress &&
-            loggedInGuest !== undefined &&
-            loggedInGuest !== null &&
-            creator !== null ? (
-            <Delete
-              sx={{ color: "black", cursor: "pointer" }}
-              onClick={() => confirmDelete()}
-            />
           ) : post.creatorType === "Guest" ? (
-            <div className="flex flex-col">
+            <div className="flex flex-col z-20">
               <p className="text-end text-subtle-medium">*Post by guest.</p>
               <span className="text-subtext text-tiny-medium">
                 This post will be deleted in 24 hours.
@@ -222,19 +222,68 @@ const YellowFrame = ({
           ) : null}
         </div>
 
-        <div className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center">
+        <div className="w-full flex items-center relative">
           <Image
-            src={post.postPhoto}
-            alt="post photo"
+            src="/components/Yellow/sun.png"
+            className="absolute -top-7 -left-5 w-[100px]"
             width={200}
-            height={150}
-            layout="responsive"
-            className="w-full"
+            height={50}
           />
+          <Image
+            src="/components/Yellow/cloud.png"
+            className="absolute -top-5 left-20 w-[80px]"
+            width={200}
+            height={50}
+          />
+          <Image
+            src="/components/Yellow/line3.png"
+            className="absolute -bottom-4 -right-6 w-[120px]"
+            width={200}
+            height={50}
+          />
+          <Image
+            src="/components/Pink/star.png"
+            className="absolute bottom-5 -left-3 w-[30px]"
+            width={200}
+            height={50}
+          />
+          <Image
+            src="/components/Pink/star.png"
+            className="absolute top-16 -right-4 w-[30px]"
+            width={200}
+            height={50}
+          />
+          <Image
+            src="/components/Yellow/flower.png"
+            className="absolute top-32 -right-5 w-[40px]"
+            width={200}
+            height={50}
+          />
+          <Image
+            src="/components/Yellow/line1.png"
+            className="absolute -top-2 right-6 w-[120px]"
+            width={200}
+            height={50}
+          />
+          <Image
+            src="/components/Yellow/line2.png"
+            className="absolute top-20 -left-4 w-[80px]"
+            width={200}
+            height={50}
+          />
+
+          <div className="overflow-hidden md:min-h-[200px] xl:min-h-[300px] max-h-[600px] w-full">
+            <Image
+              src={post.postPhoto}
+              alt="post photo"
+              width={200}
+              height={150}
+              layout="responsive"
+              className="w-full"
+            />
+          </div>
         </div>
-        <div
-          className={`${sriracha.className} post-caption-web text-[#6E6692]`}
-        >
+        <div className={`${sriracha.className} post-caption-web text-black`}>
           <p>{post.caption}</p>
         </div>
         <div className="flex absolute left-5 bottom-5 items-center pt-3 gap-1">
@@ -242,7 +291,7 @@ const YellowFrame = ({
             post.creatorType === "User" ? (
               !isLiked ? (
                 <FavoriteBorder
-                  sx={{ color: "#6E6692", cursor: "pointer" }}
+                  sx={{ color: "black", cursor: "pointer" }}
                   onClick={() => handleLike()}
                 />
               ) : (
@@ -254,7 +303,7 @@ const YellowFrame = ({
             ) : null
           ) : null}
           {post.creatorType === "User" ? (
-            <p className="text-[#6E6692] text-small-semibold flex justify-center items-center gap-1">
+            <p className="text-black text-small-semibold flex justify-center items-center gap-1">
               {likesCount.toLocaleString()}{" "}
               <span className="text-tiny-medium">Like</span>
             </p>
@@ -264,16 +313,20 @@ const YellowFrame = ({
           {creator !== null ? (
             !isExpand ? (
               <ExpandMoreOutlined
-                sx={{ color: "#6E6692", cursor: "pointer" }}
+                sx={{ color: "black", cursor: "pointer" }}
                 onClick={() => expand(true)}
               />
             ) : (
               <ExpandLessOutlined
-                sx={{ color: "#6E6692", cursor: "pointer" }}
+                sx={{ color: "black", cursor: "pointer" }}
                 onClick={() => expand(false)}
               />
             )
-          ) : null}
+          ) : (
+            <p className="text-subtle-medium text-subtext">
+              This post has no creator.
+            </p>
+          )}
         </div>
       </div>
       {isExpand ? (
@@ -305,7 +358,7 @@ const YellowFrame = ({
             <p className="text-base-bold">{post.caption}</p>
             <p className="border border-subtext/30 font-thin w-full"></p>
           </div>
-          <div className="flex flex-col gap-2 pl-4 w-[200px] sm:w-[300px] md:w-full justify-start">
+          <div className="details">
             {details.map((detail, index) => (
               <div key={index}>
                 <p className="text-subtle-medium break-words whitespace-normal">
@@ -342,24 +395,71 @@ const YellowFrame = ({
 
       {showPreview && (
         <div className="fixed inset-0 bg-green-1 z-30 overflow-auto">
-          <p
-            className="close-preview"
-            onClick={() => setShowPreview(false)}
-          >
+          <p className="close-preview" onClick={() => setShowPreview(false)}>
             x
           </p>
           <div className="preview-container">
-            <div className="flex flex-col items-center">
-              <div
-                ref={postRef}
-                id="postToSave"
-                className="flex flex-col w-1/2"
-              >
+            <div className="flex flex-col items-center w-full">
+              <div className="flex flex-col w-5/6 md:w-1/2 lg:w-1/3">
                 <div className="frame-container bg-[#F3F0A8]">
+                  <Image
+                    src="/components/Yellow/cactus.png"
+                    className="absolute bottom-0 left-0 w-[100px]"
+                    width={200}
+                    height={50}
+                  />
                   <p className="absolute right-1 top-1 text-subtle-medium text-[#6E6692]">
                     {date}
                   </p>
-                  <div className="w-full md:min-h-[200px] xl:min-h-[300px] flex items-center">
+                  <div className="w-full md:min-h-[200px] xl:min-h-[300px] flex items-center relative">
+                    <Image
+                      src="/components/Yellow/sun.png"
+                      className="absolute -top-7 -left-5 w-[80px]"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Yellow/cloud.png"
+                      className="absolute -top-5 left-14 w-[80px]"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Yellow/line3.png"
+                      className="absolute -bottom-4 -right-10 w-[100px]"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Pink/star.png"
+                      className="absolute bottom-5 -left-4 w-[30px]"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Pink/star.png"
+                      className="absolute top-16 -right-4 w-[30px]"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Yellow/flower.png"
+                      className="absolute top-32 -right-5 w-[40px]"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Yellow/line1.png"
+                      className="absolute -top-2 right-3 w-[100px]"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Yellow/line2.png"
+                      className="absolute top-20 -left-3 w-[50px]"
+                      width={200}
+                      height={50}
+                    />
                     <img
                       src={post.postPhoto}
                       alt="post photo"
@@ -370,7 +470,7 @@ const YellowFrame = ({
                     />
                   </div>
                   <div
-                    className={`${sriracha.className} post-caption-pre text-[#6E6692]`}
+                    className={`${sriracha.className} post-caption-pre text-black`}
                   >
                     <p>{post.caption}</p>
                   </div>
@@ -487,18 +587,72 @@ const YellowFrame = ({
           </div>
 
           {/* To save */}
-          <div className="w-full h-full absolute -top-[9999999px] -right-[99999999px] py-10 overflow-hidden">
+          <div className="w-full h-full flex flex-col absolute -top-[9999999px] -right-[99999999px] justify-center items-center py-10">
             <div className="mt-96">
-              <div
+            <div
                 ref={postRef}
                 id="postToSave"
                 className="flex flex-col w-[800px] invisible"
               >
                 <div className="bg-[#F3F0A8] frame-container">
-                  <p className="absolute right-1 top-1 text-base-bold text-[#6E6692]">
+                  <img
+                    src="/components/Yellow/cactus.png"
+                    className="absolute bottom-0 left-0 w-[150px]"
+                    width={200}
+                    height={50}
+                  />
+                  <p className="absolute right-1 top-1 text-base-bold text-[#6E6692] z-50">
                     {date}
                   </p>
-                  <div className={`w-full flex flex-col items-center`}>
+                  <div className="w-full flex flex-col items-center relative">
+                    <img
+                      src="/components/Yellow/sun.png"
+                      className="absolute -top-7 -left-8 w-[180px]"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Yellow/cloud.png"
+                      className="absolute -top-6 left-36 w-[150px]"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Yellow/line3.png"
+                      className="absolute -bottom-4 -right-10 w-[200px]"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Pink/star.png"
+                      className="absolute bottom-20 -left-7 w-[60px]"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Pink/star.png"
+                      className="absolute top-32 -right-4 w-[60px]"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Yellow/flower.png"
+                      className="absolute top-72 -right-8 w-[60px]"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Yellow/line1.png"
+                      className="absolute -top-4 right-24 w-[250px]"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Yellow/line2.png"
+                      className="absolute top-44 -left-9 w-[180px]"
+                      width={200}
+                      height={50}
+                    />
                     <img
                       src={post.postPhoto}
                       alt="post photo"
@@ -509,11 +663,11 @@ const YellowFrame = ({
                     />
                   </div>
                   <div
-                    className={`${sriracha.className} post-caption-save text-[#6E6692]`}
+                    className={`${sriracha.className} post-caption-save text-black`}
                   >
                     <p>{post.caption}</p>
                   </div>
-                  <div className="flex absolute bottom-8 left-1/2 transform -translate-x-1/2 items-center">
+                  <div className="flex absolute bottom-3 left-1/2 transform -translate-x-1/2 items-center">
                     {showLikes ? (
                       <p className="text-[#6E6692] text-[20px] flex justify-center items-center gap-1">
                         <Favorite
@@ -551,13 +705,13 @@ const YellowFrame = ({
                       </div>
                     </div>
                     <div className="w-full flex flex-col justify-center items-center">
-                      <p className="text-[50px] font-bold">{post.caption}</p>
+                      <p className="text-[28px] font-bold">{post.caption}</p>
                       <p className="border border-subtext/75 font-thin w-full"></p>
                     </div>
                     <div className="flex flex-col gap-5 pl-4 justify-start">
                       {details.map((detail, index) => (
                         <div key={index}>
-                          <p className="text-[28px] break-words whitespace-normal">
+                          <p className="text-[18px] break-words whitespace-normal">
                             {detail}
                           </p>
                         </div>

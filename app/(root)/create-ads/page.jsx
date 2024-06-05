@@ -50,7 +50,7 @@ const CreatePost = () => {
     creatorId: userData,
   };
   
-  return adsData.length >= 10 ? (
+  return adsData.length >= 12 ? (
     <div>
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
           <div className="bg-white p-8 rounded-lg shadow-lg text-center">
@@ -67,7 +67,7 @@ const CreatePost = () => {
         </div>
     </div>
   ) : (
-    <div className="pt-6 flex items-center w-full justify-center">
+    <div className="pt-16 px-5 sm:pt-6 flex items-center w-full justify-center">
         {user ? (
             <CreateAds post={postData} />
         ) : (

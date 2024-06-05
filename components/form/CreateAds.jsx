@@ -24,7 +24,7 @@ const CreateAds = ({ post }) => {
 
   const handlePublish = async (data) => {
     setIsLoading(true);
-    if (adsData.length >= 10) {
+    if (adsData.length >= 12) {
       setShowFullAds(true);
       setIsLoading(false);
       return;
@@ -143,7 +143,7 @@ const CreateAds = ({ post }) => {
       )}
 
       <form
-        className="flex flex-col gap-7 pb-12 rounded-xl lg:w-1/2 bg-white drop-shadow-xl pt-12 px-5"
+        className="flex flex-col w-full gap-7 pb-12 rounded-xl lg:w-1/2 bg-white drop-shadow-xl pt-12 px-5"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div>

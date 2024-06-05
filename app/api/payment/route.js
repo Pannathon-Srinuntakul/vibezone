@@ -22,6 +22,7 @@ export async function POST (request) {
         })
         return new Response(JSON.stringify(session.url), {status: 200})
     } catch (error) {
+        console.log(error)
         return new Response("Failed to create session", error)
     }
 }

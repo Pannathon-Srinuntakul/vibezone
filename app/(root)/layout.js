@@ -6,7 +6,6 @@ import Topbar from "@components/layout/Topbar";
 import Leftbar from "@components/layout/Leftbar";
 import RightBar from "@components/layout/Rightbar";
 import Bottombar from "@components/layout/BottomBar";
-import AdBar from "@components/layout/Adbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +20,6 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={`${inter.className} bg-green-1`}>
           <Topbar />
-          <AdBar />
           <main className="flex flex-row">
             <Leftbar className="max-lg:hidden" />
             <section className="main-container">{children}</section>

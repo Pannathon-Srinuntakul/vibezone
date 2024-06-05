@@ -123,6 +123,10 @@ const GuestLogin = ({clientIp}) => {
                 <input
                   {...register("username", {
                     required: "Required",
+                    pattern: {
+                      value: /^[A-Za-z0-9]+$/,
+                      message: "Only English characters are allowed"
+                    },
                     validate: (value) => {
                       if (value.length < 3) {
                         return "Must be more than 2 characters";

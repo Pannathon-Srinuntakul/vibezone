@@ -36,7 +36,7 @@ const PostCard = ({
   const [isSaved, setIsSaved] = useState(
     loggedInUser?.savedPosts?.some((item) => item._id === post._id)
   );
-  const [likesCount, setLikesCount] = useState(post.likes.length);
+  const [likesCount, setLikesCount] = useState(post.likes?.length);
   const [loading, setLoading] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
@@ -160,16 +160,16 @@ const PostCard = ({
     await handleDelete();
     setShowConfirm(false);
   };
-
+  
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      <div className="card-container bg-white shadow-lg">
+      <div className="card-container bg-white shadow-lg overflow-hidden">
         <div className="w-full relative flex justify-end pb-3 gap-3">
           <p className="date text-subtext">{date}</p>
           {loggedInUser &&
           Object.keys(loggedInUser).length > 0 &&
           post.creatorType !== "Guest" ? (
-            loggedInUser.clerkId !== creator.clerkId ? (
+            loggedInUser.clerkId !== creator?.clerkId ? (
               isSaved ? (
                 <Bookmark
                   sx={{ color: "purple", cursor: "pointer" }}
@@ -191,25 +191,18 @@ const PostCard = ({
                   sx={{ color: "black", cursor: "pointer" }}
                   onClick={() => setShowPreview(true)}
                 />
-                <AutoAwesomeOutlined
-                  sx={{
-                    color: "black",
-                    cursor: "pointer",
-                    position: "absolute",
-                    left: 0,
-                  }}
-                  onClick={() => router.push("/upgrade")}
-                />
+                <Link href={`/upgrade/${post._id}`}>
+                  <AutoAwesomeOutlined
+                    sx={{
+                      color: "black",
+                      cursor: "pointer",
+                      position: "absolute",
+                      left: 0,
+                    }}
+                  />
+                </Link>
               </>
             )
-          ) : loggedInGuest?.ipAddress === creator?.ipAddress &&
-            loggedInGuest !== undefined &&
-            loggedInGuest !== null &&
-            creator !== null ? (
-            <Delete
-              sx={{ color: "black", cursor: "pointer" }}
-              onClick={() => confirmDelete()}
-            />
           ) : post.creatorType === "Guest" ? (
             <div className="flex flex-col">
               <p className="text-end text-subtle-medium">*Post by guest.</p>
@@ -219,7 +212,6 @@ const PostCard = ({
             </div>
           ) : null}
         </div>
-
         <div className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center">
           <Image
             src={post.postPhoto}
@@ -270,7 +262,11 @@ const PostCard = ({
                 <ExpandLessOutlined sx={{ cursor: "pointer" }} />
               </div>
             )
-          ) : null}
+          ) : (
+            <p className="text-subtle-medium text-subtext">
+              This post has no creator.
+            </p>
+          )}
         </div>
       </div>
       {isExpand ? (
@@ -322,7 +318,7 @@ const PostCard = ({
             <p className="text-base-bold">{post.caption}</p>
             <p className="border border-subtext/30 font-thin w-full"></p>
           </div>
-          <div className="flex flex-col gap-2 pl-4 w-[200px] sm:w-[300px] md:w-full justify-start">
+          <div className="details">
             {details.map((detail, index) => (
               <div key={index}>
                 <p className="text-subtle-medium break-words whitespace-normal">
@@ -363,11 +359,7 @@ const PostCard = ({
           </p>
           <div className="preview-container">
             <div className="flex flex-col items-center">
-              <div
-                ref={postRef}
-                id="postToSave"
-                className="flex flex-col w-1/2"
-              >
+              <div className="flex flex-col w-2/3 sm:w-1/2">
                 <div className="p-5 sm:p-7 md:p-7 lg:p-6 bg-white relative shadow-lg">
                   <p className="absolute right-1 top-1 text-subtle-medium text-subtext">
                     {date}
@@ -547,13 +539,13 @@ const PostCard = ({
                       </div>
                     </div>
                     <div className="w-full flex flex-col justify-center items-center">
-                      <p className="text-[50px] font-bold">{post.caption}</p>
+                      <p className="text-[28px] font-bold">{post.caption}</p>
                       <p className="border border-subtext/75 font-thin w-full"></p>
                     </div>
                     <div className="flex flex-col gap-5 pl-4 justify-start">
                       {details.map((detail, index) => (
                         <div key={index}>
-                          <p className="text-[28px] break-words whitespace-normal">
+                          <p className="text-[18px] break-words whitespace-normal">
                             {detail}
                           </p>
                         </div>

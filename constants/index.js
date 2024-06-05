@@ -26,3 +26,36 @@ export const topbarLinks = [
       label: "Profile",
     },
   ];
+
+  export const frames = [
+    {
+      frame: "/example/greenframe.png",
+      credit: 35,
+      label: "Green frame",
+      type: "Green"
+    },
+    {
+      frame: "/example/purpleframe.png",
+      credit: 35,
+      label: "Purple frame",
+      type: "Purple"
+    },
+    {
+      frame: "/example/blueframe.png",
+      credit: 50,
+      label: "Blue frame",
+      type: "Blue"
+    },
+    {
+      frame: "/example/pinkframe.png",
+      credit: 50,
+      label: "Pink frame",
+      type: "Pink"
+    },
+    {
+      frame: "/example/yellowframe.png",
+      credit: 50,
+      label: "Yellow frame",
+      type: "Yellow"
+    }
+  ]

@@ -19,7 +19,7 @@ export const POST = async (req, { params }) => {
     })
 
     const post = await Post.findById(likeId).populate("creator likes")
-
+    
     const isLiked = user.likedPosts.find((item) => item._id.toString() === likeId)
 
     if (isLiked) {
@@ -29,7 +29,7 @@ export const POST = async (req, { params }) => {
       user.likedPosts.push(post._id)
       post.likes.push(user._id)
     }
-
+    
     await user.save()
     await post.save()
 

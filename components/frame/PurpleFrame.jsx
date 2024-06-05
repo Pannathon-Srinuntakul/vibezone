@@ -166,12 +166,12 @@ const PurpleFrame = ({
   return (
     <div className="w-full flex flex-col items-center justify-center">
       <div className="card-container relative pb-14 bg-[#d495f6] shadow-lg z-10">
-        <div className="w-full relative flex justify-end pb-3 gap-3">
+        <div className="w-full relative flex justify-end pb-3 gap-3 z-20">
           <p className="date text-white">{date}</p>
           {loggedInUser &&
           Object.keys(loggedInUser).length > 0 &&
           post.creatorType !== "Guest" ? (
-            loggedInUser.clerkId !== creator.clerkId ? (
+            loggedInUser.clerkId !== creator?.clerkId ? (
               isSaved ? (
                 <Bookmark
                   sx={{ color: "purple", cursor: "pointer" }}
@@ -193,27 +193,21 @@ const PurpleFrame = ({
                   sx={{ color: "white", cursor: "pointer" }}
                   onClick={() => setShowPreview(true)}
                 />
-                <AutoAwesomeOutlined
-                  sx={{
-                    color: "white",
-                    cursor: "pointer",
-                    position: "absolute",
-                    left: 0,
-                  }}
-                  onClick={() => router.push("/upgrade")}
-                />
+                <Link href={`/upgrade/${post._id}`}>
+                  <AutoAwesomeOutlined
+                    sx={{
+                      color: "white",
+                      cursor: "pointer",
+                      position: "absolute",
+                      left: 0,
+                      zIndex: "50"
+                    }}
+                  />
+                </Link>
               </>
             )
-          ) : loggedInGuest?.ipAddress === creator?.ipAddress &&
-            loggedInGuest !== undefined &&
-            loggedInGuest !== null &&
-            creator !== null ? (
-            <Delete
-              sx={{ color: "black", cursor: "pointer" }}
-              onClick={() => confirmDelete()}
-            />
           ) : post.creatorType === "Guest" ? (
-            <div className="flex flex-col">
+            <div className="flex flex-col z-20">
               <p className="text-end text-subtle-medium">*Post by guest.</p>
               <span className="text-subtext text-tiny-medium">
                 This post will be deleted in 24 hours.
@@ -253,7 +247,7 @@ const PurpleFrame = ({
           ) : null}
           {post.creatorType === "User" ? (
             <p className="text-white text-small-semibold flex justify-center items-center gap-1">
-              {likesCount.toLocaleString()}{" "}
+              {likesCount.toLocaleString()}
               <span className="text-tiny-medium">Like</span>
             </p>
           ) : null}
@@ -271,7 +265,11 @@ const PurpleFrame = ({
                 onClick={() => expand(false)}
               />
             )
-          ) : null}
+          ) : (
+            <p className="text-subtle-medium text-subtext">
+              This post has no creator.
+            </p>
+          )}
         </div>
       </div>
       {isExpand ? (
@@ -303,7 +301,7 @@ const PurpleFrame = ({
             <p className="text-base-bold">{post.caption}</p>
             <p className="border border-subtext/30 font-thin w-full"></p>
           </div>
-          <div className="flex flex-col gap-2 pl-4 w-[200px] sm:w-[300px] md:w-full justify-start">
+          <div className="details">
             {details.map((detail, index) => (
               <div key={index}>
                 <p className="text-subtle-medium break-words whitespace-normal">
@@ -340,19 +338,12 @@ const PurpleFrame = ({
 
       {showPreview && (
         <div className="fixed inset-0 bg-green-1 z-30 overflow-auto">
-          <p
-            className="close-preview"
-            onClick={() => setShowPreview(false)}
-          >
+          <p className="close-preview" onClick={() => setShowPreview(false)}>
             x
           </p>
           <div className="preview-container">
-            <div className="flex flex-col items-center">
-              <div
-                ref={postRef}
-                id="postToSave"
-                className="flex flex-col w-1/2"
-              >
+            <div className="flex flex-col items-center w-full">
+              <div className="flex flex-col w-5/6 md:w-1/2 lg:w-1/3">
                 <div className="frame-container bg-[#d495f6]">
                   <p className="absolute right-1 top-1 text-subtle-medium text-white">
                     {date}
@@ -406,7 +397,7 @@ const PurpleFrame = ({
                         <Favorite
                           sx={{ color: "purple", width: 40, height: 40 }}
                         />
-                        {likesCount.toLocaleString()}{" "}
+                        {likesCount.toLocaleString()}
                         <span className="text-tiny-medium">Like</span>
                       </p>
                     ) : null}
@@ -511,13 +502,13 @@ const PurpleFrame = ({
                   >
                     <p>{post.caption}</p>
                   </div>
-                  <div className="flex absolute bottom-8 left-1/2 transform -translate-x-1/2 items-center">
+                  <div className="flex absolute bottom-3 left-1/2 transform -translate-x-1/2 items-center">
                     {showLikes ? (
                       <p className="text-white text-[20px] flex justify-center items-center gap-1">
                         <Favorite
                           sx={{ color: "purple", width: 60, height: 60 }}
                         />
-                        {likesCount.toLocaleString()}{" "}
+                        {likesCount.toLocaleString()}
                         <span className="text-[15px]">Liked</span>
                       </p>
                     ) : null}
@@ -549,13 +540,13 @@ const PurpleFrame = ({
                       </div>
                     </div>
                     <div className="w-full flex flex-col justify-center items-center">
-                      <p className="text-[50px] font-bold">{post.caption}</p>
+                      <p className="text-[28px] font-bold">{post.caption}</p>
                       <p className="border border-subtext/75 font-thin w-full"></p>
                     </div>
                     <div className="flex flex-col gap-5 pl-4 justify-start">
                       {details.map((detail, index) => (
                         <div key={index}>
-                          <p className="text-[28px] break-words whitespace-normal">
+                          <p className="text-[18px] break-words whitespace-normal">
                             {detail}
                           </p>
                         </div>

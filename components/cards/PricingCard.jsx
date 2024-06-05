@@ -22,8 +22,8 @@ const PricingCard = ({price}) => {
         window.open(data, '_blank')
     }
   return (
-    <div className="bg-white p-5 flex flex-col items-center justify-center gap-5 rounded-xl drop-shadow-xl">
-      <div>
+    <div className="bg-white p-5 flex flex-col items-center justify-center gap-5 rounded-2xl drop-shadow-xl">
+      <div className='w-5/6'>
         <Image
           src='/assets/coin.svg'
           width={100}
@@ -31,16 +31,16 @@ const PricingCard = ({price}) => {
           layout='responsive'
         />
       </div>
-      <p>{price.metadata.productName} Credits</p>
+      <p className='text-center text-small-semibold'>{price.metadata.productName} Credits</p>
           <div className="flex flex-col items-center justify-center">
-              <h1 className="text-5xl font-bold"> 
+              <h1 className="text-small-bold"> 
               {(price.unit_amount / 100).toLocaleString('en-US', {
                 style: 'currency',
                 currency: 'THB'
               })}
               </h1>
           </div>
-        <button className="flex w-full justify-center rounded-md border border-transparent bg-[#f1592a] py-2 px-4 text-sm font-medium text-white shadow-sm" onClick={handleSubscription}>
+        <button className="flex w-5/6 justify-center rounded-xl bg-[#f1592a] py-2 px-4 text-small-semibold font-medium text-white shadow-sm" onClick={handleSubscription}>
              Buy now
           </button>
     </div>

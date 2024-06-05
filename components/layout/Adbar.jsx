@@ -24,10 +24,7 @@ const AdBar = () => {
   const getAds = async () => {
     const response = await fetch("/api/ads");
     const data = await response.json();
-    const sortedData = data.sort(
-      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-    );
-    setAds(sortedData);
+    setAds(data);
   };
 
   useEffect(() => {
@@ -67,53 +64,55 @@ const AdBar = () => {
 
   return (
     <>
-      <div className="adbar">
+      <div className="lg:hidden mt-20 bg-white drop-shadow-lg w-full">
         <div className="px-3 pt-1 flex justify-between items-center w-full">
-          <p className="text-x-small-semibold text-light-2">ADS</p>
-          <a href="/create-ads">
-            <Add href="/create-ads" />
-          </a>
+          <p className=" text-subtle-medium text-light-2">ADS</p>
+          {user ? (
+            <a href="/create-ads">
+              <Add href="/create-ads" />
+            </a>
+          ) : null}
         </div>
-        <div className="flex overflow-auto gap-5 p-5 bg-gray-100">
+        <div className="grid grid-cols-3 grid-rows-4 gap-3 p-3 bg-gray-100">
           {ads.map((ad, index) => (
-            <div key={index} className="flex flex-col gap-2 justify-end">
-              <div className="flex justify-between w-[150px]">
-                <div className="overflow-auto">
-                  <p className="text-black text-small-bold ml-2 whitespace-normal">
-                    {ad.caption}
-                  </p>
-                </div>
-                {!user ? null : userData?._id === ad.creator ? (
-                  <Delete
-                    sx={{ color: "black", cursor: "pointer" }}
-                    onClick={() => confirmDelete(ad)}
-                  />
-                ) : null}
-              </div>
+            <div
+              key={index}
+              className="flex flex-col border gap-2 p-1 bg-black shadow-lg"
+            >
               <a
                 href={
                   ad.link.startsWith("http") ? ad.link : `http://${ad.link}`
                 }
                 target="_blank"
-                className="mt-3"
+                className="mt-1 h-full flex items-center overflow-hidden"
               >
-                <div
-                  className="flex justify-center items-center w-[150px] h-[150px] md:w-[200px] overflow-hidden md:h-[200px] border 
-              border-black/50 drop-shadow-lg rounded-lg"
-                >
+                <div className="flex w-full max-h-[200px]">
                   <Image
                     src={ad.postPhoto}
                     width={150}
                     height={150}
+                    layout="responsive"
                     alt="ad"
-                    className="object-cover rounded-lg p-3"
+                    className="object-cover"
                   />
                 </div>
               </a>
+              <div className="flex justify-between">
+                <p className="text-white text-[12px] font-bold sm:text-small-bold ml-2 whitespace-normal">
+                  {ad.caption}
+                </p>
+                {!user ? null : userData?._id === ad.creator ? (
+                  <Delete
+                    sx={{ color: "white", cursor: "pointer" }}
+                    onClick={() => confirmDelete(ad)}
+                  />
+                ) : null}
+              </div>
             </div>
           ))}
         </div>
       </div>
+
       {showConfirm && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg">

@@ -45,7 +45,7 @@ const BlueFrame = ({
   const [showProfile, setShowProfile] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
   const postRef = useRef(null);
-  const router = useRouter()
+  const router = useRouter();
 
   const dateTime = post?.createdAt;
   const date = format(new Date(dateTime), "yyyy.MM.dd");
@@ -165,55 +165,49 @@ const BlueFrame = ({
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      <div className="card-container relative pb-14 bg-[#94B9FF] shadow-lg z-10">
-        <div className="w-full relative flex justify-end pb-3 gap-3">
+      <div className="card-container relative pb-14 bg-[#94B9FF] shadow-lg z-10 overflow-hidden">
+        <div className="w-full relative flex justify-end pb-3 gap-3 z-20">
           <p className="date text-white">{date}</p>
           {loggedInUser &&
           Object.keys(loggedInUser).length > 0 &&
           post.creatorType !== "Guest" ? (
-            loggedInUser.clerkId !== creator.clerkId ? (
+            loggedInUser.clerkId !== creator?.clerkId ? (
               isSaved ? (
                 <Bookmark
-                  sx={{ color: "purple", cursor: "pointer" }}
+                  sx={{ color: "purple", cursor: "pointer", zIndex: "50" }}
                   onClick={() => handleSave()}
                 />
               ) : (
                 <BookmarkBorder
-                  sx={{ color: "black", cursor: "pointer" }}
+                  sx={{ color: "black", cursor: "pointer", zIndex: "50" }}
                   onClick={() => handleSave()}
                 />
               )
             ) : (
               <>
                 <DeleteOutline
-                  sx={{ color: "black", cursor: "pointer" }}
+                  sx={{ color: "black", cursor: "pointer", zIndex: "50" }}
                   onClick={() => confirmDelete()}
                 />
                 <CameraAltOutlined
-                  sx={{ color: "black", cursor: "pointer" }}
+                  sx={{ color: "black", cursor: "pointer", zIndex: "50" }}
                   onClick={() => setShowPreview(true)}
                 />
-                <AutoAwesomeOutlined
-                  sx={{
-                    color: "black",
-                    cursor: "pointer",
-                    position: "absolute",
-                    left: 0,
-                  }}
-                  onClick={() => router.push('/upgrade')}
-                />
+                <Link href={`/upgrade/${post._id}`}>
+                  <AutoAwesomeOutlined
+                    sx={{
+                      color: "black",
+                      cursor: "pointer",
+                      position: "absolute",
+                      left: 0,
+                      zIndex: "50"
+                    }}
+                  />
+                </Link>
               </>
             )
-          ) : loggedInGuest?.ipAddress === creator?.ipAddress &&
-            loggedInGuest !== undefined &&
-            loggedInGuest !== null &&
-            creator !== null ? (
-            <Delete
-              sx={{ color: "black", cursor: "pointer" }}
-              onClick={() => confirmDelete()}
-            />
           ) : post.creatorType === "Guest" ? (
-            <div className="flex flex-col">
+            <div className="flex flex-col z-20">
               <p className="text-end text-subtle-medium">*Post by guest.</p>
               <span className="text-subtext text-tiny-medium">
                 This post will be deleted in 24 hours.
@@ -222,15 +216,65 @@ const BlueFrame = ({
           ) : null}
         </div>
 
-        <div className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center">
+        <div className="w-full flex items-center relative">
           <Image
-            src={post.postPhoto}
-            alt="post photo"
+            src="/components/Blue/cloud.png"
+            className="absolute -top-7 -right-3 w-[100px] z-10"
             width={200}
-            height={150}
-            layout="responsive"
-            className="w-full"
+            height={50}
           />
+          <Image
+            src="/components/Blue/line2.png"
+            className="absolute -top-4 left-20 w-[60px]"
+            width={200}
+            height={50}
+          />
+          <Image
+            src="/components/Blue/line3.png"
+            className="absolute top-16 -left-5 w-[50px]"
+            width={200}
+            height={50}
+          />
+          <Image
+            src="/components/Blue/flowers.png"
+            className="absolute -top-5 -left-5 w-[60px]"
+            width={200}
+            height={50}
+          />
+          <Image
+            src="/components/Blue/flower2.png"
+            className="absolute bottom-16 -left-3 w-[24px]"
+            width={200}
+            height={50}
+          />
+          <Image
+            src="/components/Blue/star.png"
+            className="absolute -bottom-2 -left-2 w-[24px]"
+            width={200}
+            height={50}
+          />
+          <Image
+            src="/components/Blue/line.png"
+            className="absolute -bottom-2 -right-2 w-[100px]"
+            width={200}
+            height={50}
+          />
+          <Image
+            src="/components/Blue/star2.png"
+            className="absolute bottom-36 -right-4 w-[30px]"
+            width={200}
+            height={50}
+          />
+          <div className="overflow-hidden md:min-h-[200px] xl:min-h-[300px] max-h-[600px] w-full">
+            <Image
+              src={post.postPhoto}
+              alt="post photo"
+              width={200}
+              height={150}
+              layout="responsive"
+              className="w-full"
+            />
+          </div>
         </div>
         <div className={`${sriracha.className} post-caption-web text-white`}>
           <p>{post.caption}</p>
@@ -271,7 +315,11 @@ const BlueFrame = ({
                 onClick={() => expand(false)}
               />
             )
-          ) : null}
+          ) : (
+            <p className="text-subtle-medium text-subtext">
+              This post has no creator.
+            </p>
+          )}
         </div>
       </div>
       {isExpand ? (
@@ -303,7 +351,7 @@ const BlueFrame = ({
             <p className="text-base-bold">{post.caption}</p>
             <p className="border border-subtext/30 font-thin w-full"></p>
           </div>
-          <div className="flex flex-col gap-2 pl-4 w-[200px] sm:w-[300px] md:w-full justify-start">
+          <div className="details">
             {details.map((detail, index) => (
               <div key={index}>
                 <p className="text-subtle-medium break-words whitespace-normal">
@@ -340,24 +388,65 @@ const BlueFrame = ({
 
       {showPreview && (
         <div className="fixed inset-0 bg-green-1 z-30 overflow-auto">
-          <p
-            className="close-preview"
-            onClick={() => setShowPreview(false)}
-          >
+          <p className="close-preview" onClick={() => setShowPreview(false)}>
             x
           </p>
           <div className="preview-container">
-            <div className="flex flex-col items-center">
-              <div
-                ref={postRef}
-                id="postToSave"
-                className="flex flex-col w-1/2"
-              >
+            <div className="flex flex-col items-center w-full">
+              <div className="flex flex-col w-5/6 md:w-1/2 lg:w-1/3">
                 <div className="bg-[#94B9FF] frame-container">
-                  <p className="absolute right-1 top-1 text-subtle-medium text-[#00008b]">
+                  <p className="absolute right-1 top-1 text-subtle-medium text-[#00008b] z-50">
                     {date}
                   </p>
-                  <div className="w-full md:min-h-[200px] xl:min-h-[300px] flex items-center">
+                  <div className="w-full md:min-h-[200px] xl:min-h-[300px] flex items-center relative">
+                    <Image
+                      src="/components/Blue/cloud.png"
+                      className="absolute -top-4 -right-3 w-[100px] z-10"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Blue/line2.png"
+                      className="absolute -top-4 left-20 w-[60px]"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Blue/line3.png"
+                      className="absolute top-16 -left-5 w-[50px]"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Blue/flowers.png"
+                      className="absolute -top-5 -left-5 w-[60px]"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Blue/flower2.png"
+                      className="absolute bottom-16 -left-3 w-[24px]"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Blue/star.png"
+                      className="absolute -bottom-2 -left-2 w-[24px]"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Blue/line.png"
+                      className="absolute -bottom-2 -right-2 w-[100px]"
+                      width={200}
+                      height={50}
+                    />
+                    <Image
+                      src="/components/Blue/star2.png"
+                      className="absolute bottom-36 -right-4 w-[30px]"
+                      width={200}
+                      height={50}
+                    />
                     <img
                       src={post.postPhoto}
                       alt="post photo"
@@ -492,11 +581,59 @@ const BlueFrame = ({
                 id="postToSave"
                 className="flex flex-col w-[800px] invisible"
               >
-                <div className="bg-[#94B9FF] frame-container">
-                  <p className="absolute right-1 top-1 text-base-bold text-[#00008b]">
+                <div className="bg-[#94B9FF] frame-container overflow-hidden">
+                  <p className="absolute right-1 top-1 text-base-bold text-[#00008b] z-50">
                     {date}
                   </p>
-                  <div className={`w-full flex flex-col items-center`}>
+                  <div className="w-full flex flex-col items-center relative">
+                    <img
+                      src="/components/Blue/cloud.png"
+                      className="absolute -top-7 -right-6 w-[200px] z-10"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Blue/line2.png"
+                      className="absolute -top-6 w-[150px]"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Blue/line3.png"
+                      className="absolute top-52 -left-9 w-[100px]"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Blue/flowers.png"
+                      className="absolute -top-9 -left-8 w-[120px]"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Blue/flower2.png"
+                      className="absolute bottom-60 -left-6 w-[54px]"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Blue/star.png"
+                      className="absolute -bottom-5 -left-5 w-[54px]"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Blue/line.png"
+                      className="absolute -bottom-2 -right-2 w-[230px]"
+                      width={200}
+                      height={50}
+                    />
+                    <img
+                      src="/components/Blue/star2.png"
+                      className="absolute bottom-72 -right-7 w-[60px]"
+                      width={200}
+                      height={50}
+                    />
                     <img
                       src={post.postPhoto}
                       alt="post photo"
@@ -511,7 +648,7 @@ const BlueFrame = ({
                   >
                     <p>{post.caption}</p>
                   </div>
-                  <div className="flex absolute bottom-8 left-1/2 transform -translate-x-1/2 items-center">
+                  <div className="flex absolute bottom-3 left-1/2 transform -translate-x-1/2 items-center">
                     {showLikes ? (
                       <p className="text-[#00008b] text-[20px] flex justify-center items-center gap-1">
                         <Favorite
@@ -549,13 +686,13 @@ const BlueFrame = ({
                       </div>
                     </div>
                     <div className="w-full flex flex-col justify-center items-center">
-                      <p className="text-[50px] font-bold">{post.caption}</p>
+                      <p className="text-[28px] font-bold">{post.caption}</p>
                       <p className="border border-subtext/75 font-thin w-full"></p>
                     </div>
                     <div className="flex flex-col gap-5 pl-4 justify-start">
                       {details.map((detail, index) => (
                         <div key={index}>
-                          <p className="text-[28px] break-words whitespace-normal">
+                          <p className="text-[18px] break-words whitespace-normal">
                             {detail}
                           </p>
                         </div>
