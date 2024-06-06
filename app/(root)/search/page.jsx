@@ -227,8 +227,8 @@ const SearchComponent = () => {
                     }
                     className="w-full flex flex-col justify-start items-start gap-10 pb-5 "
                   >
-                    {searchResults.users.map((user) => (
-                      <div className="bg-white rounded-full drop-shadow-lg p-2 flex items-center w-full">
+                    {searchResults.users.map((user, index) => (
+                      <div key={index} className="bg-white rounded-full drop-shadow-lg p-2 flex items-center w-full">
                         <Link
                           href={`/profile/${user.clerkId}`}
                           className="flex"
@@ -265,8 +265,8 @@ const SearchComponent = () => {
                       </div>
                     }
                   >
-                    {searchResults.posts.map((post) => (
-                      <div className="flex flex-col justify-start items-start gap-10 pb-5">
+                    {searchResults.posts.map((post, index) => (
+                      <div key={index} className="flex flex-col justify-start items-start gap-10 pb-5">
                         {post.frame === "Blue" && (
                           <BlueFrame
                             key={post._id}

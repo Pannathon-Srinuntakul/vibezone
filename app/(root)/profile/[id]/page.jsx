@@ -49,7 +49,6 @@ const profile = () => {
     if (userData.clerkId) {
       const response = await fetch(`/api/user/${userData.clerkId}`);
       const data = await response.json();
-      setUserData(data);
     }
   };
 

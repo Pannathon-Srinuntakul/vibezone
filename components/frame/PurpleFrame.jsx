@@ -44,6 +44,8 @@ const PurpleFrame = ({
   const [showPreview, setShowPreview] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false)
+  
   const postRef = useRef(null);
   const router = useRouter();
 
@@ -115,7 +117,7 @@ const PurpleFrame = ({
       method: "DELETE",
     });
     if (response.ok) {
-      update();
+      setIsDeleted(true)
       await updateUser();
     } else {
       console.error("Failed to delete post");
@@ -162,7 +164,7 @@ const PurpleFrame = ({
     setShowConfirm(false);
   };
 
-  return (
+  return !isDeleted ? (
     <div className="w-full flex flex-col items-center justify-center">
       <div className="card-container relative pb-14 bg-[#d495f6] shadow-lg z-10">
         <div className="w-full relative flex justify-end pb-3 gap-3 z-20">
@@ -559,6 +561,8 @@ const PurpleFrame = ({
         </div>
       )}
     </div>
+  ) : (
+    <p className="text-center text-subtext">Post deleted</p>
   );
 };
 

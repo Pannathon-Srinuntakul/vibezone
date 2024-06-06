@@ -44,6 +44,8 @@ const GreenFrame = ({
   const [showPreview, setShowPreview] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false)
+  
   const postRef = useRef(null);
   const router = useRouter();
 
@@ -115,7 +117,7 @@ const GreenFrame = ({
       method: "DELETE",
     });
     if (response.ok) {
-      update();
+      setIsDeleted(true)
       await updateUser();
     } else {
       console.error("Failed to delete post");
@@ -162,7 +164,7 @@ const GreenFrame = ({
     setShowConfirm(false);
   };
 
-  return (
+  return !isDeleted ? (
     <div className="w-full flex flex-col items-center justify-center">
       <div className="card-container relative pb-14 bg-[#adf695] shadow-lg z-10">
         
@@ -317,7 +319,7 @@ const GreenFrame = ({
 
       {showConfirm && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-#6E6692 p-6 rounded-lg shadow-lg">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-lg font-bold mb-4">Confirm Delete</h2>
             <p>Are you sure you want to delete this post?</p>
             <div className="mt-4 flex justify-end">
@@ -328,7 +330,7 @@ const GreenFrame = ({
                 Cancel
               </button>
               <button
-                className="bg-red-500 hover:bg-red-600 text-[#6E6692] font-bold py-2 px-4 rounded"
+                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
                 onClick={confirmAndDelete}
               >
                 Delete
@@ -562,6 +564,8 @@ const GreenFrame = ({
         </div>
       )}
     </div>
+  ) : (
+    <p className="text-center text-subtext">Post deleted</p>
   );
 };
 

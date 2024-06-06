@@ -42,6 +42,8 @@ const PostCard = ({
   const [showPreview, setShowPreview] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false)
+  
   const postRef = useRef(null);
   const router = useRouter();
 
@@ -72,7 +74,6 @@ const PostCard = ({
         throw new Error("Error saving post");
       }
       await updateUser();
-      update();
     } catch (error) {
       console.error(error);
       setIsSaved(!isSaved);
@@ -100,7 +101,6 @@ const PostCard = ({
         throw new Error("Error liking post");
       }
       await updateUser();
-      update();
     } catch (error) {
       console.error(error);
       setIsLiked(!isLiked); // Revert the change if there's an error
@@ -115,7 +115,8 @@ const PostCard = ({
       method: "DELETE",
     });
     if (response.ok) {
-      update();
+      setIsDeleted(true)
+      await updateUser()
     } else {
       console.error("Failed to delete post");
     }
@@ -161,7 +162,7 @@ const PostCard = ({
     setShowConfirm(false);
   };
   
-  return (
+  return !isDeleted ? (
     <div className="w-full flex flex-col items-center justify-center">
       <div className="card-container bg-white shadow-lg overflow-hidden">
         <div className="w-full relative flex justify-end pb-3 gap-3">
@@ -559,6 +560,8 @@ const PostCard = ({
         </div>
       )}
     </div>
+  ) : (
+    <p className="text-center text-subtext">Post deleted</p>
   );
 };
 
