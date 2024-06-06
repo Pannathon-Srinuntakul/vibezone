@@ -74,7 +74,6 @@ const GreenFrame = ({
         throw new Error("Error saving post");
       }
       await updateUser();
-      update();
     } catch (error) {
       console.error(error);
       setIsSaved(!isSaved);
@@ -102,7 +101,6 @@ const GreenFrame = ({
         throw new Error("Error liking post");
       }
       await updateUser();
-      update();
     } catch (error) {
       console.error(error);
       setIsLiked(!isLiked); // Revert the change if there's an error
@@ -118,6 +116,7 @@ const GreenFrame = ({
     });
     if (response.ok) {
       update();
+      await updateUser();
     } else {
       console.error("Failed to delete post");
     }

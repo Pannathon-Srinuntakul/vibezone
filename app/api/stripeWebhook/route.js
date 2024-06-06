@@ -32,100 +32,64 @@ export async function POST(req, res) {
       } catch (updateError) {
         console.error("Error updating user purchase:", updateError);
 
-        await stripe.refunds.create({
-          payment_intent: session.payment_intent,
-        });
+        await handleRefund(session.payment_intent);
 
         return new Response(
           JSON.stringify({ error: "User update failed, payment refunded" }),
           { status: 500 }
         );
       }
+    } else {
+      console.error("Unhandled event type:", event.type);
+      await handleRefund(response.payment_intent); // Ensure refund if not a completed session
+      return new Response(
+        JSON.stringify({ error: "Event not completed, payment refunded" }),
+        { status: 400 }
+      );
     }
-    return new Response(JSON.stringify({ event: event.type }), { status: 200 });
   } catch (error) {
-    return new Response(error, { status: 500 });
+    console.error("Error in webhook processing:", error);
+    return new Response(error.message || "Webhook error", { status: 500 });
   }
 }
 
 const updateUserCredit = async (userId, priceId) => {
   await connectToDB();
   try {
-    if (priceId === process.env.STRIPE_SIXTY_CREDITS) {
-      const user = await User.findOneAndUpdate(
-        { clerkId: userId },
-        {
-          $inc: { credit: 60 },
-        }
-      );
-      await user.save();
-    } else if (priceId === process.env.STRIPE_EIGHTYFIVE_CREDITS) {
-      const user = await User.findOneAndUpdate(
-        { clerkId: userId },
-        {
-          $inc: { credit: 85 },
-        }
-      );
-      await user.save();
-    } else if (priceId === process.env.STRIPE_ONEHUNDREDEIGHTY_CREDITS) {
-      const user = await User.findOneAndUpdate(
-        { clerkId: userId },
-        {
-          $inc: { credit: 180 },
-        }
-      );
-      await user.save();
-    } else if (priceId === process.env.STRIPE_THREEHUNDREDEIGHTY_CREDITS) {
-      const user = await User.findOneAndUpdate(
-        { clerkId: userId },
-        {
-          $inc: { credit: 380 },
-        }
-      );
-      await user.save();
-    } else if (priceId === process.env.STRIPE_FIVEHUNDREDSEVENTY_CREDITS) {
-      const user = await User.findOneAndUpdate(
-        { clerkId: userId },
-        {
-          $inc: { credit: 570 },
-        }
-      );
-      await user.save();
-    } else if (priceId === process.env.STRIPE_NINEHUNDREDSEVENTY_CREDITS) {
-      const user = await User.findOneAndUpdate(
-        { clerkId: userId },
-        {
-          $inc: { credit: 970 },
-        }
-      );
-      await user.save();
-    } else if (priceId === process.env.STRIPE_ONETHOUSANDFIVEHUNDRED_CREDITS) {
-      const user = await User.findOneAndUpdate(
-        { clerkId: userId },
-        {
-          $inc: { credit: 1500 },
-        }
-      );
-      await user.save();
-    } else if (priceId === process.env.STRIPE_TWOTHOUSANDFIFTY_CREDITS) {
-      const user = await User.findOneAndUpdate(
-        { clerkId: userId },
-        {
-          $inc: { credit: 2050 },
-        }
-      );
-      await user.save();
-    }
-      else if (priceId === process.env.STRIPE_TEST) {
-      const user = await User.findOneAndUpdate(
-        { clerkId: userId },
-        {
-          $inc: { credit: 20500 },
-        }
-      );
-      await user.save();
-    }
+    const user = await User.findOneAndUpdate(
+      { clerkId: userId },
+      { $inc: { credit: getCredits(priceId) } }
+    );
+    if (!user) throw new Error("User not found");
+    await user.save();
   } catch (error) {
     console.log(error);
+    throw error; // Rethrow error to be caught in the POST function
+  }
+};
+
+const getCredits = (priceId) => {
+  const creditsMap = {
+    [process.env.STRIPE_SIXTY_CREDITS]: 60,
+    [process.env.STRIPE_EIGHTYFIVE_CREDITS]: 85,
+    [process.env.STRIPE_ONEHUNDREDEIGHTY_CREDITS]: 180,
+    [process.env.STRIPE_THREEHUNDREDEIGHTY_CREDITS]: 380,
+    [process.env.STRIPE_FIVEHUNDREDSEVENTY_CREDITS]: 570,
+    [process.env.STRIPE_NINEHUNDREDSEVENTY_CREDITS]: 970,
+    [process.env.STRIPE_ONETHOUSANDFIVEHUNDRED_CREDITS]: 1500,
+    [process.env.STRIPE_TWOTHOUSANDFIFTY_CREDITS]: 2050,
+    [process.env.STRIPE_TEST]: 20500,
+  };
+  return creditsMap[priceId] || 0;
+};
+
+const handleRefund = async (paymentIntentId) => {
+  try {
+    await stripe.refunds.create({
+      payment_intent: paymentIntentId,
+    });
+  } catch (refundError) {
+    console.error("Error creating refund:", refundError);
+    throw refundError; // Rethrow to handle refund failure cases
   }
 };

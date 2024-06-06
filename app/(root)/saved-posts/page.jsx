@@ -84,9 +84,9 @@ const SavedPosts = () => {
           </div>
         }
       >
-        <div className="flex flex-col w-full items-center gap-10">
-          {userData?.savedPosts?.map((post) => (
-            <>
+        <div className="mt-20 lg:mt-0 flex flex-col w-full items-center gap-10">
+          {userData?.savedPosts?.map((post, index) => (
+            <div className="w-full" key={index}>
               {post.frame === "Blue" && (
                 <BlueFrame
                   key={post._id}
@@ -152,7 +152,7 @@ const SavedPosts = () => {
                   updateUser={updateUser}
                 />
               )}
-            </>
+            </div>
           ))}
         </div>
       </InfiniteScroll>

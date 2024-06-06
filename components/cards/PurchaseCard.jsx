@@ -44,9 +44,9 @@ const PurchaseCard = ({ postId, user }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl mt-36 w-5/6 sm:w-2/3 lg:mt-0 lg:w-1/2 shadow-lg grid grid-cols-2 grid-rows-3 sm:grid-cols-3 sm:grid-rows-2 gap-5 place-items-center justify-items-center p-5">
-      {frames.map((frame) => (
-        <div className="purchase-card">
+    <div className="bg-white rounded-xl mt-20 w-5/6 sm:w-2/3 lg:mt-0 lg:w-1/2 shadow-lg grid grid-cols-2 grid-rows-3 sm:grid-cols-3 sm:grid-rows-2 gap-5 place-items-center justify-items-center p-5">
+      {frames.map((frame, index) => (
+        <div key={index} className="purchase-card">
           <Image
             src={frame.frame}
             alt={frame.label}

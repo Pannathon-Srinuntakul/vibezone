@@ -7,5 +7,6 @@ export async function GET(request) {
     const filteredPrices = prices.data.filter(price => {
         return price.active === true;
     });
+    console.log('filter',filteredPrices)
     return new Response(JSON.stringify(filteredPrices.reverse()), {status: 200})
 }

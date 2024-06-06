@@ -74,7 +74,6 @@ const Yellowframe = ({
         throw new Error("Error saving post");
       }
       await updateUser();
-      update();
     } catch (error) {
       console.error(error);
       setIsSaved(!isSaved);
@@ -102,7 +101,6 @@ const Yellowframe = ({
         throw new Error("Error liking post");
       }
       await updateUser();
-      update();
     } catch (error) {
       console.error(error);
       setIsLiked(!isLiked); // Revert the change if there's an error
@@ -113,11 +111,13 @@ const Yellowframe = ({
   };
 
   const handleDelete = async () => {
+    alt="icon"
     const response = await fetch(`/api/post/${post._id}/${creator._id}`, {
       method: "DELETE",
     });
     if (response.ok) {
       update();
+      await updateUser();
     } else {
       console.error("Failed to delete post");
     }
@@ -171,6 +171,7 @@ const Yellowframe = ({
           className="absolute bottom-0 left-0 w-[100px]"
           width={200}
           height={50}
+          alt="icon"
         />
         <div className="w-full relative flex justify-end pb-3 gap-3 z-20">
           <p className="date text-[#6E6692]">{date}</p>
@@ -202,7 +203,7 @@ const Yellowframe = ({
                 <Link href={`/upgrade/${post._id}`}>
                   <AutoAwesomeOutlined
                     sx={{
-                      color: "black",
+                      color: "#6E6692",
                       cursor: "pointer",
                       position: "absolute",
                       left: 0,
@@ -228,48 +229,56 @@ const Yellowframe = ({
             className="absolute -top-7 -left-5 w-[100px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/yellow/cloud.png"
             className="absolute -top-5 left-20 w-[80px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/yellow/line3.png"
             className="absolute -bottom-4 -right-6 w-[120px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/pink/star.png"
             className="absolute bottom-5 -left-3 w-[30px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/pink/star.png"
             className="absolute top-16 -right-4 w-[30px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/yellow/flower.png"
             className="absolute top-32 -right-5 w-[40px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/yellow/line1.png"
             className="absolute -top-2 right-6 w-[120px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/yellow/line2.png"
             className="absolute top-20 -left-4 w-[80px]"
             width={200}
             height={50}
+            alt="icon"
           />
 
           <div className="overflow-hidden md:min-h-[200px] xl:min-h-[300px] max-h-[600px] w-full">
@@ -407,6 +416,7 @@ const Yellowframe = ({
                     className="absolute bottom-0 left-0 w-[100px]"
                     width={200}
                     height={50}
+                    alt="icon"
                   />
                   <p className="absolute right-1 top-1 text-subtle-medium text-[#6E6692]">
                     {date}
@@ -417,48 +427,56 @@ const Yellowframe = ({
                       className="absolute -top-7 -left-5 w-[80px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/yellow/cloud.png"
                       className="absolute -top-5 left-14 w-[80px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/yellow/line3.png"
                       className="absolute -bottom-4 -right-10 w-[100px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/pink/star.png"
                       className="absolute bottom-5 -left-4 w-[30px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/pink/star.png"
                       className="absolute top-16 -right-4 w-[30px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/yellow/flower.png"
                       className="absolute top-32 -right-5 w-[40px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/yellow/line1.png"
                       className="absolute -top-2 right-3 w-[100px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/yellow/line2.png"
                       className="absolute top-20 -left-3 w-[50px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src={post.postPhoto}
@@ -600,6 +618,7 @@ const Yellowframe = ({
                     className="absolute bottom-0 left-0 w-[150px]"
                     width={200}
                     height={50}
+                    alt="icon"
                   />
                   <p className="absolute right-1 top-1 text-base-bold text-[#6E6692] z-50">
                     {date}
@@ -610,48 +629,56 @@ const Yellowframe = ({
                       className="absolute -top-7 -left-8 w-[180px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/yellow/cloud.png"
                       className="absolute -top-6 left-36 w-[150px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/yellow/line3.png"
                       className="absolute -bottom-4 -right-10 w-[200px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/pink/star.png"
                       className="absolute bottom-20 -left-7 w-[60px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/pink/star.png"
                       className="absolute top-32 -right-4 w-[60px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/yellow/flower.png"
                       className="absolute top-72 -right-8 w-[60px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/yellow/line1.png"
                       className="absolute -top-4 right-24 w-[250px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/yellow/line2.png"
                       className="absolute top-44 -left-9 w-[180px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src={post.postPhoto}

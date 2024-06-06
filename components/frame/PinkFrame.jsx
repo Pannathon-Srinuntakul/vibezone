@@ -74,7 +74,6 @@ const Pinkframe = ({
         throw new Error("Error saving post");
       }
       await updateUser();
-      update();
     } catch (error) {
       console.error(error);
       setIsSaved(!isSaved);
@@ -102,7 +101,6 @@ const Pinkframe = ({
         throw new Error("Error liking post");
       }
       await updateUser();
-      update();
     } catch (error) {
       console.error(error);
       setIsLiked(!isLiked); // Revert the change if there's an error
@@ -118,6 +116,7 @@ const Pinkframe = ({
     });
     if (response.ok) {
       update();
+      await updateUser();
     } else {
       console.error("Failed to delete post");
     }
@@ -222,48 +221,56 @@ const Pinkframe = ({
             className="absolute -top-7 -left-5 w-[60px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/pink/flowers.png"
             className="absolute bottom-16 -left-5 w-[50px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/pink/hearts2.png"
             className="absolute -bottom-4 left-2 w-[80px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/pink/heartline.png"
             className="absolute -bottom-4 -right-2 w-[150px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/pink/star.png"
             className="absolute bottom-5 -left-3 w-[30px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/pink/dots1.png"
             className="absolute top-0 -right-5 w-[150px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/pink/dots2.png"
             className="absolute -top-10 right-14 w-[300px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/pink/dots3.png"
             className="absolute top-8 -left-4 w-[50px]"
             width={200}
             height={50}
+            alt="icon"
           />
 
           <div className="overflow-hidden md:min-h-[200px] xl:min-h-[300px] max-h-[600px] w-full">
@@ -405,48 +412,56 @@ const Pinkframe = ({
                       className="absolute -top-5 -left-5 w-[40px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/pink/flowers.png"
                       className="absolute bottom-16 -left-5 w-[50px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/pink/hearts2.png"
                       className="absolute -bottom-4 left-5 w-[80px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/pink/heartline.png"
                       className="absolute -bottom-2 -right-2 w-[100px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/pink/star.png"
                       className="absolute -bottom-2 -left-3 w-[30px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/pink/dots1.png"
                       className="absolute top-0 -right-5 w-[150px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/pink/dots2.png"
                       className="absolute -top-10 right-14 w-[300px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/pink/dots3.png"
                       className="absolute top-8 -left-4 w-[50px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src={post.postPhoto}
@@ -592,48 +607,56 @@ const Pinkframe = ({
                       className="absolute -top-7 -left-8 w-[80px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/pink/flowers.png"
                       className="absolute bottom-24 -left-5 w-[80px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/pink/hearts2.png"
                       className="absolute -bottom-8 left-20 w-[150px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/pink/heartline.png"
                       className="absolute -bottom-5 -right-1 w-[300px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/pink/star.png"
                       className="absolute -bottom-2 -left-5 w-[50px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/pink/dots1.png"
                       className="absolute top-9 -right-10 w-[300px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/pink/dots2.png"
                       className="absolute -top-10 right-32 w-[400px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/pink/dots3.png"
                       className="absolute top-28 -left-8 w-[180px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src={post.postPhoto}

@@ -79,7 +79,7 @@ const Leftbar = () => {
           <div className="flex items-center gap-4 justify-between">
             <Image src="/assets/coin.svg" width={30} height={30} alt="credit" />
             <p className="text-subtext text-small-semibold">
-              {userData?.credit}
+              {userData?.credit?.toLocaleString()}
             </p>
             <div className="relative">
             <a href="/credit">+</a>

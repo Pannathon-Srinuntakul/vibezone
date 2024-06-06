@@ -74,7 +74,6 @@ const Blueframe = ({
         throw new Error("Error saving post");
       }
       await updateUser();
-      update();
     } catch (error) {
       console.error(error);
       setIsSaved(!isSaved);
@@ -98,11 +97,10 @@ const Blueframe = ({
           },
         }
       );
+      await updateUser();
       if (!response.ok) {
         throw new Error("Error liking post");
       }
-      await updateUser();
-      update();
     } catch (error) {
       console.error(error);
       setIsLiked(!isLiked); // Revert the change if there's an error
@@ -118,6 +116,7 @@ const Blueframe = ({
     });
     if (response.ok) {
       update();
+      await updateUser();
     } else {
       console.error("Failed to delete post");
     }
@@ -222,48 +221,56 @@ const Blueframe = ({
             className="absolute -top-7 -right-3 w-[100px] z-10"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/blue/line2.png"
             className="absolute -top-4 left-20 w-[60px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/blue/line3.png"
             className="absolute top-16 -left-5 w-[50px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/blue/flowers.png"
             className="absolute -top-5 -left-5 w-[60px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/blue/flower2.png"
             className="absolute bottom-16 -left-3 w-[24px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/blue/star.png"
             className="absolute -bottom-2 -left-2 w-[24px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/blue/line.png"
             className="absolute -bottom-2 -right-2 w-[100px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <Image
             src="/blue/star2.png"
             className="absolute bottom-36 -right-4 w-[30px]"
             width={200}
             height={50}
+            alt="icon"
           />
           <div className="overflow-hidden md:min-h-[200px] xl:min-h-[300px] max-h-[600px] w-full">
             <Image
@@ -404,48 +411,56 @@ const Blueframe = ({
                       className="absolute -top-4 -right-3 w-[100px] z-10"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/blue/line2.png"
                       className="absolute -top-4 left-20 w-[60px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/blue/line3.png"
                       className="absolute top-16 -left-5 w-[50px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/blue/flowers.png"
                       className="absolute -top-5 -left-5 w-[60px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/blue/flower2.png"
                       className="absolute bottom-16 -left-3 w-[24px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/blue/star.png"
                       className="absolute -bottom-2 -left-2 w-[24px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/blue/line.png"
                       className="absolute -bottom-2 -right-2 w-[100px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <Image
                       src="/blue/star2.png"
                       className="absolute bottom-36 -right-4 w-[30px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src={post.postPhoto}
@@ -591,48 +606,56 @@ const Blueframe = ({
                       className="absolute -top-7 -right-6 w-[200px] z-10"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/blue/line2.png"
                       className="absolute -top-6 w-[150px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/blue/line3.png"
                       className="absolute top-52 -left-9 w-[100px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/blue/flowers.png"
                       className="absolute -top-9 -left-8 w-[120px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/blue/flower2.png"
                       className="absolute bottom-60 -left-6 w-[54px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/blue/star.png"
                       className="absolute -bottom-5 -left-5 w-[54px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/blue/line.png"
                       className="absolute -bottom-2 -right-2 w-[230px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src="/blue/star2.png"
                       className="absolute bottom-72 -right-7 w-[60px]"
                       width={200}
                       height={50}
+                      alt="icon"
                     />
                     <img
                       src={post.postPhoto}

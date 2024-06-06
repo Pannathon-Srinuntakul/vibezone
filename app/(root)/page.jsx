@@ -95,7 +95,6 @@ const Home = () => {
 
   useEffect(() => {
     if (isUserDataLoaded || (clientIp && !user)) {
-      // ตรวจสอบว่าสถานะ userData ถูกโหลดหรือมี clientIp และไม่มี user
       getFeedPost();
     }
   }, [isUserDataLoaded, clientIp, user]);
@@ -133,8 +132,8 @@ const Home = () => {
       >
         <div className="flex flex-col w-full items-center gap-10">
           <AdBar />
-          {feedPost.map((post) => (
-            <>
+          {feedPost.map((post, index) => (
+            <div className="w-full" key={index}>
               {post.frame === "Blue" && (
                 <BlueFrame
                   key={post._id}
@@ -212,7 +211,7 @@ const Home = () => {
                   updateUser={updateUser}
                 />
               )}
-            </>
+            </div>
           ))}
         </div>
       </InfiniteScroll>

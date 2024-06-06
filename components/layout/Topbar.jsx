@@ -84,7 +84,7 @@ const Topbar = () => {
             height={30}
             alt="credit"
           />
-          <p className="text-subtext text-small-semibold">{userData?.credit}</p>
+          <p className="text-subtext text-small-semibold">{userData?.credit?.toLocaleString()}</p>
           <a href="/credit">+</a>
         </div>
           ) : (
