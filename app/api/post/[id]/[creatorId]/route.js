@@ -1,3 +1,4 @@
+import { getAuth } from "@clerk/nextjs/server";
 import Guest from "@lib/models/Guest";
 import Post from "@lib/models/Post";
 import User from "@lib/models/User";
@@ -6,6 +7,14 @@ import fs from "fs/promises";
 import path from "path";
 
 export const DELETE = async (req, { params }) => {
+  const { userId } = getAuth(req);
+
+  if (!userId) {
+    return new Response(JSON.stringify({ message: "Unauthorized" }), {
+      status: 401,
+    });
+  }
+
   try {
     await connectToDB();
 

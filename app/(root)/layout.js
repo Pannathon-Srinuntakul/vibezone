@@ -10,7 +10,7 @@ import Bottombar from "@components/layout/BottomBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Share Your Life, Inspire Others",
+  title: "LifeBlance",
   description: "Welcome to our platform where you can share snapshots of your life's journey and the stories behind them. We're all about spreading positivity and building connections through shared experiences. Whether it's a special moment, a daily adventure, or a personal triumph, your story matters here. Join our vibrant community to inspire and be inspired, and let's make every day a celebration of life's beautiful moments together!",
   keywords: [
     "positivity",

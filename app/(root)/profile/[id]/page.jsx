@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import PostCard from "@components/cards/PostCard";
 import ProfileCard from "@components/cards/ProfileCard";
 import BlueFrame from "@components/frame/BlueFrame";
@@ -18,6 +18,7 @@ const sriracha = Sriracha({ subsets: ["latin"], weight: "400" });
 
 const profile = () => {
   const { user, isLoaded } = useUser();
+  const { isSignedIn } = useAuth();
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState();
@@ -85,6 +86,10 @@ const profile = () => {
     fetchData();
   }, [isLoaded, user, id]);
 
+  if (!isSignedIn) {
+    return <p className="mx-auto text-center mt-20 lg:mt-0">Please login</p>
+  }
+
   return loading ? (
     <Loader />
   ) : (
@@ -97,7 +102,7 @@ const profile = () => {
             </div>
           </div>
           <InfiniteScroll
-            dataLength={userData.posts.length}
+            dataLength={userData?.posts?.length}
             next={fetchMoreData}
             hasMore={hasMore}
             loader={<Loader />}
@@ -110,71 +115,71 @@ const profile = () => {
             <div className="flex flex-col gap-9 mt-12">
               {userData.posts?.map((post) => (
                 <>
-                 {post.frame === "Blue" && (
-                <BlueFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={loggedInUserData}
-                  update={getUserProfile}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {post.frame === "Pink" && (
-                <PinkFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={loggedInUserData}
-                  update={getUserProfile}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {post.frame === "Yellow" && (
-                <YellowFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={loggedInUserData}
-                  update={getUserProfile}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {post.frame === "Purple" && (
-                <PurpleFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={loggedInUserData}
-                  update={getUserProfile}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {post.frame === "Green" && (
-                <GreenFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={loggedInUserData}
-                  update={getUserProfile}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {!post.frame && (
-                <PostCard
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={loggedInUserData}
-                  update={getUserProfile}
-                  updateUser={updateUser}
-                />
-              )}
+                  {post.frame === "Blue" && (
+                    <BlueFrame
+                      key={post._id}
+                      post={post}
+                      creator={post.creator}
+                      loggedInUser={loggedInUserData}
+                      update={getUserProfile}
+                      updateUser={updateUser}
+                      sriracha={sriracha}
+                    />
+                  )}
+                  {post.frame === "Pink" && (
+                    <PinkFrame
+                      key={post._id}
+                      post={post}
+                      creator={post.creator}
+                      loggedInUser={loggedInUserData}
+                      update={getUserProfile}
+                      updateUser={updateUser}
+                      sriracha={sriracha}
+                    />
+                  )}
+                  {post.frame === "Yellow" && (
+                    <YellowFrame
+                      key={post._id}
+                      post={post}
+                      creator={post.creator}
+                      loggedInUser={loggedInUserData}
+                      update={getUserProfile}
+                      updateUser={updateUser}
+                      sriracha={sriracha}
+                    />
+                  )}
+                  {post.frame === "Purple" && (
+                    <PurpleFrame
+                      key={post._id}
+                      post={post}
+                      creator={post.creator}
+                      loggedInUser={loggedInUserData}
+                      update={getUserProfile}
+                      updateUser={updateUser}
+                      sriracha={sriracha}
+                    />
+                  )}
+                  {post.frame === "Green" && (
+                    <GreenFrame
+                      key={post._id}
+                      post={post}
+                      creator={post.creator}
+                      loggedInUser={loggedInUserData}
+                      update={getUserProfile}
+                      updateUser={updateUser}
+                      sriracha={sriracha}
+                    />
+                  )}
+                  {!post.frame && (
+                    <PostCard
+                      key={post._id}
+                      post={post}
+                      creator={post.creator}
+                      loggedInUser={loggedInUserData}
+                      update={getUserProfile}
+                      updateUser={updateUser}
+                    />
+                  )}
                 </>
               ))}
             </div>

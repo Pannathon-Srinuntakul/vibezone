@@ -1,9 +1,18 @@
+import { getAuth } from "@clerk/nextjs/server";
 import Ads from "@lib/models/Ads";
 import User from "@lib/models/User";
 import { connectToDB } from "@lib/mongodb/mongoose";
 import { writeFile, unlink } from "fs/promises";
 
 export const POST = async (req) => {
+  const { userId } = getAuth(req);
+
+  if (!userId) {
+    return new Response(JSON.stringify({ message: "Unauthorized" }), {
+      status: 401,
+    });
+  }
+  
   const path = require("path");
   const currentWorkingDirectory = process.cwd();
 

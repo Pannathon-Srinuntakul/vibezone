@@ -68,12 +68,12 @@ const AdBar = () => {
         <div className="px-3 pt-1 flex justify-between items-center w-full">
           <p className=" text-subtle-medium text-light-2">ADS</p>
           {user ? (
-            <a href="/create-ads">
-              <Add href="/create-ads" />
-            </a>
+            <Link href="/create-ads">
+              <Add />
+            </Link>
           ) : null}
         </div>
-        <div className="grid grid-cols-3 grid-rows-4 gap-3 p-3 bg-gray-100">
+        <div className="grid grid-cols-3 grid-rows-auto gap-3 p-3 bg-gray-100">
           {ads.map((ad, index) => (
             <div
               key={index}

@@ -82,7 +82,7 @@ const Leftbar = () => {
               {userData?.credit?.toLocaleString()}
             </p>
             <div className="relative">
-            <a href="/credit">+</a>
+            <Link href="/credit">+</Link>
             </div>
           </div>
           <hr />

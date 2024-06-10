@@ -159,7 +159,7 @@ const SavedPosts = () => {
       </div>
     );
   } else {
-    return null;
+    return <p className="mx-auto mt-20 lg:mt-0 text-center">Please login</p>;
   }
 };
 

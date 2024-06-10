@@ -67,9 +67,11 @@ const RightBar = () => {
       <div className="rightbar">
         <div className="fixed flex justify-between items-center w-2/3 top-20">
           <p className="text-x-small-semibold text-light-2">ADS</p>
+          {user ? (
           <Link href="/create-ads">
             <Add />
           </Link>
+          ) : null}
         </div>
         <div className="flex flex-col pb-12 gap-12">
           {ads.map((ad, index) => (

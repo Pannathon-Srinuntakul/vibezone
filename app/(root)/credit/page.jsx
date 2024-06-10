@@ -1,10 +1,12 @@
 "use client";
 
+import { useAuth } from "@clerk/nextjs";
 import PricingCard from "@components/cards/PricingCard";
 import React, { useEffect, useState } from "react";
 
 const page = () => {
   const [prices, setPrices] = useState([]);
+  const {isSignedIn} = useAuth()
 
   useEffect(() => {
     fetchPrices();
@@ -20,6 +22,10 @@ const page = () => {
     const data = await response.json();
     setPrices(data);
   };
+
+  if (!isSignedIn) {
+    return <p className="mx-auto text-center mt-20 lg:mt-0">Please login</p>
+  }
 
   return (
     <div className="w-full lg:w-1/2">

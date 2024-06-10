@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.15.18",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "date-fns": "^3.6.0",
     "dom-to-image": "^2.6.0",
     "dom-to-image-more": "^3.3.0",

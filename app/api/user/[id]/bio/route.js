@@ -1,7 +1,17 @@
+import { getAuth } from "@clerk/nextjs/server";
 import User from "@lib/models/User";
 import { connectToDB } from "@lib/mongodb/mongoose";
 
 export const PUT = async (req, { params }) => {
+  const {userId} = getAuth(req)
+
+  if (!userId) {
+    return new Response(
+      JSON.stringify({ message: 'Unauthorized' }),
+      { status: 401 }
+    );
+  }
+  
   const id = params.id;
 
   try {

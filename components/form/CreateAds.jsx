@@ -116,7 +116,7 @@ const CreateAds = ({ post }) => {
       {showConfirmation && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50 p-10">
           <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-            <p className="mb-4">Confirm to spend 500 credits?</p>
+            <p className="mb-4">Confirm to spend <span className="text-body-bold">500</span> credits?</p>
             <p className="mb-4 text-red-600 text-body-bold">
               *Please check the details before submitting the ad. Once
               confirmed, you will not be able to edit it.

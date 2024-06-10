@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import PurchaseCard from "@components/cards/PurchaseCard";
 import Loader from "@components/Loader";
 import { useParams } from "next/navigation";
@@ -10,14 +10,15 @@ const page = () => {
   const { user, isLoaded } = useUser();
   const { postId } = useParams();
   const [post, setPost] = useState({});
-  const [userData, setUserData] = useState()
-  
+  const [userData, setUserData] = useState();
+  const { isSignedIn } = useAuth();
+
   const getUser = async () => {
     const response = await fetch(`/api/user/${user?.id}`);
     const data = await response.json();
     setUserData(data);
   };
-  
+
   const getUserPost = async () => {
     try {
       const response = await fetch(`/api/post/${postId}`);
@@ -29,20 +30,24 @@ const page = () => {
   };
 
   useEffect(() => {
-    if(user) {
-      getUser()
+    if (user) {
+      getUser();
     }
-  },[user])
-  
+  }, [user]);
+
   useEffect(() => {
     getUserPost();
   }, []);
+
+  if (!isSignedIn) {
+    return <p className="mx-auto text-center mt-20 lg:mt-0">Please login</p>
+  }
   
-  return !isLoaded ?(
+  return !isLoaded ? (
     <Loader />
-  ) : post?.creator?.clerkId === user?.id && user ? (
+  ) : post?.creator?.clerkId === user?.id ? (
     <div className="w-full flex flex-col justify-center items-center">
-      <PurchaseCard postId={postId} user={userData}/>
+      <PurchaseCard postId={postId} user={userData} />
     </div>
   ) : null;
 };

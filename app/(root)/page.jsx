@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import PostCard from "@components/cards/PostCard";
 import BlueFrame from "@components/frame/BlueFrame";
 import GreenFrame from "@components/frame/GreenFrame";
@@ -24,6 +24,8 @@ const Home = () => {
   const [guestData, setGuestData] = useState({});
   const [isUserDataLoaded, setIsUserDataLoaded] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const { getToken } = useAuth();
+
   const getClientIp = async () => {
     if (!user) {
       try {
@@ -75,12 +77,18 @@ const Home = () => {
     const fetchData = async () => {
       try {
         if (isLoaded) {
-          // ตรวจสอบว่า useUser โหลดเสร็จหรือยัง
           if (user) {
-            const response = await fetch(`/api/user/${user.id}`);
+            const response = await fetch(`/api/user/${user.id}`, {
+              headers: {
+                Authorization: `Bearer ${await getToken()}`
+              }
+            });
+            if (!response.ok) {
+              throw new Error('Unauthorized');
+            }
             const data = await response.json();
             setUserData(data);
-            setIsUserDataLoaded(true); // ตั้งค่าสถานะว่าข้อมูล user ถูกโหลดแล้ว
+            setIsUserDataLoaded(true);
           } else {
             await getClientIp();
           }

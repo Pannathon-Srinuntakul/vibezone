@@ -85,7 +85,7 @@ const Topbar = () => {
             alt="credit"
           />
           <p className="text-subtext text-small-semibold">{userData?.credit?.toLocaleString()}</p>
-          <a href="/credit">+</a>
+          <Link href="/credit">+</Link>
         </div>
           ) : (
             <Link href="/sign-in">
