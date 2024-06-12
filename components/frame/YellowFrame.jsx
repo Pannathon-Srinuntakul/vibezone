@@ -422,7 +422,7 @@ const Yellowframe = ({
                   <p className="absolute right-1 top-1 text-subtle-medium text-[#6E6692]">
                     {date}
                   </p>
-                  <div className="w-full md:min-h-[200px] xl:min-h-[300px] flex items-center relative">
+                  <div onDoubleClick={() => setIsExpand(prevState => !prevState)} className="w-full md:min-h-[200px] xl:min-h-[300px] flex items-center relative">
                     <Image
                       src="/yellow/sun.png"
                       className="absolute -top-7 -left-5 w-[80px]"

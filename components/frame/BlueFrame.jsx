@@ -217,7 +217,7 @@ const Blueframe = ({
           ) : null}
         </div>
 
-        <div className="w-full flex items-center relative">
+        <div onDoubleClick={() => setIsExpand(prevState => !prevState)} className="w-full flex items-center relative">
           <Image
             src="/blue/cloud.png"
             className="absolute -top-7 -right-3 w-[100px] z-10"

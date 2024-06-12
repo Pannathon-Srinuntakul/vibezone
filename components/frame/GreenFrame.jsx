@@ -218,7 +218,7 @@ const GreenFrame = ({
           ) : null}
         </div>
 
-        <div className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center">
+        <div onDoubleClick={() => setIsExpand(prevState => !prevState)} className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center">
           <Image
             src={post.postPhoto}
             alt="post photo"

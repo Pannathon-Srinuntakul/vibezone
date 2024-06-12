@@ -2,6 +2,7 @@
 
 import { useUser } from "@clerk/nextjs";
 import { Add, Delete } from "@mui/icons-material";
+import { add, format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -11,7 +12,7 @@ const RightBar = () => {
   const { user, isLoaded } = useUser();
   const [userData, setUserData] = useState({});
   const [showConfirm, setShowConfirm] = useState(false);
-  const [adData, setAdData] = useState({})
+  const [adData, setAdData] = useState({});
 
   const getUser = async () => {
     if (user) {
@@ -50,7 +51,7 @@ const RightBar = () => {
 
   const confirmDelete = (data) => {
     setShowConfirm(true);
-    setAdData(data)
+    setAdData(data);
   };
 
   const cancelDelete = () => {
@@ -61,51 +62,61 @@ const RightBar = () => {
     await handleDelete();
     setShowConfirm(false);
   };
-console.log(user)
+  console.log(user);
   return (
     <>
       <div className="rightbar">
         <div className="fixed flex justify-between items-center w-2/3 top-20">
           <p className="text-x-small-semibold text-light-2">ADS</p>
           {user ? (
-          <Link href="/create-ads">
-            <Add />
-          </Link>
+            <Link href="/create-ads">
+              <Add />
+            </Link>
           ) : null}
         </div>
         <div className="flex flex-col pb-12 gap-12">
-          {ads.map((ad, index) => (
-            <div key={index} className="bg-black shadow-lg p-3">
-              <Link
-                href={
-                  ad.link.startsWith("http") ? ad.link : `http://${ad.link}`
-                }
-                target="_blank"
-              >
-                <div
-                  className="flex justify-center items-center max-h-[400px] overflow-hidden"
+          {ads.map((ad, index) => {
+            const calculateExpiryDate = (dateTime) => {
+              const date = format(
+                add(new Date(dateTime), { days: 7 }),
+                "yyyy.MM.dd"
+              );
+              return date;
+            };
+            return (
+              <div key={index} className="bg-black shadow-lg p-3">
+                <p className="text-white text-subtle-medium pb-1">
+                  Expired In {calculateExpiryDate(ad.createdAt)}
+                </p>
+                <a
+                  href={
+                    ad.link.startsWith("http") ? ad.link : `http://${ad.link}`
+                  }
+                  target="_blank"
                 >
-                  <Image
-                    src={ad.postPhoto}
-                    width={100}
-                    height={100}
-                    layout="responsive"
-                    alt="ad"
-                    className="object-cover"
-                  />
+                  <div className="flex justify-center items-center max-h-[400px] overflow-hidden">
+                    <Image
+                      src={ad.postPhoto}
+                      width={100}
+                      height={100}
+                      layout="responsive"
+                      alt="ad"
+                      className="object-cover"
+                    />
+                  </div>
+                </a>
+                <div className="flex justify-between my-3">
+                  <p className="text-white ml-2">{ad.caption}</p>
+                  {!user ? null : userData?._id === ad.creator ? (
+                    <Delete
+                      sx={{ color: "white", cursor: "pointer" }}
+                      onClick={() => confirmDelete(ad)}
+                    />
+                  ) : null}
                 </div>
-              </Link>
-              <div className="flex justify-between my-3">
-                <p className="text-white ml-2">{ad.caption}</p>
-                {!user ? null : userData?._id === ad.creator ? (
-                  <Delete
-                    sx={{ color: "white", cursor: "pointer" }}
-                    onClick={() => confirmDelete(ad)}
-                  />
-                ) : null}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
       {showConfirm && (

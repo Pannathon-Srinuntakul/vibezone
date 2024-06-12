@@ -217,7 +217,7 @@ const Pinkframe = ({
           ) : null}
         </div>
 
-        <div className="w-full flex items-center relative">
+        <div onDoubleClick={() => setIsExpand(prevState => !prevState)} className="w-full flex items-center relative">
           <Image
             src="/pink/heart.png"
             className="absolute -top-7 -left-5 w-[60px]"
@@ -275,7 +275,7 @@ const Pinkframe = ({
             alt="icon"
           />
 
-          <div onDoubleClick={() => setIsExpand(prevState => !prevState)} className="overflow-hidden md:min-h-[200px] xl:min-h-[300px] max-h-[600px] w-full">
+          <div className="overflow-hidden md:min-h-[200px] xl:min-h-[300px] max-h-[600px] w-full">
             <Image
               src={post.postPhoto}
               alt="post photo"

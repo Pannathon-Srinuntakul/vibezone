@@ -2,6 +2,7 @@
 
 import { useUser } from "@clerk/nextjs";
 import { Add, Delete } from "@mui/icons-material";
+import { add, format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -74,42 +75,55 @@ const AdBar = () => {
           ) : null}
         </div>
         <div className="grid grid-cols-3 grid-rows-auto gap-3 p-3 bg-gray-100">
-          {ads.map((ad, index) => (
-            <div
-              key={index}
-              className="flex flex-col border gap-2 p-1 bg-black shadow-lg"
-            >
-              <a
-                href={
-                  ad.link.startsWith("http") ? ad.link : `http://${ad.link}`
-                }
-                target="_blank"
-                className="mt-1 h-full flex items-center overflow-hidden"
+          {ads.map((ad, index) => {
+            const calculateExpiryDate = (dateTime) => {
+              const date = format(
+                add(new Date(dateTime), { days: 7 }),
+                "yyyy.MM.dd"
+              );
+              return date;
+            };
+
+            return (
+              <div
+                key={index}
+                className="flex flex-col border gap-2 p-1 bg-black shadow-lg"
               >
-                <div className="flex w-full max-h-[200px]">
-                  <Image
-                    src={ad.postPhoto}
-                    width={150}
-                    height={150}
-                    layout="responsive"
-                    alt="ad"
-                    className="object-cover"
-                  />
-                </div>
-              </a>
-              <div className="flex justify-between">
-                <p className="text-white text-[12px] font-bold sm:text-small-bold ml-2 whitespace-normal">
-                  {ad.caption}
+                <p className="text-white text-subtle-medium">
+                  Expired In {calculateExpiryDate(ad.createdAt)}
                 </p>
-                {!user ? null : userData?._id === ad.creator ? (
-                  <Delete
-                    sx={{ color: "white", cursor: "pointer" }}
-                    onClick={() => confirmDelete(ad)}
-                  />
-                ) : null}
+                <a
+                  href={
+                    ad.link.startsWith("http") ? ad.link : `http://${ad.link}`
+                  }
+                  target="_blank"
+                  className="h-full flex items-center overflow-hidden"
+                >
+                  <div className="flex w-full max-h-[200px]">
+                    <Image
+                      src={ad.postPhoto}
+                      width={150}
+                      height={150}
+                      layout="responsive"
+                      alt="ad"
+                      className="object-contain"
+                    />
+                  </div>
+                </a>
+                <div className="flex justify-between">
+                  <p className="text-white text-[12px] font-bold sm:text-small-bold ml-2 whitespace-normal">
+                    {ad.caption}
+                  </p>
+                  {!user ? null : userData?._id === ad.creator ? (
+                    <Delete
+                      sx={{ color: "white", cursor: "pointer" }}
+                      onClick={() => confirmDelete(ad)}
+                    />
+                  ) : null}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
