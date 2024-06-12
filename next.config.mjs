@@ -5,7 +5,15 @@ const nextConfig = {
         {
           protocol: 'https',
           hostname: 'img.clerk.com',
-        }
+        },
+        {
+          protocol: 'https',
+          hostname: 'sgp1.digitaloceanspaces.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'framefeeling.sgp1.cdn.digitaloceanspaces.com',
+        },
       ]
     }
   }

@@ -1,8 +1,9 @@
+import { DeleteObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getAuth } from "@clerk/nextjs/server";
 import Ads from "@lib/models/Ads";
 import User from "@lib/models/User";
 import { connectToDB } from "@lib/mongodb/mongoose";
-import { writeFile, unlink } from "fs/promises";
+import { s3Client } from "@lib/s3/s3Client";
 
 export const POST = async (req) => {
   const { userId } = getAuth(req);
@@ -12,9 +13,6 @@ export const POST = async (req) => {
       status: 401,
     });
   }
-  
-  const path = require("path");
-  const currentWorkingDirectory = process.cwd();
 
   try {
     await connectToDB();
@@ -27,20 +25,18 @@ export const POST = async (req) => {
     const bytes = await postPhoto.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Create a new file name with the creatorId
-    const fileExtension = path.extname(postPhoto.name);
-    const newFileName = `${Date.now()}_${fileExtension}`;
+    const newFileName = `${Date.now()}_${[postPhoto.name]}`;
 
-    const postPhotoPath = path.join(
-      currentWorkingDirectory,
-      "public",
-      "ads",
-      newFileName
-    );
+    const bucketParams = {
+      Bucket: "framefeeling",
+      Key: `ads/${newFileName}`,
+      Body: buffer,
+      ACL: "public-read",
+    };
 
-    await writeFile(postPhotoPath, buffer);
+    await s3Client.send(new PutObjectCommand(bucketParams));
 
-    postPhoto = `/ads/${newFileName}`;
+    postPhoto = `https://framefeeling.sgp1.cdn.digitaloceanspaces.com/${bucketParams.Key}`;
 
     const newPost = await Ads.create({
       creator: creatorId,
@@ -63,17 +59,11 @@ export const POST = async (req) => {
               { new: true, useFindAndModify: false }
             );
 
-            const imagePath = path.join(
-              currentWorkingDirectory,
-              "public",
-              deletedPost.postPhoto
-            );
-            await unlink(imagePath);
-
+            await s3Client.send(new DeleteObjectCommand(bucketParams));
           } else {
             console.log("Post not found or already deleted:", postId);
           }
-        }, 86400000); // 1 day = 86400000 milliseconds
+        }, 60000); // 1 day = 86400000 milliseconds
       } catch (error) {
         console.error("Error deleting post after timeout:", error);
       }

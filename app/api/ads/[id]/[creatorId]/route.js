@@ -1,9 +1,9 @@
+import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { getAuth } from "@clerk/nextjs/server";
 import Ads from "@lib/models/Ads";
 import User from "@lib/models/User";
 import { connectToDB } from "@lib/mongodb/mongoose";
-import fs from "fs/promises";
-import path from "path";
+import { s3Client } from "@lib/s3/s3Client";
 
 export const DELETE = async (req, { params }) => {
   const { userId } = getAuth(req);
@@ -23,15 +23,16 @@ export const DELETE = async (req, { params }) => {
       return new Response("Ads not found", { status: 404 });
     }
 
-    const currentWorkingDirectory = process.cwd();
-    const imagePath = path.join(
-      currentWorkingDirectory,
-      "public",
-      ads.postPhoto
-    );
+    const url = new URL(ads.postPhoto);
+    const key = url.pathname.substring(1);
+
+    const bucketParams = {
+      Bucket: "framefeeling",
+      Key: key,
+    };
 
     try {
-      await fs.unlink(imagePath);
+      await s3Client.send(new DeleteObjectCommand(bucketParams));
     } catch (err) {
       console.error("Failed to delete image file:", err);
     }

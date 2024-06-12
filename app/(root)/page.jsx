@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import PostCard from "@components/cards/PostCard";
 import BlueFrame from "@components/frame/BlueFrame";
 import GreenFrame from "@components/frame/GreenFrame";
@@ -24,7 +24,6 @@ const Home = () => {
   const [guestData, setGuestData] = useState({});
   const [isUserDataLoaded, setIsUserDataLoaded] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const { getToken } = useAuth();
 
   const getClientIp = async () => {
     if (!user) {
@@ -78,11 +77,7 @@ const Home = () => {
       try {
         if (isLoaded) {
           if (user) {
-            const response = await fetch(`/api/user/${user.id}`, {
-              headers: {
-                Authorization: `Bearer ${await getToken()}`
-              }
-            });
+            const response = await fetch(`/api/user/${user.id}`);
             if (!response.ok) {
               throw new Error('Unauthorized');
             }

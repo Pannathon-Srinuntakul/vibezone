@@ -2,12 +2,10 @@ import Guest from "@lib/models/Guest";
 import Post from "@lib/models/Post";
 import User from "@lib/models/User";
 import { connectToDB } from "@lib/mongodb/mongoose";
-import { writeFile, unlink } from "fs/promises";
+import { s3Client } from "@lib/s3/s3Client";
+import { DeleteObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 
 export const POST = async (req) => {
-  const path = require("path");
-  const currentWorkingDirectory = process.cwd();
-
   try {
     await connectToDB();
 
@@ -19,20 +17,18 @@ export const POST = async (req) => {
     const bytes = await postPhoto.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Create a new file name with the creatorId
-    const fileExtension = path.extname(postPhoto.name);
-    const newFileName = `${Date.now()}_${fileExtension}`;
+    const newFileName = `${Date.now()}_${[postPhoto.name]}`;
 
-    const postPhotoPath = path.join(
-      currentWorkingDirectory,
-      "public",
-      "uploads",
-      newFileName
-    );
+    const bucketParams = {
+      Bucket: "framefeeling",
+      Key: `uploads/${newFileName}`,
+      Body: buffer,
+      ACL: "public-read",
+    };
 
-    await writeFile(postPhotoPath, buffer);
+    await s3Client.send(new PutObjectCommand(bucketParams));
 
-    postPhoto = `/uploads/${newFileName}`;
+    postPhoto = `https://framefeeling.sgp1.cdn.digitaloceanspaces.com/${bucketParams.Key}`;
 
     const details = JSON.parse(data.get("details"));
 
@@ -60,10 +56,7 @@ export const POST = async (req) => {
               );
             }
 
-            // Delete the associated image file
-            const imagePath = path.join(currentWorkingDirectory, "public", deletedPost.postPhoto);
-            await unlink(imagePath);
-
+            await s3Client.send(new DeleteObjectCommand(bucketParams));
           } else {
             console.log("Post not found or already deleted:", postId);
           }
