@@ -180,24 +180,24 @@ const Pinkframe = ({
                 />
               ) : (
                 <BookmarkBorder
-                  sx={{ color: "white", cursor: "pointer", zIndex: "50" }}
+                  sx={{ color: "#6E6692", cursor: "pointer", zIndex: "50" }}
                   onClick={() => handleSave()}
                 />
               )
             ) : (
               <>
                 <DeleteOutline
-                  sx={{ color: "white", cursor: "pointer", zIndex: "50" }}
+                  sx={{ color: "#6E6692", cursor: "pointer", zIndex: "50" }}
                   onClick={() => confirmDelete()}
                 />
                 <CameraAltOutlined
-                  sx={{ color: "white", cursor: "pointer", zIndex: "50" }}
+                  sx={{ color: "#6E6692", cursor: "pointer", zIndex: "50" }}
                   onClick={() => setShowPreview(true)}
                 />
                 <Link href={`/upgrade/${post._id}`}>
                   <AutoAwesomeOutlined
                     sx={{
-                      color: "black",
+                      color: "#6E6692",
                       cursor: "pointer",
                       position: "absolute",
                       left: 0,
@@ -275,7 +275,7 @@ const Pinkframe = ({
             alt="icon"
           />
 
-          <div className="overflow-hidden md:min-h-[200px] xl:min-h-[300px] max-h-[600px] w-full">
+          <div onDoubleClick={() => setIsExpand(prevState => !prevState)} className="overflow-hidden md:min-h-[200px] xl:min-h-[300px] max-h-[600px] w-full">
             <Image
               src={post.postPhoto}
               alt="post photo"
@@ -286,7 +286,7 @@ const Pinkframe = ({
             />
           </div>
         </div>
-        <div className={`${sriracha.className} post-caption-web text-white`}>
+        <div className={`${sriracha.className} post-caption-web text-[#6E6692]`}>
           <p>{post.caption}</p>
         </div>
         <div className="flex absolute left-5 bottom-5 items-center pt-3 gap-1">
@@ -294,7 +294,7 @@ const Pinkframe = ({
             post.creatorType === "User" ? (
               !isLiked ? (
                 <FavoriteBorder
-                  sx={{ color: "white", cursor: "pointer" }}
+                  sx={{ color: "#6E6692", cursor: "pointer" }}
                   onClick={() => handleLike()}
                 />
               ) : (
@@ -306,9 +306,9 @@ const Pinkframe = ({
             ) : null
           ) : null}
           {post.creatorType === "User" ? (
-            <p className="text-white text-small-semibold flex justify-center items-center gap-1">
+            <p className="text-[#6E6692] text-small-semibold flex justify-center items-center gap-1">
               {likesCount.toLocaleString()}{" "}
-              <span className="text-white text-tiny-medium">Like</span>
+              <span className="text-[#6E6692] text-tiny-medium">Like</span>
             </p>
           ) : null}
         </div>
@@ -316,12 +316,12 @@ const Pinkframe = ({
           {creator !== null ? (
             !isExpand ? (
               <ExpandMoreOutlined
-                sx={{ color: "white", cursor: "pointer" }}
+                sx={{ color: "#6E6692", cursor: "pointer" }}
                 onClick={() => expand(true)}
               />
             ) : (
               <ExpandLessOutlined
-                sx={{ color: "white", cursor: "pointer" }}
+                sx={{ color: "#6E6692", cursor: "pointer" }}
                 onClick={() => expand(false)}
               />
             )

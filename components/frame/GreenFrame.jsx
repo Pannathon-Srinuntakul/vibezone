@@ -198,7 +198,7 @@ const GreenFrame = ({
                 <Link href={`/upgrade/${post._id}`}>
                   <AutoAwesomeOutlined
                     sx={{
-                      color: "black",
+                      color: "#6E6692",
                       cursor: "pointer",
                       position: "absolute",
                       left: 0,

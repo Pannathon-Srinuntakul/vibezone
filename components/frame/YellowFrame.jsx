@@ -187,24 +187,24 @@ const Yellowframe = ({
                 />
               ) : (
                 <BookmarkBorder
-                  sx={{ color: "#6E6692", cursor: "pointer", zIndex: "50" }}
+                  sx={{ color: "#FEAA00", cursor: "pointer", zIndex: "50" }}
                   onClick={() => handleSave()}
                 />
               )
             ) : (
               <>
                 <DeleteOutline
-                  sx={{ color: "#6E6692", cursor: "pointer", zIndex: "50" }}
+                  sx={{ color: "#FEAA00", cursor: "pointer", zIndex: "50" }}
                   onClick={() => confirmDelete()}
                 />
                 <CameraAltOutlined
-                  sx={{ color: "#6E6692", cursor: "pointer", zIndex: "50" }}
+                  sx={{ color: "#FEAA00", cursor: "pointer", zIndex: "50" }}
                   onClick={() => setShowPreview(true)}
                 />
                 <Link href={`/upgrade/${post._id}`}>
                   <AutoAwesomeOutlined
                     sx={{
-                      color: "#6E6692",
+                      color: "#FEAA00",
                       cursor: "pointer",
                       position: "absolute",
                       left: 0,
@@ -293,7 +293,7 @@ const Yellowframe = ({
             />
           </div>
         </div>
-        <div className={`${sriracha.className} post-caption-web text-black`}>
+        <div className={`${sriracha.className} post-caption-web text-[#FEAA00]`}>
           <p>{post.caption}</p>
         </div>
         <div className="flex absolute left-5 bottom-5 items-center pt-3 gap-1">
@@ -489,7 +489,7 @@ const Yellowframe = ({
                     />
                   </div>
                   <div
-                    className={`${sriracha.className} post-caption-pre text-black`}
+                    className={`${sriracha.className} post-caption-pre text-[#FEAA00]`}
                   >
                     <p>{post.caption}</p>
                   </div>
