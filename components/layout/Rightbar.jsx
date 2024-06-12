@@ -61,7 +61,7 @@ const RightBar = () => {
     await handleDelete();
     setShowConfirm(false);
   };
-
+console.log(user)
   return (
     <>
       <div className="rightbar">

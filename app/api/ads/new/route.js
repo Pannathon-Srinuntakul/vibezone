@@ -63,7 +63,7 @@ export const POST = async (req) => {
           } else {
             console.log("Post not found or already deleted:", postId);
           }
-        }, 60000); // 1 day = 86400000 milliseconds
+        }, 604800000); // 1 day = 86400000 milliseconds
       } catch (error) {
         console.error("Error deleting post after timeout:", error);
       }
