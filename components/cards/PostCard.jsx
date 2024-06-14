@@ -128,7 +128,7 @@ const PostCard = ({
 
     domtoimage
       .toPng(element, {
-        quality: 95,
+        quality: 100,
         filter: (node) =>
           node.id !== "hideOnSave" &&
           node.id !== "saveBtn" &&
@@ -213,7 +213,7 @@ const PostCard = ({
             </div>
           ) : null}
         </div>
-        <div className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center">
+        <div onDoubleClick={() => setIsExpand(prevState => !prevState)} className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center">
           <Image
             src={post.postPhoto}
             alt="post photo"
@@ -360,8 +360,8 @@ const PostCard = ({
           </p>
           <div className="preview-container">
             <div className="flex flex-col items-center">
-              <div className="flex flex-col w-2/3 sm:w-1/2">
-                <div className="p-5 sm:p-7 md:p-7 lg:p-6 bg-white relative shadow-lg">
+              <div className="flex flex-col w-5/6 md:w-1/2 lg:w-1/3">
+                <div className="p-8 pb-20 relative shadow-lg z-50 overflow-hidden bg-white">
                   <p className="absolute right-1 top-1 text-subtle-medium text-subtext">
                     {date}
                   </p>
@@ -494,7 +494,7 @@ const PostCard = ({
                 id="postToSave"
                 className="flex flex-col w-[800px] invisible"
               >
-                <div className="bg-white frame-container">
+                <div className="bg-white frame-container pb-32">
                   <p className="absolute right-1 top-1 text-base-bold text-subtext">
                     {date}
                   </p>

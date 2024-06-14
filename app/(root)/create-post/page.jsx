@@ -69,7 +69,7 @@ const CreatePost = () => {
       {user || guestData ? (
         <Posting post={postData} apiEndpoint={"/api/post/new"} />
       ) : (
-        <div className="w-[300px] sm:w-[500px]">
+        <div className="w-[300px] sm:w-[500px] lg:mt-0 mt-20">
           <GuestLogin clientIp={ipAddress} />
         </div>
       )}

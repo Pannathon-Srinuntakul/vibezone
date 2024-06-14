@@ -269,7 +269,7 @@ const CreateAds = ({ post }) => {
                   type="text"
                   rows={5}
                   className="w-full py-0.5 border resize-none rounded-full bg-[#ACA9BB20] px-2"
-                  placeholder="www.example.com"
+                  placeholder="http://www.example.com"
                   id="link"
                 />
               </label>

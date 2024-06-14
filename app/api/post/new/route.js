@@ -4,6 +4,7 @@ import User from "@lib/models/User";
 import { connectToDB } from "@lib/mongodb/mongoose";
 import { s3Client } from "@lib/s3/s3Client";
 import { DeleteObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
+import sharp from "sharp";
 
 export const POST = async (req) => {
   try {
@@ -14,10 +15,25 @@ export const POST = async (req) => {
     let postPhoto = data.get("postPhoto");
     const creatorId = data.get("creatorId");
 
-    const bytes = await postPhoto.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    const fileType = postPhoto.type;
+    if (!fileType.startsWith("image/")) {
+      return new Response(JSON.stringify({ error: "Image Only!!!" }), { status: 400 });
+    }
 
-    const newFileName = `${Date.now()}_${[postPhoto.name]}`;
+    const bytes = await postPhoto.arrayBuffer();
+    let buffer = Buffer.from(bytes);
+
+    const maxSize = 2 * 1024 * 1024; // 2MB
+    if (buffer.length > maxSize) {
+      buffer = await sharp(buffer)
+        .resize(1500, 1500, {
+          fit: sharp.fit.inside,
+          withoutEnlargement: true
+        })
+        .toBuffer();
+    }
+
+    const newFileName = `${Date.now()}_${postPhoto.name}`;
 
     const bucketParams = {
       Bucket: "framefeeling",

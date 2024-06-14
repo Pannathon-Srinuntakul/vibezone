@@ -1,6 +1,7 @@
 import { useUser } from "@clerk/nextjs";
 import { Edit } from "@mui/icons-material";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -8,7 +9,7 @@ const ProfileCard = ({ userData }) => {
   const { user, isLoaded } = useUser();
   const [isEditingBio, setIsEditingBio] = useState(false);
   const [bio, setBio] = useState(userData.bio || "");
-  const router = useRouter()
+  const router = useRouter();
 
   const handleEditBio = () => {
     setIsEditingBio(true);
@@ -25,8 +26,8 @@ const ProfileCard = ({ userData }) => {
       });
 
       if (response.ok) {
-        setBio(userData.bio)
-        window.location.reload()
+        setBio(userData.bio);
+        window.location.reload();
       } else {
         console.error("Failed to save bio");
       }
@@ -96,6 +97,14 @@ const ProfileCard = ({ userData }) => {
               </>
             )}
           </div>
+          {user?.id === userData?.clerkId ? (
+            <Link
+              href="/private-policy"
+              className="text-tiny-medium text-gray-700 mb-4 underline"
+            >
+              Private policy
+            </Link>
+          ) : null}
         </div>
       </div>
     </div>

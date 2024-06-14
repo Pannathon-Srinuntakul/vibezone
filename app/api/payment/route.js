@@ -22,8 +22,8 @@ export async function POST(request) {
         },
       ],
       mode: "payment",
-      success_url: "http://localhost:3000/",
-      cancel_url: "http://localhost:3000/search",
+      success_url: "https://www.framefeeling.com",
+      cancel_url: "https://www.framefeeling.com",
       metadata: {
         userId,
         priceId,

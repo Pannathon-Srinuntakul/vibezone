@@ -62,7 +62,7 @@ const RightBar = () => {
     await handleDelete();
     setShowConfirm(false);
   };
-  console.log(user);
+
   return (
     <>
       <div className="rightbar">
@@ -84,37 +84,43 @@ const RightBar = () => {
               return date;
             };
             return (
-              <div key={index} className="bg-black shadow-lg p-3">
-                <p className="text-white text-subtle-medium pb-1">
-                  Expired In {calculateExpiryDate(ad.createdAt)}
-                </p>
-                <a
-                  href={
-                    ad.link.startsWith("http") ? ad.link : `http://${ad.link}`
-                  }
-                  target="_blank"
-                >
-                  <div className="flex justify-center items-center max-h-[400px] overflow-hidden">
-                    <Image
-                      src={ad.postPhoto}
-                      width={100}
-                      height={100}
-                      layout="responsive"
-                      alt="ad"
-                      className="object-cover"
-                    />
+                <div key={index} className="bg-black shadow-lg p-3">
+                  <p className="text-white text-subtle-medium pb-1">
+                    Expired In {calculateExpiryDate(ad.createdAt)}
+                  </p>
+                  <a
+                    href={
+                      ad.link.startsWith("http") ? ad.link : `http://${ad.link}`
+                    }
+                    target="_blank"
+                  >
+                    <div className="flex justify-center items-center min-h-[200px] max-h-[400px] overflow-hidden">
+                      <Image
+                        src={ad.postPhoto}
+                        width={100}
+                        height={100}
+                        layout="responsive"
+                        alt="ad"
+                        className="object-cover"
+                      />
+                    </div>
+                  </a>
+                  <div className="flex mt-1 justify-between">
+                    <p className="text-white ml-2">{ad.caption}</p>
+                    {!user ? null : userData?._id === ad.creator ? (
+                      <Delete
+                        sx={{ color: "white", cursor: "pointer" }}
+                        onClick={() => confirmDelete(ad)}
+                      />
+                    ) : null}
                   </div>
-                </a>
-                <div className="flex justify-between my-3">
-                  <p className="text-white ml-2">{ad.caption}</p>
-                  {!user ? null : userData?._id === ad.creator ? (
-                    <Delete
-                      sx={{ color: "white", cursor: "pointer" }}
-                      onClick={() => confirmDelete(ad)}
-                    />
-                  ) : null}
+                  <a href={ad.link} target="_blank" className="text-tiny-medium pt-1 text-ellipsis overflow-hidden whitespace-nowrap text-white">
+                    {ad.link.startsWith("http://") ||
+                    ad.link.startsWith("https://")
+                      ? ad.link.replace(/^(https?:\/\/)?(www\.)?/i, "www.")
+                      : ad.link}
+                  </a>
                 </div>
-              </div>
             );
           })}
         </div>

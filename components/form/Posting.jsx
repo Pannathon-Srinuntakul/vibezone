@@ -1,7 +1,9 @@
 "use client";
 
+import Loader from "@components/Loader";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Posting = ({ post, apiEndpoint }) => {
@@ -13,11 +15,12 @@ const Posting = ({ post, apiEndpoint }) => {
   } = useForm({
     defaultValues: post,
   });
-
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter();
 
   const handlePublish = async (data) => {
     try {
+      setIsLoading(true);
       const postForm = new FormData();
 
       postForm.append("creatorId", post.creatorId);
@@ -36,13 +39,15 @@ const Posting = ({ post, apiEndpoint }) => {
       });
 
       if (response.ok) {
-        router.push(`/`)
+        router.push(`/`);
       }
     } catch (err) {
       console.log(err);
+    } finally {
+      setIsLoading(false);
     }
   };
-
+  
   return (
     <form
       className="flex flex-col gap-7 pb-12 rounded-xl lg:w-1/2 bg-white drop-shadow-xl pt-12 px-5"
@@ -189,8 +194,9 @@ const Posting = ({ post, apiEndpoint }) => {
             <button
               type="submit"
               className="py-2.5 mt-10 bg-[#ACA9BB20] rounded-full px-5 text-subtext text-small-bold drop-shadow-md"
+              disabled={isLoading}
             >
-              Publish
+              {isLoading ? "Publishing..." : "Publish"}
             </button>
           </div>
         </div>

@@ -87,7 +87,7 @@ const AdBar = () => {
             return (
               <div
                 key={index}
-                className="flex flex-col border gap-2 p-1 bg-black shadow-lg"
+                className="flex flex-col gap-2 p-1 bg-black shadow-lg"
               >
                 <p className="text-white text-subtle-medium">
                   Expired In {calculateExpiryDate(ad.createdAt)}
@@ -99,7 +99,7 @@ const AdBar = () => {
                   target="_blank"
                   className="h-full flex items-center overflow-hidden"
                 >
-                  <div className="flex w-full max-h-[200px]">
+                  <div className="flex w-full min-h-[100px] max-h-[200px]">
                     <Image
                       src={ad.postPhoto}
                       width={150}
@@ -121,6 +121,12 @@ const AdBar = () => {
                     />
                   ) : null}
                 </div>
+                <a href={ad.link} target="_blank" className="text-tiny-medium text-white text-ellipsis overflow-hidden whitespace-nowrap pb-1">
+                  {ad.link.startsWith("http://") ||
+                  ad.link.startsWith("https://")
+                    ? ad.link.replace(/^(https?:\/\/)?(www\.)?/i, "www.")
+                    : ad.link}
+                </a>
               </div>
             );
           })}
