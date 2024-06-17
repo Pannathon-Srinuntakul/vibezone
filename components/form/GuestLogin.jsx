@@ -17,6 +17,7 @@ const GuestLogin = ({ clientIp }) => {
   const [isUsernameTaken, setIsUsernameTaken] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [formData, setFormData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
@@ -33,6 +34,7 @@ const GuestLogin = ({ clientIp }) => {
 
   const handlePublish = async () => {
     try {
+      setIsLoading(true);
       const postForm = new FormData();
 
       postForm.append("ipAddress", clientIp.ip);
@@ -47,9 +49,11 @@ const GuestLogin = ({ clientIp }) => {
 
       if (response.ok) {
         router.push("/");
+        setIsLoading(false);
       }
     } catch (err) {
       console.log(err);
+      setIsLoading(false);
     }
   };
 
@@ -69,6 +73,9 @@ const GuestLogin = ({ clientIp }) => {
             <p className="mb-2">
               We will record your IP address for guest login purposes.
             </p>
+            <p className="text-red-600 font-bold">
+            *Once you post as a guest, you will not be able to delete your post.*
+            </p>
             <Link
               href="/policy"
               className="text-subtle-medium text-gray-700 mb-4 underline flex justify-center items-center py-2"
@@ -79,7 +86,8 @@ const GuestLogin = ({ clientIp }) => {
             <div className="flex justify-center gap-4">
               <button
                 onClick={() => {
-                  setShowConfirmation(false);
+                  setShowConfirmation(false),
+                  setIsLoading(false)
                 }}
                 className="py-2 px-4 bg-gray-500 text-white rounded"
               >
@@ -88,6 +96,7 @@ const GuestLogin = ({ clientIp }) => {
               <button
                 onClick={handlePublish}
                 className="py-2 px-4 bg-[#f1592a] text-white rounded"
+                disabled={isLoading}
               >
                 Confirm
               </button>

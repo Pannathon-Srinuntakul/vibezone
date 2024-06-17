@@ -48,8 +48,6 @@ export async function POST(req) {
     })
   }
 
-  // Do something with the payload
-  // For this guide, you simply log the payload to the console
   const eventType = evt?.type;
 
   if (eventType === "user.created" || eventType === "user.updated") {

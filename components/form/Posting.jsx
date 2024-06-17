@@ -160,7 +160,7 @@ const Posting = ({ post, apiEndpoint }) => {
 
           <div className="flex flex-col gap-1">
             <p className="text-heading4-bold text-subtext text-center">
-              Detail
+              Details <span className="text-tiny-medium ">* Not require</span>
             </p>
             {[...Array(5)].map((_, index) => (
               <div key={index}>
@@ -170,7 +170,7 @@ const Posting = ({ post, apiEndpoint }) => {
                 >
                   {index + 1}
                 </label>
-                <input
+                <textarea
                   {...register(`details[${index}]`, {
                     validate: (value) => {
                       if (value.length > 200) {
@@ -179,8 +179,8 @@ const Posting = ({ post, apiEndpoint }) => {
                     },
                   })}
                   type="text"
-                  placeholder="Not require"
-                  className="w-full input bg-[#ACA9BB20] text-subtle-medium py-2 rounded-full px-2"
+                  placeholder=""
+                  className="w-full input bg-[#ACA9BB20] text-subtle-medium py-2 rounded-2xl px-2 resize-none flex items-center justify-center overflow-hidden min-h-[50px] max-h-[100px]"
                 />
                 {errors.details && errors.details[index] && (
                   <p className="text-red-500">
