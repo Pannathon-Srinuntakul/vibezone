@@ -89,7 +89,7 @@ const AdBar = () => {
                 key={index}
                 className="flex flex-col gap-2 p-1 bg-black shadow-lg"
               >
-                <p className="text-white text-subtle-medium">
+                <p className="text-white text-tiny-medium">
                   Expired In {calculateExpiryDate(ad.createdAt)}
                 </p>
                 <a
@@ -121,7 +121,11 @@ const AdBar = () => {
                     />
                   ) : null}
                 </div>
-                <a href={ad.link} target="_blank" className="text-tiny-medium text-white text-ellipsis overflow-hidden whitespace-nowrap pb-1">
+                <a
+                  href={ad.link}
+                  target="_blank"
+                  className="text-tiny-medium text-white text-ellipsis overflow-hidden whitespace-nowrap pb-1"
+                >
                   {ad.link.startsWith("http://") ||
                   ad.link.startsWith("https://")
                     ? ad.link.replace(/^(https?:\/\/)?(www\.)?/i, "www.")

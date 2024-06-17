@@ -1,7 +1,7 @@
 "use client";
 
-import { UserButton, SignedIn, SignOutButton, useAuth } from "@clerk/nextjs";
-import { Login, Logout, Menu } from "@mui/icons-material";
+import { UserButton, SignedIn, SignOutButton } from "@clerk/nextjs";
+import { Login, Logout } from "@mui/icons-material";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -12,7 +12,6 @@ const Leftbar = () => {
   const { user, isLoaded } = useUser();
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({});
-  const { userId } = useAuth();
 
   useEffect(() => {
     if (user) {
@@ -47,7 +46,7 @@ const Leftbar = () => {
       <div className="flex flex-col gap-6">
         <div className="flex flex-col items-center">
           <Link
-            href={`/profile/${userId}`}
+            href={`/profile/${userData?.username}`}
             className="flex flex-col items-center justify-between gap-2 w-full"
           >
             <div className="relative w-[60px] h-[60px]">

@@ -31,6 +31,7 @@ const PricingCard = ({ price }) => {
           width={100}
           height={100}
           layout="responsive"
+          alt="coin"
         />
       </div>
       <p className="text-center text-small-semibold">

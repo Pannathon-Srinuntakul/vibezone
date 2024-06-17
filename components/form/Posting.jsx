@@ -1,7 +1,7 @@
 "use client";
 
-import Loader from "@components/Loader";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -190,10 +190,17 @@ const Posting = ({ post, apiEndpoint }) => {
               </div>
             ))}
           </div>
-          <div className="flex justify-end">
+          <div className="flex justify-end items-center mt-10 gap-3">
+          <Link
+              href="/policy"
+              className="text-tiny-medium text-gray-700 underline"
+              target="_blank"
+            >
+              Read our policy before posting
+            </Link>
             <button
               type="submit"
-              className="py-2.5 mt-10 bg-[#ACA9BB20] rounded-full px-5 text-subtext text-small-bold drop-shadow-md"
+              className="py-2.5 bg-[#ACA9BB20] rounded-full px-5 text-subtext text-small-bold drop-shadow-md"
               disabled={isLoading}
             >
               {isLoading ? "Publishing..." : "Publish"}

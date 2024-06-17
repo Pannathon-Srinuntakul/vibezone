@@ -275,7 +275,7 @@ const PostCard = ({
           <div className="w-full">
             <div className="flex justify-between">
               {post.creatorType === "User" ? (
-                <Link href={`/profile/${creator.clerkId}`}>
+                <Link href={`/profile/${creator.username}`}>
                   <div className="flex gap-3 items-center">
                     <Image
                       src={creator.profilePhoto}

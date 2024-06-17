@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -124,6 +125,13 @@ const CreateAds = ({ post }) => {
             <p className="mb-4 text-red-600 text-body-bold">
               *The ad will be automatically deleted within 7 days.
             </p>
+            <Link
+              href="/policy"
+              className="text-subtle-medium text-gray-700 mb-4 underline flex justify-center items-center py-2"
+              target="_blank"
+            >
+              Our policy
+            </Link>
             <div className="flex justify-center gap-4">
               <button
                 onClick={() => setShowConfirmation(false)}

@@ -70,7 +70,7 @@ const GuestLogin = ({ clientIp }) => {
               We will record your IP address for guest login purposes.
             </p>
             <Link
-              href="/private-policy"
+              href="/policy"
               className="text-subtle-medium text-gray-700 mb-4 underline flex justify-center items-center py-2"
               target="_blank"
             >

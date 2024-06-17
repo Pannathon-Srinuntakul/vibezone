@@ -99,8 +99,9 @@ const ProfileCard = ({ userData }) => {
           </div>
           {user?.id === userData?.clerkId ? (
             <Link
-              href="/private-policy"
+              href="/policy"
               className="text-tiny-medium text-gray-700 mb-4 underline"
+              target="_blank"
             >
               Private policy
             </Link>

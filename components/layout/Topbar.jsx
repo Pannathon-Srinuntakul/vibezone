@@ -30,9 +30,9 @@ const Topbar = () => {
   return (
     <div className="topbar">
       {/* Image */}
-      <div>
+      <div className="shadow-lg">
         <Link href="/">
-          <Image src="/assets/ad.jpg" alt="logo" width={48} height={48} />
+          <Image src="/assets/logo.jpg" alt="logo" width={48} height={48} />
         </Link>
       </div>
       <div className="flex gap-6 text-small-semibold max-md:hidden">
@@ -63,7 +63,7 @@ const Topbar = () => {
           );
         })}
         <Link
-              href={`/profile/${userId}`}
+              href={`/profile/${userData?.username}`}
               key="Profile"
               className={`topsidebar_link items-center hover:bg-active`}
             >

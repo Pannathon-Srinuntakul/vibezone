@@ -74,7 +74,7 @@ const RightBar = () => {
             </Link>
           ) : null}
         </div>
-        <div className="flex flex-col pb-12 gap-12">
+        <div className="flex flex-col pb-12 gap-8">
           {ads.map((ad, index) => {
             const calculateExpiryDate = (dateTime) => {
               const date = format(
@@ -84,8 +84,8 @@ const RightBar = () => {
               return date;
             };
             return (
-                <div key={index} className="bg-black shadow-lg p-3">
-                  <p className="text-white text-subtle-medium pb-1">
+                <div key={index} className="bg-black flex flex-col shadow-lg p-3">
+                  <p className="text-white text-tiny-medium pb-1">
                     Expired In {calculateExpiryDate(ad.createdAt)}
                   </p>
                   <a

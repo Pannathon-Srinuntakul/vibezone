@@ -6,11 +6,11 @@ export default function Page() {
     <div className="h-full flex flex-col gap-5 justify-center items-center my-5">
       <SignIn path="/sign-in" />
       <Link
-        href="/private-policy"
-        className="text-subtle-medium text-gray-700 mb-4 underline "
+        href="/policy"
+        className="text-subtle-medium font-semibold text-red-600 mb-4 underline"
         target="_blank"
       >
-        Private policy
+        Please read our Policy first !!!
       </Link>
     </div>
   );

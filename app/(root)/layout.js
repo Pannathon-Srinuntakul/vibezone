@@ -10,35 +10,11 @@ import Bottombar from "@components/layout/BottomBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "LifeBlance",
-  description: "Welcome to our platform where you can share snapshots of your life's journey and the stories behind them. We're all about spreading positivity and building connections through shared experiences. Whether it's a special moment, a daily adventure, or a personal triumph, your story matters here. Join our vibrant community to inspire and be inspired, and let's make every day a celebration of life's beautiful moments together!",
-  keywords: [
-    "positivity",
-    "inspiration",
-    "motivation",
-    "encouragement",
-    "sharing experiences",
-    "building connections",
-    "community",
-    "social",
-    "share life's journey",
-    "celebrating life",
-    "meaningful moments",
-    "special memories",
-    "personal triumphs",
-    "vibrant community",
-    "colorful life",
-    "daily adventures",
-    "versatility",
-    "daily moments",
-    "life snapshots",
-    "daily inspiration",
-    "everyday celebrations",
-    "photobooth",
-    "polaroid",
-    "frame"
-  ]
+  title: "Framefeeling",
+  description: "Framefeeling allows you to post images and add descriptions that capture the essence of each moment, inspiring others to embrace life.",
+  keywords: ["Framefeeling", "photography", "emotions", "inspiration", "beautiful frames", "polaroid style frames"],
 };
+
 
 export default function RootLayout({ children }) {
   return (

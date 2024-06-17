@@ -5,10 +5,24 @@ import { useAuth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const Bottombar = () => {
   const { userId } = useAuth();
   const pathname = usePathname();
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    if (userId) {
+      getUser();
+    }
+  }, [userId]);
+  
+  const getUser = async () => {
+    const response = await fetch(`/api/user/${userId}`);
+    const data = await response.json();
+    setUserData(data);
+  };
 
   return (
     <section className="bottombar">
@@ -35,7 +49,7 @@ const Bottombar = () => {
           );
         })}
         <Link
-          href={`/profile/${userId}`}
+          href={`/profile/${userData?.username}`}
           key="Profile"
           className={`bottombar_link hover:bg-active`}
         >
