@@ -10,9 +10,6 @@ export async function POST(req, res) {
 
   const sig = req.headers.get("stripe-signature");
 
-  const dateTime = new Date(response?.created * 1000).toLocaleDateString();
-  const timeString = new Date(response?.created * 1000).toLocaleDateString();
-
   try {
     let event = stripe.webhooks.constructEvent(
       payload,
@@ -78,7 +75,6 @@ const getCredits = (priceId) => {
     [process.env.STRIPE_NINEHUNDREDSEVENTY_CREDITS]: 970,
     [process.env.STRIPE_ONETHOUSANDFIVEHUNDRED_CREDITS]: 1500,
     [process.env.STRIPE_TWOTHOUSANDFIFTY_CREDITS]: 2050,
-    [process.env.STRIPE_TEST]: 20500,
   };
   return creditsMap[priceId] || 0;
 };

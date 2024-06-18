@@ -28,7 +28,7 @@
   }
 
   .details {
-    @apply flex flex-col gap-2 pl-4 w-full justify-start
+    @apply flex flex-col gap-5 pl-4 w-full justify-start
   }
 
   .bottombar_container {
@@ -44,11 +44,11 @@
   }
 
   .post-caption-web {
-    @apply pb-2 text-body-bold  font-extralight md:text-heading4-bold md:font-extralight pt-3 w-[110%] text-center text-ellipsis overflow-hidden z-50
+    @apply pb-2 text-heading4-bold font-extralight md:text-heading3-bold md:font-extralight pt-3 w-[110%] text-center text-ellipsis overflow-hidden z-50
   }
 
   .post-caption-pre {
-    @apply text-body-bold font-extralight lg:text-heading2-bold lg:font-extralight w-[110%] text-center text-ellipsis overflow-hidden z-50
+    @apply text-heading4-bold font-extralight lg:text-heading2-bold lg:font-extralight w-[110%] text-center text-ellipsis overflow-hidden z-50
   }
 
   .post-caption-save {

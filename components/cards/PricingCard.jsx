@@ -4,15 +4,22 @@ import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { loadStripe } from "@stripe/stripe-js";
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
 const PricingCard = ({ price }) => {
   const { user, isLoaded } = useUser();
   const router = useRouter();
-
+  
   const handleSubscription = async (e) => {
     e.preventDefault();
     if (!isLoaded || !user) return;
-
+    const stripe = await stripePromise;
+    if (!stripe) {
+      console.error("Stripe not loaded correctly");
+      return;
+    }
+  
     const response = await fetch("/api/payment", {
       method: "POST",
       headers: {
@@ -20,8 +27,8 @@ const PricingCard = ({ price }) => {
       },
       body: JSON.stringify({ priceId: price.id, userId: user.id }),
     });
-    const data = await response.json();
-    router.push(data);
+    const session = await response.json();
+    await stripe.redirectToCheckout({ sessionId: session.id });
   };
   return (
     <div className="bg-white p-5 flex flex-col items-center justify-center gap-5 rounded-2xl drop-shadow-xl">

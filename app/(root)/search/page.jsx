@@ -230,7 +230,7 @@ const SearchComponent = () => {
                     {searchResults.users.map((user, index) => (
                       <div key={index} className="bg-white rounded-full drop-shadow-lg p-2 flex items-center w-full">
                         <Link
-                          href={`/profile/${user.clerkId}`}
+                          href={`/profile/${user.username}`}
                           className="flex"
                         >
                           <ProfileCard key={user._id} userData={user} />

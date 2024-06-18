@@ -15,7 +15,7 @@ const Posting = ({ post, apiEndpoint }) => {
   } = useForm({
     defaultValues: post,
   });
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handlePublish = async (data) => {
@@ -47,15 +47,17 @@ const Posting = ({ post, apiEndpoint }) => {
       setIsLoading(false);
     }
   };
-  
+
   return (
     <form
       className="flex flex-col gap-7 pb-12 rounded-xl lg:w-1/2 bg-white drop-shadow-xl pt-12 px-5"
       onSubmit={handleSubmit(handlePublish)}
     >
       <div>
-      <p className="text-end text-red-500 text-tiny-medium">*If you are not logged in, your post will be deleted within 24 hours.</p>
-      <h1 className="text-center text-heading1-bold">Create post</h1>
+        <p className="text-end text-red-500 text-tiny-medium">
+          *If you are login as guest, your post will be deleted within 24 hours.
+        </p>
+        <h1 className="text-center text-heading1-bold">Create post</h1>
       </div>
       <p className="w-full border border-subtext"></p>
       <div className="flex max-md:flex-col md:justify-between gap-5 md:gap-3">
@@ -85,17 +87,17 @@ const Posting = ({ post, apiEndpoint }) => {
                       height={100}
                       layout="responsive"
                       className="object-cover"
-                      />
+                    />
                   </div>
                 )
               ) : (
                 <Image
-                src="/assets/addprofile.svg"
-                alt="post"
-                width={100}
-                height={100}
-                layout="responsive"
-                className="object-cover"
+                  src="/assets/addprofile.svg"
+                  alt="post"
+                  width={100}
+                  height={100}
+                  layout="responsive"
+                  className="object-cover"
                 />
               )}
               <p className="text-subtext text-tiny-medium">Upload a photo</p>
@@ -142,8 +144,8 @@ const Posting = ({ post, apiEndpoint }) => {
                 validate: (value) => {
                   if (value.length < 3) {
                     return "Must be more than 2 characters";
-                  } else if (value.length > 50) {
-                    return "Must be less than 50 characters";
+                  } else if (value.length > 30) {
+                    return "Must be less than 30 characters";
                   }
                 },
               })}
@@ -170,18 +172,20 @@ const Posting = ({ post, apiEndpoint }) => {
                 >
                   {index + 1}
                 </label>
-                <textarea
-                  {...register(`details[${index}]`, {
-                    validate: (value) => {
-                      if (value.length > 200) {
-                        return "Must be less than 200 words";
-                      }
-                    },
-                  })}
-                  type="text"
-                  placeholder=""
-                  className="w-full input bg-[#ACA9BB20] text-subtle-medium py-2 rounded-2xl px-2 resize-none flex items-center justify-center overflow-hidden min-h-[50px] max-h-[100px]"
-                />
+                <div className="rounded-2xl overflow-hidden">
+                  <textarea
+                    {...register(`details[${index}]`, {
+                      validate: (value) => {
+                        if (value.length > 300) {
+                          return "Must be less than 300 words";
+                        }
+                      },
+                    })}
+                    type="text"
+                    placeholder=""
+                    className="w-full input bg-[#ACA9BB20] text-subtle-medium py-2 rounded-2xl px-2 resize-none flex items-center justify-center overflow-auto min-h-[50px] max-h-[100px]"
+                  />
+                </div>
                 {errors.details && errors.details[index] && (
                   <p className="text-red-500">
                     {errors.details[index].message}
@@ -191,7 +195,7 @@ const Posting = ({ post, apiEndpoint }) => {
             ))}
           </div>
           <div className="flex justify-end items-center mt-10 gap-3">
-          <Link
+            <Link
               href="/policy"
               className="text-tiny-medium text-gray-700 underline"
               target="_blank"

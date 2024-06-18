@@ -57,9 +57,19 @@ const GuestLogin = ({ clientIp }) => {
     }
   };
 
-  const onSubmit = (data) => {
-    setFormData(data);
-    setShowConfirmation(true);
+  const onSubmit = async (data) => {
+    try {
+      setFormData(data);
+      const username = watch("username").toLowerCase();
+      const isTaken = await checkUsername(username);
+      if (isTaken) {
+        setIsUsernameTaken(true);
+        return;
+      }
+      setShowConfirmation(true);
+    } catch (error) {
+      console.error("Error checking username");
+    }
   };
 
   return (
@@ -74,7 +84,7 @@ const GuestLogin = ({ clientIp }) => {
               We will record your IP address for guest login purposes.
             </p>
             <p className="text-red-600 font-bold">
-            *Once you post as a guest, you will not be able to delete your post.*
+              *Once you post as a guest, you will not be able to delete your post.*
             </p>
             <Link
               href="/policy"
@@ -86,8 +96,7 @@ const GuestLogin = ({ clientIp }) => {
             <div className="flex justify-center gap-4">
               <button
                 onClick={() => {
-                  setShowConfirmation(false),
-                  setIsLoading(false)
+                  setShowConfirmation(false), setIsLoading(false);
                 }}
                 className="py-2 px-4 bg-gray-500 text-white rounded"
               >
@@ -104,7 +113,7 @@ const GuestLogin = ({ clientIp }) => {
           </div>
         </div>
       )}
-      <h1 className="text-center text-heading2-bold">Post as guest</h1>
+      <h1 className="text-center text-heading2-bold">Login as guest</h1>
       <p className="w-full border border-subtext"></p>
       <div className="px-6 flex flex-col gap-5">
         <div>
@@ -178,11 +187,6 @@ const GuestLogin = ({ clientIp }) => {
             rows={5}
             className="w-full rounded-full bg-[#ACA9BB20] px-2"
             id="username"
-            onBlur={async () => {
-              const username = watch("username").toLowerCase();
-              const usernameTaken = await checkUsername(username);
-              setIsUsernameTaken(usernameTaken);
-            }}
           />
 
           {errors.username && (

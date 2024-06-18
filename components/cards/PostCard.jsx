@@ -316,16 +316,16 @@ const PostCard = ({
             </div>
           </div>
           <div className="w-full flex flex-col justify-center items-center">
-            <p className="text-base-bold">{post.caption}</p>
+            <p className="text-body-bold">{post.caption}</p>
             <p className="border border-subtext/30 font-thin w-full"></p>
           </div>
           <div className="details">
             {details.map((detail, index) => (
-              <div key={index}>
-                <p className="text-subtle-medium break-words whitespace-normal">
+              <ul key={index}>
+                <li className="text-subtle-medium indent-6 md:text-small-semibold break-words whitespace-normal">
                   {detail}
-                </p>
-              </div>
+                </li>
+              </ul>
             ))}
           </div>
         </div>
@@ -359,7 +359,7 @@ const PostCard = ({
             x
           </p>
           <div className="preview-container">
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center w-full">
               <div className="flex flex-col w-5/6 md:w-1/2 lg:w-1/3">
                 <div className="p-8 pb-20 relative shadow-lg z-50 overflow-hidden bg-white">
                   <p className="absolute right-1 top-1 text-subtle-medium text-subtext">
@@ -458,10 +458,10 @@ const PostCard = ({
                       <p className="text-base-bold">{post.caption}</p>
                       <p className="border border-subtext/30 font-thin w-full"></p>
                     </div>
-                    <div className="flex flex-col gap-2 pl-4 justify-start">
+                    <div className="details">
                       {details.map((detail, index) => (
                         <div key={index}>
-                          <p className="text-subtle-medium break-words whitespace-normal">
+                          <p className="text-subtle-medium indent-6 md:text-small-semibold break-words whitespace-normal">
                             {detail}
                           </p>
                         </div>
@@ -494,7 +494,7 @@ const PostCard = ({
                 id="postToSave"
                 className="flex flex-col w-[800px] invisible"
               >
-                <div className="bg-white frame-container pb-32">
+                <div className="bg-white frame-container">
                   <p className="absolute right-1 top-1 text-base-bold text-subtext">
                     {date}
                   </p>
@@ -543,10 +543,10 @@ const PostCard = ({
                       <p className="text-[28px] font-bold">{post.caption}</p>
                       <p className="border border-subtext/75 font-thin w-full"></p>
                     </div>
-                    <div className="flex flex-col gap-5 pl-4 justify-start">
+                    <div className="flex flex-col gap-8 pl-4 justify-start">
                       {details.map((detail, index) => (
                         <div key={index}>
-                          <p className="text-[18px] break-words whitespace-normal">
+                          <p className="text-[18px] indent-10 break-words whitespace-normal">
                             {detail}
                           </p>
                         </div>

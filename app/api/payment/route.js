@@ -29,7 +29,7 @@ export async function POST(request) {
         priceId,
       },
     });
-    return new Response(JSON.stringify(session.url), { status: 200 });
+    return new Response(JSON.stringify({ id: session.id }), { status: 200 });
   } catch (error) {
     console.log(error);
     return new Response("Failed to create session", error);

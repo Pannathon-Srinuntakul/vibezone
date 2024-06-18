@@ -365,13 +365,13 @@ const Yellowframe = ({
             </div>
           </div>
           <div className="w-full flex flex-col justify-center items-center">
-            <p className="text-base-bold">{post.caption}</p>
+            <p className="text-body-bold">{post.caption}</p>
             <p className="border border-subtext/30 font-thin w-full"></p>
           </div>
           <div className="details">
             {details.map((detail, index) => (
               <div key={index}>
-                <p className="text-subtle-medium break-words whitespace-normal">
+                <p className="text-subtle-medium indent-6 md:text-small-semibold break-words whitespace-normal">
                   {detail}
                 </p>
               </div>
@@ -574,13 +574,13 @@ const Yellowframe = ({
                       </div>
                     </div>
                     <div className="w-full flex flex-col justify-center items-center">
-                      <p className="text-base-bold">{post.caption}</p>
+                      <p className="text-body-bold">{post.caption}</p>
                       <p className="border border-subtext/30 font-thin w-full"></p>
                     </div>
-                    <div className="flex flex-col gap-2 pl-4 justify-start">
+                    <div className="details">
                       {details.map((detail, index) => (
                         <div key={index}>
-                          <p className="text-subtle-medium break-words whitespace-normal">
+                          <p className="text-subtle-medium indent-6 md:text-small-semibold break-words whitespace-normal">
                             {detail}
                           </p>
                         </div>
@@ -691,7 +691,7 @@ const Yellowframe = ({
                     />
                   </div>
                   <div
-                    className={`${sriracha.className} post-caption-save text-black`}
+                    className={`${sriracha.className} post-caption-save text-[#FEAA00]`}
                   >
                     <p>{post.caption}</p>
                   </div>
@@ -736,10 +736,10 @@ const Yellowframe = ({
                       <p className="text-[28px] font-bold">{post.caption}</p>
                       <p className="border border-subtext/75 font-thin w-full"></p>
                     </div>
-                    <div className="flex flex-col gap-5 pl-4 justify-start">
+                    <div className="flex flex-col gap-8 pl-4 justify-start">
                       {details.map((detail, index) => (
                         <div key={index}>
-                          <p className="text-[18px] break-words whitespace-normal">
+                          <p className="text-[18px] indent-10 break-words whitespace-normal">
                             {detail}
                           </p>
                         </div>

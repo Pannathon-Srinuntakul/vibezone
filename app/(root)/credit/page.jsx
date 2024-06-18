@@ -32,7 +32,7 @@ const page = () => {
     <div className="w-full lg:w-1/2 bg-white rounded-xl flex flex-col justify-center items-center mt-20 lg:mt-0 ">
       <div className="grid grid-cols-2 grid-rows-4 sm:grid-cols-3 sm:grid-rows-3 lg:grid-cols-2 lg:grid-rows-4 xl:grid-cols-3 xl:grid-rows-3 p-5 gap-8 w-full">
         {prices &&
-          prices.map((price) => <PricingCard price={price} key={price.id} />)}
+          prices?.map((price) => <PricingCard price={price} key={price.id} />)}
       </div>
         <Link
           href="/policy"
