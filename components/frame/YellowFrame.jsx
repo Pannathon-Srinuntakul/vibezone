@@ -44,8 +44,8 @@ const Yellowframe = ({
   const [showPreview, setShowPreview] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false)
-  
+  const [isDeleted, setIsDeleted] = useState(false);
+
   const postRef = useRef(null);
   const router = useRouter();
 
@@ -117,7 +117,7 @@ const Yellowframe = ({
       method: "DELETE",
     });
     if (response.ok) {
-      setIsDeleted(true)
+      setIsDeleted(true);
       await updateUser();
     } else {
       console.error("Failed to delete post");
@@ -208,7 +208,7 @@ const Yellowframe = ({
                       cursor: "pointer",
                       position: "absolute",
                       left: 0,
-                      zIndex: "50"
+                      zIndex: "50",
                     }}
                   />
                 </Link>
@@ -224,7 +224,10 @@ const Yellowframe = ({
           ) : null}
         </div>
 
-        <div onDoubleClick={() => setIsExpand(prevState => !prevState)} className="w-full flex items-center relative">
+        <div
+          onDoubleClick={() => setIsExpand((prevState) => !prevState)}
+          className="w-full flex items-center relative"
+        >
           <Image
             src="/yellow/sun.png"
             className="absolute -top-7 -left-5 w-[100px]"
@@ -293,7 +296,9 @@ const Yellowframe = ({
             />
           </div>
         </div>
-        <div className={`${sriracha.className} post-caption-web text-[#FEAA00]`}>
+        <div
+          className={`${sriracha.className} post-caption-web text-[#FEAA00]`}
+        >
           <p>{post.caption}</p>
         </div>
         <div className="flex absolute left-5 bottom-5 items-center pt-3 gap-1">
@@ -345,13 +350,14 @@ const Yellowframe = ({
             <div className="flex justify-between">
               <Link href={`/profile/${creator.username}`}>
                 <div className="flex gap-3 items-center">
-                  <Image
-                    src={creator.profilePhoto}
-                    alt="profile photo"
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                  />
+                  <div className="w-[45px] h-[45px] relative">
+                    <Image
+                      src={creator.profilePhoto}
+                      alt="profile photo"
+                      fill
+                      className="rounded-full object-cover"
+                    />
+                  </div>
                   <div className="flex flex-col gap-1">
                     <p className="text-small-semibold text-black">
                       {creator.firstName} {creator.lastName}
@@ -539,13 +545,13 @@ const Yellowframe = ({
                       <div className="flex relative w-full ">
                         {showProfile ? (
                           <div className="flex gap-3 items-center">
-                            <img
-                              src={creator.profilePhoto}
-                              alt="profile photo"
-                              width={40}
-                              height={40}
-                              className="rounded-full"
-                            />
+                            <div className="w-[45px] h-[45px]">
+                              <img
+                                src={creator.profilePhoto}
+                                alt="profile photo"
+                                className="rounded-full object-cover w-full h-full"
+                              />
+                            </div>
                             <div className="flex flex-col gap-1">
                               <p className="text-small-semibold text-black">
                                 {creator.firstName} {creator.lastName}
@@ -608,7 +614,7 @@ const Yellowframe = ({
           {/* To save */}
           <div className="w-full h-full flex flex-col absolute -top-[9999999px] -right-[99999999px] justify-center items-center py-10">
             <div className="mt-96">
-            <div
+              <div
                 ref={postRef}
                 id="postToSave"
                 className="flex flex-col w-[800px] invisible"
@@ -713,13 +719,13 @@ const Yellowframe = ({
                       <div className="flex justify-between">
                         {showProfile ? (
                           <div className="flex gap-7 items-center">
-                            <img
-                              src={creator.profilePhoto}
-                              alt="profile photo"
-                              width={90}
-                              height={90}
-                              className="rounded-full"
-                            />
+                            <div className="w-[90px] h-[90px]">
+                              <img
+                                src={creator.profilePhoto}
+                                alt="profile photo"
+                                className="rounded-full object-cover w-full h-full"
+                              />
+                            </div>
                             <div className="flex flex-col gap-1">
                               <p className="text-[26px] font-semibold text-black">
                                 {creator.firstName} {creator.lastName}

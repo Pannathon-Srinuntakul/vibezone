@@ -44,8 +44,8 @@ const Blueframe = ({
   const [showPreview, setShowPreview] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false)
-  
+  const [isDeleted, setIsDeleted] = useState(false);
+
   const postRef = useRef(null);
   const router = useRouter();
 
@@ -117,7 +117,7 @@ const Blueframe = ({
       method: "DELETE",
     });
     if (response.ok) {
-      setIsDeleted(true)
+      setIsDeleted(true);
       await updateUser();
     } else {
       console.error("Failed to delete post");
@@ -201,7 +201,7 @@ const Blueframe = ({
                       cursor: "pointer",
                       position: "absolute",
                       left: 0,
-                      zIndex: "50"
+                      zIndex: "50",
                     }}
                   />
                 </Link>
@@ -217,7 +217,10 @@ const Blueframe = ({
           ) : null}
         </div>
 
-        <div onDoubleClick={() => setIsExpand(prevState => !prevState)} className="w-full flex items-center relative">
+        <div
+          onDoubleClick={() => setIsExpand((prevState) => !prevState)}
+          className="w-full flex items-center relative"
+        >
           <Image
             src="/blue/cloud.png"
             className="absolute -top-7 -right-3 w-[100px] z-10"
@@ -337,13 +340,14 @@ const Blueframe = ({
             <div className="flex justify-between">
               <Link href={`/profile/${creator.username}`}>
                 <div className="flex gap-3 items-center">
-                  <Image
-                    src={creator.profilePhoto}
-                    alt="profile photo"
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                  />
+                  <div className="w-[45px] h-[45px] relative">
+                    <Image
+                      src={creator.profilePhoto}
+                      alt="profile photo"
+                      fill
+                      className="rounded-full object-cover w-full h-full"
+                    />
+                  </div>
                   <div className="flex flex-col gap-1">
                     <p className="text-small-semibold text-black">
                       {creator.firstName} {creator.lastName}
@@ -524,13 +528,13 @@ const Blueframe = ({
                       <div className="flex relative w-full ">
                         {showProfile ? (
                           <div className="flex gap-3 items-center">
-                            <img
-                              src={creator.profilePhoto}
-                              alt="profile photo"
-                              width={40}
-                              height={40}
-                              className="rounded-full"
-                            />
+                            <div className="w-[45px] h-[45px]">
+                              <img
+                                src={creator.profilePhoto}
+                                alt="profile photo"
+                                className="rounded-full object-cover w-full h-full"
+                              />
+                            </div>
                             <div className="flex flex-col gap-1">
                               <p className="text-small-semibold text-black">
                                 {creator.firstName} {creator.lastName}
@@ -691,13 +695,13 @@ const Blueframe = ({
                       <div className="flex justify-between">
                         {showProfile ? (
                           <div className="flex gap-7 items-center">
-                            <img
-                              src={creator.profilePhoto}
-                              alt="profile photo"
-                              width={90}
-                              height={90}
-                              className="rounded-full"
-                            />
+                            <div className="w-[90px] h-[90px]">
+                              <img
+                                src={creator.profilePhoto}
+                                alt="profile photo"
+                                className="rounded-full object-cover w-full h-full"
+                              />
+                            </div>
                             <div className="flex flex-col">
                               <p className="text-[26px] font-semibold text-black">
                                 {creator.firstName} {creator.lastName}

@@ -44,8 +44,8 @@ const GreenFrame = ({
   const [showPreview, setShowPreview] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false)
-  
+  const [isDeleted, setIsDeleted] = useState(false);
+
   const postRef = useRef(null);
   const router = useRouter();
 
@@ -117,7 +117,7 @@ const GreenFrame = ({
       method: "DELETE",
     });
     if (response.ok) {
-      setIsDeleted(true)
+      setIsDeleted(true);
       await updateUser();
     } else {
       console.error("Failed to delete post");
@@ -167,7 +167,6 @@ const GreenFrame = ({
   return !isDeleted ? (
     <div className="w-full flex flex-col items-center justify-center">
       <div className="card-container relative pb-14 bg-[#adf695] shadow-lg z-10">
-        
         <div className="w-full relative flex justify-end pb-3 gap-3 z-20">
           <p className="date text-[#6E6692]">{date}</p>
           {loggedInUser &&
@@ -202,7 +201,7 @@ const GreenFrame = ({
                       cursor: "pointer",
                       position: "absolute",
                       left: 0,
-                      zIndex: "50"
+                      zIndex: "50",
                     }}
                   />
                 </Link>
@@ -218,7 +217,10 @@ const GreenFrame = ({
           ) : null}
         </div>
 
-        <div onDoubleClick={() => setIsExpand(prevState => !prevState)} className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center">
+        <div
+          onDoubleClick={() => setIsExpand((prevState) => !prevState)}
+          className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center"
+        >
           <Image
             src={post.postPhoto}
             alt="post photo"
@@ -282,13 +284,14 @@ const GreenFrame = ({
             <div className="flex justify-between">
               <Link href={`/profile/${creator.username}`}>
                 <div className="flex gap-3 items-center">
-                  <Image
-                    src={creator.profilePhoto}
-                    alt="profile photo"
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                  />
+                  <div className="w-[45px] h-[45px] relative">
+                    <Image
+                      src={creator.profilePhoto}
+                      alt="profile photo"
+                      fill
+                      className="rounded-full object-cover w-full h-full"
+                    />
+                  </div>
                   <div className="flex flex-col gap-1">
                     <p className="text-small-semibold text-black">
                       {creator.firstName} {creator.lastName}
@@ -413,13 +416,13 @@ const GreenFrame = ({
                       <div className="flex relative w-full ">
                         {showProfile ? (
                           <div className="flex gap-3 items-center">
-                            <img
-                              src={creator.profilePhoto}
-                              alt="profile photo"
-                              width={40}
-                              height={40}
-                              className="rounded-full"
-                            />
+                            <div className="w-[45px] h-[45px]">
+                              <img
+                                src={creator.profilePhoto}
+                                alt="profile photo"
+                                className="rounded-full object-cover w-full h-full"
+                              />
+                            </div>
                             <div className="flex flex-col gap-1">
                               <p className="text-small-semibold text-black">
                                 {creator.firstName} {creator.lastName}
@@ -524,13 +527,13 @@ const GreenFrame = ({
                       <div className="flex justify-between">
                         {showProfile ? (
                           <div className="flex gap-7 items-center">
-                            <img
-                              src={creator.profilePhoto}
-                              alt="profile photo"
-                              width={90}
-                              height={90}
-                              className="rounded-full"
-                            />
+                            <div className="w-[90px] h-[90px]">
+                              <img
+                                src={creator.profilePhoto}
+                                alt="profile photo"
+                                className="rounded-full object-cover w-full h-full"
+                              />
+                            </div>
                             <div className="flex flex-col gap-1">
                               <p className="text-[26px] font-semibold text-black">
                                 {creator.firstName} {creator.lastName}

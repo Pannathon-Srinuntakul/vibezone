@@ -46,14 +46,14 @@ const ProfileCard = ({ userData }) => {
     <div className="flex flex-col">
       <div className="flex gap-2 lg:gap-5 items-center">
         <div className="w-[100px] h-[100px] flex items-center justify-center">
+          <div className="w-[100px] h-[100px] relative">
           <Image
             src={userData.profilePhoto}
             alt="profile photo"
-            width={100}
-            height={100}
-            layout="responsive"
-            className="rounded-full"
+            fill
+            className="rounded-full object-cover"
           />
+          </div>
         </div>
         <div className="flex flex-col gap-1">
           <p className="text-subtext text-small-bold sm:text-body-bold md:text-heading4-bold lg:text-heading3-bold">

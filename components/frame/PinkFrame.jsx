@@ -44,8 +44,8 @@ const Pinkframe = ({
   const [showPreview, setShowPreview] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false)
-  
+  const [isDeleted, setIsDeleted] = useState(false);
+
   const postRef = useRef(null);
   const router = useRouter();
 
@@ -117,7 +117,7 @@ const Pinkframe = ({
       method: "DELETE",
     });
     if (response.ok) {
-      setIsDeleted(true)
+      setIsDeleted(true);
       await updateUser();
     } else {
       console.error("Failed to delete post");
@@ -201,7 +201,7 @@ const Pinkframe = ({
                       cursor: "pointer",
                       position: "absolute",
                       left: 0,
-                      zIndex: "50"
+                      zIndex: "50",
                     }}
                   />
                 </Link>
@@ -217,7 +217,10 @@ const Pinkframe = ({
           ) : null}
         </div>
 
-        <div onDoubleClick={() => setIsExpand(prevState => !prevState)} className="w-full flex items-center relative">
+        <div
+          onDoubleClick={() => setIsExpand((prevState) => !prevState)}
+          className="w-full flex items-center relative"
+        >
           <Image
             src="/pink/heart.png"
             className="absolute -top-7 -left-5 w-[60px]"
@@ -286,7 +289,9 @@ const Pinkframe = ({
             />
           </div>
         </div>
-        <div className={`${sriracha.className} post-caption-web text-[#6E6692]`}>
+        <div
+          className={`${sriracha.className} post-caption-web text-[#6E6692]`}
+        >
           <p>{post.caption}</p>
         </div>
         <div className="flex absolute left-5 bottom-5 items-center pt-3 gap-1">
@@ -338,13 +343,14 @@ const Pinkframe = ({
             <div className="flex justify-between">
               <Link href={`/profile/${creator.username}`}>
                 <div className="flex gap-3 items-center">
-                  <Image
-                    src={creator.profilePhoto}
-                    alt="profile photo"
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                  />
+                  <div className="w-[45px] h-[45px] relative">
+                    <Image
+                      src={creator.profilePhoto}
+                      alt="profile photo"
+                      fill
+                      className="rounded-full object-cover w-full h-full"
+                    />
+                  </div>
                   <div className="flex flex-col gap-1">
                     <p className="text-small-semibold text-black">
                       {creator.firstName} {creator.lastName}
@@ -525,13 +531,13 @@ const Pinkframe = ({
                       <div className="flex relative w-full ">
                         {showProfile ? (
                           <div className="flex gap-3 items-center">
-                            <img
-                              src={creator.profilePhoto}
-                              alt="profile photo"
-                              width={40}
-                              height={40}
-                              className="rounded-full"
-                            />
+                            <div className="w-[45px] h-[45px]">
+                              <img
+                                src={creator.profilePhoto}
+                                alt="profile photo"
+                                className="rounded-full object-cover w-full h-full"
+                              />
+                            </div>
                             <div className="flex flex-col gap-1">
                               <p className="text-small-semibold text-black">
                                 {creator.firstName} {creator.lastName}
@@ -604,7 +610,7 @@ const Pinkframe = ({
                     {date}
                   </p>
                   <div className="w-full flex flex-col items-center relative">
-                  <img
+                    <img
                       src="/pink/heart.png"
                       className="absolute -top-7 -left-8 w-[80px]"
                       width={200}
@@ -692,13 +698,13 @@ const Pinkframe = ({
                       <div className="flex justify-between">
                         {showProfile ? (
                           <div className="flex gap-7 items-center">
-                            <img
-                              src={creator.profilePhoto}
-                              alt="profile photo"
-                              width={90}
-                              height={90}
-                              className="rounded-full"
-                            />
+                            <div className="w-[90px] h-[90px]">
+                              <img
+                                src={creator.profilePhoto}
+                                alt="profile photo"
+                                className="rounded-full object-cover w-full h-full"
+                              />
+                            </div>
                             <div className="flex flex-col gap-1">
                               <p className="text-[26px] font-semibold text-black">
                                 {creator.firstName} {creator.lastName}

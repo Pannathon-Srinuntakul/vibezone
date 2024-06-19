@@ -231,7 +231,7 @@ const SearchComponent = () => {
                       <div key={index} className="bg-white rounded-full drop-shadow-lg p-2 flex items-center w-full">
                         <Link
                           href={`/profile/${user.username}`}
-                          className="flex"
+                          className="flex justify-between w-full pr-5"
                         >
                           <ProfileCard key={user._id} userData={user} />
                           <div className="flex text-black justify-center gap-2 p-2 items-center max-sm:gap-0.5">
