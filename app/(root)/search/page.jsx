@@ -225,7 +225,7 @@ const SearchComponent = () => {
                         <p className=" text-heading4-bold">No more users</p>
                       </div>
                     }
-                    className="w-full flex flex-col justify-start items-start gap-10 pb-5 "
+                    className="w-full flex flex-col justify-start items-start gap-10 pb-5"
                   >
                     {searchResults.users.map((user, index) => (
                       <div key={index} className="bg-white rounded-full drop-shadow-lg p-2 flex items-center w-full">

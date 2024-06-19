@@ -27,7 +27,7 @@ const SavedPosts = () => {
   const getUser = async () => {
     const response = await fetch(`/api/user/${user.id}`);
     const data = await response.json();
-    data.savedPosts.sort(
+    data?.savedPosts?.sort(
       (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     );
     setUserData(data);
