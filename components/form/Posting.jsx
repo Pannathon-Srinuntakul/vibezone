@@ -55,7 +55,7 @@ const Posting = ({ post, apiEndpoint }) => {
     >
       <div>
         <p className="text-end text-red-500 text-tiny-medium">
-          *If you are login as guest, your post will be deleted within 24 hours.
+          *If you are login as guest, your post will be deleted within 1 hour.
         </p>
         <h1 className="text-center text-heading1-bold">Create post</h1>
       </div>

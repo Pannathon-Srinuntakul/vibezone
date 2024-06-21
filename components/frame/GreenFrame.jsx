@@ -183,7 +183,7 @@ const GreenFrame = ({
             <div className="flex flex-col z-20">
               <p className="text-end text-subtle-medium">*Post by guest.</p>
               <span className="text-subtext text-tiny-medium">
-                This post will be deleted in 24 hours.
+                This post will be deleted in 1 hour.
               </span>
             </div>
           ) : null}
@@ -283,7 +283,7 @@ const GreenFrame = ({
           <div className="details">
             {details.map((detail, index) => (
               <div key={index}>
-                <p className="text-subtle-medium indent-6 md:text-small-semibold break-words #6E6692space-normal">
+                <p className="text-subtle-medium  md:text-small-semibold break-words #6E6692space-normal">
                   {detail}
                 </p>
               </div>

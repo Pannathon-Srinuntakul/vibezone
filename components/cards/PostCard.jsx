@@ -169,7 +169,7 @@ const PostCard = ({ post, creator, loggedInUser, updateUser }) => {
             <div className="flex flex-col">
               <p className="text-end text-subtle-medium">*Post by guest.</p>
               <span className="text-subtext text-tiny-medium">
-                This post will be deleted in 24 hours.
+                This post will be deleted in 1 hour.
               </span>
             </div>
           ) : null}
@@ -287,7 +287,7 @@ const PostCard = ({ post, creator, loggedInUser, updateUser }) => {
           <div className="details">
             {details.map((detail, index) => (
               <ul key={index}>
-                <li className="text-subtle-medium indent-6 md:text-small-semibold break-words whitespace-normal">
+                <li className="text-subtle-medium  md:text-small-semibold break-words whitespace-normal">
                   {detail}
                 </li>
               </ul>

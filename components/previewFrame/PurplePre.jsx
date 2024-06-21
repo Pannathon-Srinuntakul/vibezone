@@ -154,7 +154,7 @@ const PurplePre = ({ date, post, likesCount, creator, details, sriracha }) => {
                 <div className="details">
                   {details.map((detail, index) => (
                     <div key={index}>
-                      <p className="text-subtle-medium indent-6 md:text-small-semibold break-words whitespace-normal">
+                      <p className="text-subtle-medium  md:text-small-semibold break-words whitespace-normal">
                         {detail}
                       </p>
                     </div>
@@ -248,7 +248,7 @@ const PurplePre = ({ date, post, likesCount, creator, details, sriracha }) => {
                 <div className="flex flex-col gap-8 pl-4 justify-start">
                   {details.map((detail, index) => (
                     <div key={index}>
-                      <p className="text-[18px] indent-10 break-words whitespace-normal">
+                      <p className="text-[18px]  break-words whitespace-normal">
                         {detail}
                       </p>
                     </div>

@@ -61,15 +61,32 @@ const TermsOfService = ({ language }) => {
             </h2>
             <p className="mb-2">
               คุณไม่สามารถโพสต์เนื้อหาที่ผิดกฎหมาย เช่น สื่อลามก ความรุนแรง
-              ความอันตราย และทุกอย่างที่ไม่เหมาะสม นอกจากนี้
+              ความอันตราย การพนัน และทุกอย่างที่ไม่เหมาะสม นอกจากนี้
               ห้ามนำกรอบรูปที่ได้จากเว็บไซต์ของเราไปใช้ในทางที่ผิดกฎหมายหรือไม่เหมาะสม
               เราขอสงวนสิทธิ์ในการลบเนื้อหาที่ละเมิดข้อกำหนดนี้และดำเนินการตามกฎหมายหากจำเป็น
+            </p>
+          </section>
+          <section className="mb-6">
+            <h2 className="text-2xl font-semibold mb-4">6. การโพสต์โฆษณา</h2>
+            <p className="mb-2">
+              เพื่อให้เกิดการใช้บริการที่เป็นระเบียบและปลอดภัยสำหรับชุมชนผู้ใช้งาน
+              เราขอให้การโพสต์โฆษณาบนเว็บไซต์ของเราปฏิบัติตามนโยบายที่เคร่งครัดและชัดเจน
+              ห้ามโพสต์โฆษณาที่มีเนื้อหาซึ่งเป็นสื่อลามกอนาจาร
+              หรือเนื้อหาที่เสียหายต่อผู้อื่น เช่น การส่งเสริมความรุนแรง
+              การก่อให้เกิดความเสียหาย หรือการละเมิดข้อกำหนดทางกฎหมาย
+            </p>
+            <p className="mb-2">
+              นอกจากนี้ ห้ามโพสต์ลิงก์ที่มีลักษณะเป็นการหลอกลวง
+              หรือมีเจตนาเพื่อการฉ้อโกงผู้ใช้งานของเรา
+              การละเมิดนโยบายนี้อาจทำให้โฆษณาของคุณถูกลบโดยไม่มีการแจ้งเตือนล่วงหน้า
+              และหากพบการกระทำที่ร้ายแรงหรือผิดกฎหมาย
+              เราขอสงวนสิทธิ์ในการดำเนินการทางกฎหมาย
             </p>
           </section>
 
           <section className="mb-6">
             <h2 className="text-2xl font-semibold mb-4">
-              6. การยกเลิกและการปิดบัญชี
+              7. การยกเลิกและการปิดบัญชี
             </h2>
             <p className="mb-2">
               เมื่อเปิดบัญชีแล้ว คุณจะไม่สามารถปิดบัญชีได้
@@ -80,7 +97,7 @@ const TermsOfService = ({ language }) => {
 
           <section className="mb-6">
             <h2 className="text-2xl font-semibold mb-4">
-              7. ข้อจำกัดความรับผิดชอบ
+              8. ข้อจำกัดความรับผิดชอบ
             </h2>
             <p className="mb-2">
               เราจะไม่รับผิดชอบต่อความเสียหายใดๆ
@@ -90,7 +107,9 @@ const TermsOfService = ({ language }) => {
           </section>
 
           <section className="mb-6">
-            <h2 className="text-2xl font-semibold mb-4">8. ทรัพย์สินทางปัญญา</h2>
+            <h2 className="text-2xl font-semibold mb-4">
+              9. ทรัพย์สินทางปัญญา
+            </h2>
             <p className="mb-2">
               เนื้อหาและทรัพย์สินทางปัญญาทั้งหมดที่ปรากฏบนเว็บไซต์นี้
               เป็นทรัพย์สินของเราและผู้ร่วมงาน ห้ามทำซ้ำ แจกจ่าย
@@ -99,7 +118,9 @@ const TermsOfService = ({ language }) => {
           </section>
 
           <section className="mb-6">
-            <h2 className="text-2xl font-semibold mb-4">9. กฎหมายที่ใช้บังคับ</h2>
+            <h2 className="text-2xl font-semibold mb-4">
+              10. กฎหมายที่ใช้บังคับ
+            </h2>
             <p className="mb-2">
               ข้อกำหนดการให้บริการนี้จะถูกตีความและบังคับใช้ตามกฎหมายของประเทศไทย
               ข้อพิพาทใดๆ ที่เกิดขึ้นจะต้องถูกดำเนินการในเขตอำนาจศาลของประเทศไทย
@@ -167,16 +188,38 @@ const TermsOfService = ({ language }) => {
             </h2>
             <p className="mb-2">
               You may not post content that is illegal, such as hate speech,
-              violence, danger, and anything inappropriate. In addition, it is
-              prohibited to misuse frames obtained from our website for illegal
-              or inappropriate purposes. We reserve the right to remove content
-              that violates these terms and take legal action if necessary.
+              violence, danger, gambling and anything inappropriate. In
+              addition, it is prohibited to misuse frames obtained from our
+              website for illegal or inappropriate purposes. We reserve the
+              right to remove content that violates these terms and take legal
+              action if necessary.
             </p>
           </section>
 
           <section className="mb-6">
             <h2 className="text-2xl font-semibold mb-4">
-              6. Cancellation and Account Closure
+              6. Advertising Policy
+            </h2>
+            <p className="mb-2">
+              To ensure a structured and safe user experience, all advertising
+              posted on our website must adhere strictly to our policies, which
+              are designed to maintain community standards and safety.
+              Prohibited content includes advertisements containing hate speech,
+              content that harms others, such as promoting violence, causing
+              harm, or violating legal terms.
+            </p>
+            <p className="mb-2">
+              Furthermore, posting misleading links or intending to deceive our
+              users is strictly prohibited. Violations of this policy may result
+              in the immediate removal of your advertisement without prior
+              notice. Additionally, severe or unlawful actions may lead to legal
+              consequences.
+            </p>
+          </section>
+
+          <section className="mb-6">
+            <h2 className="text-2xl font-semibold mb-4">
+              7. Cancellation and Account Closure
             </h2>
             <p className="mb-2">
               Once an account is opened, you cannot close it. If you violate
@@ -187,7 +230,7 @@ const TermsOfService = ({ language }) => {
 
           <section className="mb-6">
             <h2 className="text-2xl font-semibold mb-4">
-              7. Limitation of Liability
+              8. Limitation of Liability
             </h2>
             <p className="mb-2">
               We shall not be liable for any damages arising from your use or
@@ -198,7 +241,7 @@ const TermsOfService = ({ language }) => {
 
           <section className="mb-6">
             <h2 className="text-2xl font-semibold mb-4">
-              8. Intellectual Property
+              9. Intellectual Property
             </h2>
             <p className="mb-2">
               All content and intellectual property appearing on this website
@@ -208,7 +251,7 @@ const TermsOfService = ({ language }) => {
           </section>
 
           <section className="mb-6">
-            <h2 className="text-2xl font-semibold mb-4">9. Governing Law</h2>
+            <h2 className="text-2xl font-semibold mb-4">10. Governing Law</h2>
             <p className="mb-2">
               These terms of service shall be interpreted and enforced in
               accordance with the laws of Thailand. Any disputes arising shall
