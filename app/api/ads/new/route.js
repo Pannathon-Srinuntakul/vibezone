@@ -41,7 +41,7 @@ export const POST = async (req) => {
         .toBuffer();
     }
 
-    const newFileName = `${Date.now()}_${[postPhoto.name]}`;
+    const newFileName = `${Date.now()}`;
 
     const bucketParams = {
       Bucket: "framefeeling",

@@ -33,10 +33,10 @@ export const DELETE = async (req, { params }) => {
     };
 
     try {
-      await s3Client.send(new DeleteObjectCommand(bucketParams));
+      await s3Client.send(new DeleteObjectCommand(bucketParams))
+      
     } catch (err) {
       console.error("Failed to delete image file:", err);
-      // Handle error but continue deleting post
     }
     await Post.findByIdAndDelete(params.id);
 
