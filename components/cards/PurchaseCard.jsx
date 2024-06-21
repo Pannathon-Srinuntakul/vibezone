@@ -8,6 +8,7 @@ const PurchaseCard = ({ postId, user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [confirmPurchase, setConfirmPurchase] = useState({});
   const [showAlert, setShowAlert] = useState(false);
+  const [showError, setShowError] = useState(false)
   const router = useRouter();
   
   const handleUpgrade = async () => {
@@ -33,9 +34,9 @@ const PurchaseCard = ({ postId, user }) => {
       });
 
       if (response.ok) {
-        router.push("/");
+        router.push(`/profile/${user.username}`);
       } else {
-        console.error("Failed to save upgrade");
+        setShowError(true)
       }
     } catch (error) {
       console.error("Error upgrade:", error);
@@ -108,6 +109,19 @@ const PurchaseCard = ({ postId, user }) => {
             <p className="mb-4 text-red-500">You do not have enough credits.</p>
             <button
               onClick={() => setShowAlert(false)}
+              className="py-2 px-4 bg-gray-500 text-white rounded"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+      {showError && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+            <p className="mb-4 text-red-500">Frame type is already the same.</p>
+            <button
+              onClick={() => setShowError(false)}
               className="py-2 px-4 bg-gray-500 text-white rounded"
             >
               Close

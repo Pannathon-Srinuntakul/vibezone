@@ -19,30 +19,14 @@ const Home = () => {
   const { user, isLoaded } = useUser();
   const [loading, setLoading] = useState(true);
   const [feedPost, setFeedPost] = useState([]);
-  const [clientIp, setClientIp] = useState("");
   const [userData, setUserData] = useState({});
-  const [guestData, setGuestData] = useState({});
-  const [isUserDataLoaded, setIsUserDataLoaded] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-
-  const getClientIp = async () => {
-    if (!user) {
-      try {
-        const response = await fetch("/api/getClientIp");
-        const data = await response.json();
-        setClientIp(data.ip);
-      } catch (error) {
-        console.error("Error fetching IP:", error);
-      }
-    }
-  };
 
   const updateUser = async () => {
     if (user) {
       const response = await fetch(`/api/user/${user.id}`);
       const data = await response.json();
       setUserData(data);
-      setIsUserDataLoaded(true);
     }
   };
 
@@ -83,9 +67,6 @@ const Home = () => {
             }
             const data = await response.json();
             setUserData(data);
-            setIsUserDataLoaded(true);
-          } else {
-            await getClientIp();
           }
         }
       } catch (error) {
@@ -97,26 +78,8 @@ const Home = () => {
   }, [isLoaded, user]); // เพิ่มการเช็ค isLoaded
 
   useEffect(() => {
-    if (isUserDataLoaded || (clientIp && !user)) {
       getFeedPost();
-    }
-  }, [isUserDataLoaded, clientIp, user]);
-
-  useEffect(() => {
-    const fetchGuestData = async () => {
-      if (clientIp && !user && !isUserDataLoaded) {
-        try {
-          const response = await fetch(`/api/guest/${clientIp}`);
-          const data = await response.json();
-          setGuestData(data);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    };
-
-    fetchGuestData();
-  }, [clientIp, user, isUserDataLoaded]);
+  }, []);
 
   return loading || !isLoaded ? (
     <Loader />
@@ -142,10 +105,7 @@ const Home = () => {
                   key={post._id}
                   post={post}
                   creator={post.creator}
-                  guest={clientIp}
-                  loggedInGuest={guestData}
                   loggedInUser={userData}
-                  update={getFeedPost}
                   updateUser={updateUser}
                   sriracha={sriracha}
                 />
@@ -155,10 +115,7 @@ const Home = () => {
                   key={post._id}
                   post={post}
                   creator={post.creator}
-                  guest={clientIp}
-                  loggedInGuest={guestData}
                   loggedInUser={userData}
-                  update={getFeedPost}
                   updateUser={updateUser}
                   sriracha={sriracha}
                 />
@@ -168,10 +125,7 @@ const Home = () => {
                   key={post._id}
                   post={post}
                   creator={post.creator}
-                  guest={clientIp}
-                  loggedInGuest={guestData}
                   loggedInUser={userData}
-                  update={getFeedPost}
                   updateUser={updateUser}
                   sriracha={sriracha}
                 />
@@ -181,10 +135,7 @@ const Home = () => {
                   key={post._id}
                   post={post}
                   creator={post.creator}
-                  guest={clientIp}
-                  loggedInGuest={guestData}
                   loggedInUser={userData}
-                  update={getFeedPost}
                   updateUser={updateUser}
                   sriracha={sriracha}
                 />
@@ -194,10 +145,7 @@ const Home = () => {
                   key={post._id}
                   post={post}
                   creator={post.creator}
-                  guest={clientIp}
-                  loggedInGuest={guestData}
                   loggedInUser={userData}
-                  update={getFeedPost}
                   updateUser={updateUser}
                   sriracha={sriracha}
                 />
@@ -207,8 +155,6 @@ const Home = () => {
                   key={post._id}
                   post={post}
                   creator={post.creator}
-                  guest={clientIp}
-                  loggedInGuest={guestData}
                   loggedInUser={userData}
                   update={updateUser}
                   updateUser={updateUser}

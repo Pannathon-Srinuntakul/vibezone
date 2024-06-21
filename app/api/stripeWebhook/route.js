@@ -67,7 +67,7 @@ const updateUserCredit = async (userId, priceId) => {
 
 const getCredits = (priceId) => {
   const creditsMap = {
-    [process.env.STRIPE_SEVENTY_CREDITS]: 70,
+    [process.env.STRIPE_SIXTY_CREDITS]: 60,
     [process.env.STRIPE_EIGHTYFIVE_CREDITS]: 85,
     [process.env.STRIPE_ONEHUNDREDEIGHTY_CREDITS]: 180,
     [process.env.STRIPE_THREEHUNDREDEIGHTY_CREDITS]: 380,
