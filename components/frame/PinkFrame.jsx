@@ -161,8 +161,7 @@ const Pinkframe = ({
                   href={{
                     pathname: `/preview/${post._id}`,
                     query: {
-                      data: JSON.stringify(post),
-                      user: JSON.stringify(loggedInUser),
+                      post: post._id,
                       date,
                     },
                   }}

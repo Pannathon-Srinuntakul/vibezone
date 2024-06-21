@@ -9,17 +9,29 @@ import YellowPre from "@components/previewFrame/YellowPre";
 import PinkPre from "@components/previewFrame/PinkPre";
 import BluePre from "@components/previewFrame/BluePre";
 import { useAuth, useUser } from "@clerk/nextjs";
-import { redirect } from "next/dist/server/api-utils";
 
 const sriracha = Sriracha({ subsets: ["latin"], weight: "400" });
 
 const page = ({ searchParams }) => {
+  const { user } = useUser();
+  const [data, setData] = useState({});
   const { isSignedIn } = useAuth();
 
-  const data = JSON.parse(searchParams.data);
-  const userInfo = JSON.parse(searchParams.user)
-  
-  return data?.creator?._id === userInfo?._id ? (
+  const getPost = async () => {
+    const response = await fetch(`/api/post/${searchParams.post}`);
+    const data = await response.json();
+    setData(data);
+  };
+
+  useEffect(() => {
+    getPost();
+  }, []);
+
+  if (!isSignedIn) {
+    return <p className="mt-16 lg:mt-0">Please sign in</p>;
+  }
+
+  return data?.creator?.clerkId === user.id ? (
     <>
       {data.frame === "Blue" && (
         <BluePre
@@ -81,7 +93,7 @@ const page = ({ searchParams }) => {
         />
       )}
     </>
-  ) : redirect('/');
+  ) : <p className="mt-16 lg:mt-0">Unauthorized</p>;
 };
 
 export default page;
