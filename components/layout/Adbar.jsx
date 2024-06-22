@@ -27,7 +27,7 @@ const AdBar = () => {
     const data = await response.json();
     setAds(data);
   };
-
+  console.log(ads)
   useEffect(() => {
     if (user) {
       getUser();
