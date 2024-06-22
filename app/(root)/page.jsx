@@ -39,6 +39,7 @@ const Home = () => {
       if (newData.length === 0) {
         setHasMore(false);
       } else {
+        updateUser();
         setFeedPost((prevPosts) => [...prevPosts, ...newData]);
       }
     } catch (error) {

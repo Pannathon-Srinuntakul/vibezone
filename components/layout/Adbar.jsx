@@ -13,6 +13,7 @@ const AdBar = () => {
   const [userData, setUserData] = useState({});
   const [showConfirm, setShowConfirm] = useState(false);
   const [adData, setAdData] = useState({});
+  let randomNumber = Math.random();
 
   const getUser = async () => {
     if (user) {
@@ -73,6 +74,7 @@ const AdBar = () => {
           {user ? (
             <Link href="/create-ads">
               <Add />
+              {randomNumber}
             </Link>
           ) : null}
         </div>
