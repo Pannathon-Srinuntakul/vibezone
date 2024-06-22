@@ -6,7 +6,6 @@ export const GET = async () => {
     await connectToDB()
     
     const allAds = await Ads.find().exec()
-    console.log(allAds)
     return new Response(JSON.stringify(allAds), { status: 200 })
   } catch (err) {
     return new Response("Failed to get all Ads", { status: 500 })

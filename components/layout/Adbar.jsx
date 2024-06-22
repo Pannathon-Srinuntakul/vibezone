@@ -71,11 +71,6 @@ const AdBar = () => {
       <div className="lg:rightbar max-lg:mt-20 max-lg:mb-10 bg-white drop-shadow-lg w-full">
         <div className="px-3 pt-1 flex justify-between items-center w-full">
           <p className=" text-subtle-medium text-light-2">ADS</p>
-          {user ? (
-            <Link href="/create-ads">
-              <Add />
-            </Link>
-          ) : null}
         </div>
         <div
           className="grid grid-cols-3 grid-rows-auto gap-3 p-3 bg-gray-100 lg:p-0 lg:flex lg:flex-col lg:pb-12 lg:gap-8 

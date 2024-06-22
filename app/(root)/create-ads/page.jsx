@@ -52,29 +52,31 @@ const CreatePost = () => {
   };
 
   if (!isSignedIn) {
-    return <p className="mx-auto text-center mt-20 lg:mt-0">Please login</p>
+    return <p className="mx-auto text-center mt-20 lg:mt-0">404</p>
   }
 
-  return adsData.length >= 12 ? (
-    <div>
-      <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-        <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-          <p className="mb-4 text-red-500">
-            All ad slots are currently occupied. Please try again later.
-          </p>
-          <button
-            onClick={handleRedirect}
-            className="py-2 px-4 bg-gray-500 text-white rounded"
-          >
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
-  ) : (
-    <div className="pt-16 px-5 sm:pt-6 flex items-center w-full justify-center">
-      <CreateAds post={postData} />
-    </div>
+  return (
+  // adsData.length >= 12 ? 
+  //   <div>
+  //     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+  //       <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+  //         <p className="mb-4 text-red-500">
+  //           All ad slots are currently occupied. Please try again later.
+  //         </p>
+  //         <button
+  //           onClick={handleRedirect}
+  //           className="py-2 px-4 bg-gray-500 text-white rounded"
+  //         >
+  //           Close
+  //         </button>
+  //       </div>
+  //     </div>
+  //   </div>
+  // ) : (
+  //   <div className="pt-16 px-5 sm:pt-6 flex items-center w-full justify-center">
+  //     <CreateAds post={postData} />
+  //   </div>
+  <div className="mx-auto text-center mt-20 lg:mt-0">404</div>
   );
 };
 
