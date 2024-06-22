@@ -96,7 +96,7 @@ const Home = () => {
         }
       >
         <div className="flex flex-col w-full items-center gap-10">
-          <AdBar />
+          <AdBar className="lg:hidden" />
           {feedPost.map((post, index) => (
             <div className="w-full" key={index}>
               {post.frame === "Blue" && (

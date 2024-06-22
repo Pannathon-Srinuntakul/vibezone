@@ -20,7 +20,7 @@
   }
 
   .rightbar{
-    @apply h-screen bg-white w-[245px] drop-shadow-lg pt-28 fixed right-0 top-0 overflow-auto px-6 flex flex-col gap-6 max-lg:hidden;
+    @apply h-screen bg-white w-[245px] drop-shadow-lg pt-20 fixed right-0 top-0 overflow-auto px-6 flex flex-col gap-6 max-lg:hidden;
   }
 
   .bottombar {

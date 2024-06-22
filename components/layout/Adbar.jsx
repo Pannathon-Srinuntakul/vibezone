@@ -23,11 +23,13 @@ const AdBar = () => {
   };
 
   const getAds = async () => {
-    const response = await fetch("/api/ads");
+    const response = await fetch("/api/ads", {
+      cache: "no-store",
+    });
     const data = await response.json();
     setAds(data);
   };
-  console.log(ads)
+  console.log(ads);
   useEffect(() => {
     if (user) {
       getUser();
@@ -67,7 +69,7 @@ const AdBar = () => {
 
   return (
     <>
-      <div className="lg:hidden mt-20 bg-white drop-shadow-lg w-full">
+      <div className="lg:rightbar max-lg:mt-20 bg-white drop-shadow-lg w-full">
         <div className="px-3 pt-1 flex justify-between items-center w-full">
           <p className=" text-subtle-medium text-light-2">ADS</p>
           {user ? (
@@ -76,7 +78,10 @@ const AdBar = () => {
             </Link>
           ) : null}
         </div>
-        <div className="grid grid-cols-3 grid-rows-auto gap-3 p-3 bg-gray-100">
+        <div
+          className="grid grid-cols-3 grid-rows-auto gap-3 p-3 bg-gray-100 lg:p-0 lg:flex lg:flex-col lg:pb-12 lg:gap-8 
+        lg:bg-white "
+        >
           {ads.map((ad, index) => {
             const calculateExpiryDate = (dateTime) => {
               const date = format(
@@ -89,7 +94,7 @@ const AdBar = () => {
             return (
               <div
                 key={index}
-                className="flex flex-col gap-2 p-1 bg-black shadow-lg"
+                className="flex flex-col gap-2 p-1 bg-black shadow-lg lg:p-3"
               >
                 <p className="text-white text-tiny-medium">
                   Expired In {calculateExpiryDate(ad.createdAt)}

@@ -23,7 +23,9 @@ const RightBar = () => {
   };
 
   const getAds = async () => {
-    const response = await fetch("/api/ads");
+    const response = await fetch("/api/ads", {
+      cache: 'no-store'
+    });
     const data = await response.json();
     setAds(data);
   };
