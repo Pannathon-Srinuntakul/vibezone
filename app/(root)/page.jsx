@@ -67,6 +67,9 @@ const Home = () => {
             }
             const data = await response.json();
             setUserData(data);
+            getFeedPost();
+          } else {
+            getFeedPost();
           }
         }
       } catch (error) {
@@ -76,10 +79,6 @@ const Home = () => {
 
     fetchData();
   }, [isLoaded, user]); // เพิ่มการเช็ค isLoaded
-
-  useEffect(() => {
-      getFeedPost();
-  }, []);
 
   return loading || !isLoaded ? (
     <Loader />
