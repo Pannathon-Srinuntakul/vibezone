@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Topbar from "@components/layout/Topbar";
 import Leftbar from "@components/layout/Leftbar";
 import Bottombar from "@components/layout/BottomBar";
+import AdBar from "@components/layout/Adbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default function RootLayout({ children }) {
           <Topbar />
           <main className="flex flex-row">
             <Leftbar className="max-lg:hidden" />
-            <section className="main-container">{children}</section>
+            <section className="main-container"><AdBar /> {children}</section>
           </main>
           <Bottombar />
         </body>

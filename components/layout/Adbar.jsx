@@ -69,7 +69,7 @@ const AdBar = () => {
 
   return (
     <>
-      <div className="lg:rightbar max-lg:mt-20 bg-white drop-shadow-lg w-full">
+      <div className="lg:rightbar max-lg:mt-20 max-lg:mb-10 bg-white drop-shadow-lg w-full">
         <div className="px-3 pt-1 flex justify-between items-center w-full">
           <p className=" text-subtle-medium text-light-2">ADS</p>
           {user ? (
