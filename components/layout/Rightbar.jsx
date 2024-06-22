@@ -35,8 +35,10 @@ const RightBar = () => {
   }, [user]);
 
   useEffect(() => {
-    getAds();
-  }, []);
+    if (isLoaded) {
+      getAds();
+    }
+  }, [isLoaded]);
 
   const handleDelete = async () => {
     const response = await fetch(`/api/ads/${adData._id}/${adData.creator}`, {

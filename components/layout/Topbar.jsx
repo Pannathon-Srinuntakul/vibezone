@@ -10,9 +10,8 @@ import { useEffect, useState } from "react";
 
 const Topbar = () => {
   const pathname = usePathname();
-  const { user, isLoaded } = useUser();
+  const { user } = useUser();
   const [userData, setUserData] = useState({});
-  const { userId } = useAuth();
 
   const getUser = async () => {
     const response = await fetch(`/api/user/${user.id}`);
