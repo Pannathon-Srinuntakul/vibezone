@@ -27,7 +27,6 @@ const AdBar = () => {
       cache: "no-store",
     });
     const data = await response.json();
-    console.log(data);
     setAds(data);
   };
   useEffect(() => {
