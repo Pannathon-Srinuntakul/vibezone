@@ -135,7 +135,6 @@ const SearchComponent = () => {
 
   const fetchMoreData = async () => {
     try {
-      updateUser()
       const response = await fetch(
         `/api/search/${
           showingUsers ? "users" : "posts"

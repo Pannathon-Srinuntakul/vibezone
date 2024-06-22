@@ -66,7 +66,6 @@ const profile = () => {
       if (newData.posts.length === 0) {
         setHasMore(false);
       } else {
-        getLoggedInUser()
         setUserData((prevData) => ({
           ...prevData,
           posts: [...prevData.posts, ...newData.posts],

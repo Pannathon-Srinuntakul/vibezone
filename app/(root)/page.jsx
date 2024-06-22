@@ -32,7 +32,6 @@ const Home = () => {
 
   const fetchMoreData = async () => {
     try {
-      updateUser();
       const response = await fetch(
         `/api/post?offset=${feedPost.length}&limit=10`
       );
