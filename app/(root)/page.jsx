@@ -32,6 +32,7 @@ const Home = () => {
 
   const fetchMoreData = async () => {
     try {
+      updateUser();
       const response = await fetch(
         `/api/post?offset=${feedPost.length}&limit=10`
       );
@@ -39,7 +40,6 @@ const Home = () => {
       if (newData.length === 0) {
         setHasMore(false);
       } else {
-        updateUser();
         setFeedPost((prevPosts) => [...prevPosts, ...newData]);
       }
     } catch (error) {
