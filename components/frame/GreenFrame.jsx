@@ -190,7 +190,7 @@ const GreenFrame = ({
         </div>
 
         <div
-          onDoubleClick={() => setIsExpand((prevState) => !prevState)}
+          onDoubleClick={creator ? () => setIsExpand((prevState) => !prevState) : null}
           className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center"
         >
           <Image

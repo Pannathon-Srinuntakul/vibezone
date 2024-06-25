@@ -194,7 +194,7 @@ const Pinkframe = ({
         </div>
 
         <div
-          onDoubleClick={() => setIsExpand((prevState) => !prevState)}
+          onDoubleClick={creator ? () => setIsExpand((prevState) => !prevState) : null}
           className="w-full flex items-center relative"
         >
           <Image

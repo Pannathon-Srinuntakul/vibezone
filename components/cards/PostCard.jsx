@@ -115,7 +115,7 @@ const PostCard = ({ post, creator, loggedInUser, updateUser }) => {
     await handleDelete();
     setShowConfirm(false);
   };
-
+  
   return !isDeleted ? (
     <div className="w-full flex flex-col items-center justify-center">
       <div className="card-container bg-white shadow-lg overflow-hidden">
@@ -175,7 +175,7 @@ const PostCard = ({ post, creator, loggedInUser, updateUser }) => {
           ) : null}
         </div>
         <div
-          onDoubleClick={() => setIsExpand((prevState) => !prevState)}
+          onDoubleClick={creator ? () => setIsExpand((prevState) => !prevState) : null}
           className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center"
         >
           <Image
