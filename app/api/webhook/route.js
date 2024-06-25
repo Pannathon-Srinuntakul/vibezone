@@ -1,7 +1,7 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
-import { createOrUpdateUser} from '@/lib/actions/user'
+import { createOrUpdateUser, deleteUser} from '@/lib/actions/user'
 
 export async function POST(req) {
 
@@ -68,6 +68,21 @@ export async function POST(req) {
         status: 200,
       });
     } catch (err) {
+      console.error("Error creating or updating user:", err);
+      return new Response("Error occured", {
+        status: 500,
+      });
+    }
+  }
+
+  if (eventType === "user.deleted") {
+    const {id} = evt?.data
+    try {
+      await deleteUser(id)
+      return new Response("User is deleted", {
+        status: 200,
+      });
+    } catch (error) {
       console.error("Error creating or updating user:", err);
       return new Response("Error occured", {
         status: 500,
