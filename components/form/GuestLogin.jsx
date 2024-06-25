@@ -113,7 +113,7 @@ const GuestLogin = ({ clientIp }) => {
           </div>
         </div>
       )}
-      <h1 className="text-center text-heading2-bold">Login as guest</h1>
+      <h1 className="text-center text-heading2-bold">Post as guest <span className="text-subtle-medium">or</span><Link href="/sign-in" className=" text-small-semibold underline text-blue-500"> sign in</Link></h1>
       <p className="w-full border border-subtext"></p>
       <div className="px-6 flex flex-col gap-5">
         <div>

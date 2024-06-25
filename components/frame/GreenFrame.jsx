@@ -221,8 +221,8 @@ const GreenFrame = ({
                   onClick={() => handleLike()}
                 />
               )
-            ) : null
-          ) : null}
+            ) : <Favorite sx={{ color: "black" }} />
+          ) : <Favorite sx={{ color: "black" }} />}
           {post.creatorType === "User" ? (
             <p className="text-[#6E6692] text-small-semibold flex justify-center items-center gap-1">
               {likesCount.toLocaleString()}{" "}

@@ -291,8 +291,8 @@ const Yellowframe = ({
                   onClick={() => handleLike()}
                 />
               )
-            ) : null
-          ) : null}
+            ) : <Favorite sx={{ color: "black" }} />
+          ) : <Favorite sx={{ color: "black" }} />}
           {post.creatorType === "User" ? (
             <p className="text-black text-small-semibold flex justify-center items-center gap-1">
               {likesCount.toLocaleString()}{" "}

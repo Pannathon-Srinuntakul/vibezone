@@ -66,7 +66,7 @@ export const POST = async (req) => {
           if (deletedPost) {
             if (deletedPost.creatorType === "Guest") {
               await Guest.findByIdAndUpdate(
-                deletedPost.creatorId,
+                deletedPost.creator,
                 { $pull: { posts: postId } },
                 { new: true, useFindAndModify: false }
               );

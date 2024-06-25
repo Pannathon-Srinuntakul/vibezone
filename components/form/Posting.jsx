@@ -1,5 +1,6 @@
 "use client";
 
+import Loader from "@components/Loader";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -47,6 +48,8 @@ const Posting = ({ post, apiEndpoint }) => {
       setIsLoading(false);
     }
   };
+
+  if (!post.creatorId) return <Loader />;
 
   return (
     <form
