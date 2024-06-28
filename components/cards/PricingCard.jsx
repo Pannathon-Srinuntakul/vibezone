@@ -2,14 +2,12 @@
 
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
 const PricingCard = ({ price }) => {
   const { user, isLoaded } = useUser();
-  const router = useRouter();
   
   const handleSubscription = async (e) => {
     e.preventDefault();

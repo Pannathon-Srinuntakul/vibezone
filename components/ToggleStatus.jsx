@@ -1,10 +1,12 @@
-"use client";
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const ToggleStatus = ({ id, postStatus }) => {
   const [status, setStatus] = useState(postStatus);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setStatus(postStatus);
+  }, [postStatus]);
 
   const handleToggle = async () => {
     if (isLoading) return;
@@ -22,7 +24,7 @@ const ToggleStatus = ({ id, postStatus }) => {
       if (response.ok) {
         setIsLoading(false);
       } else {
-        console.error("Failed to save bio");
+        console.error("Failed to save status");
         setIsLoading(false);
       }
     } catch (error) {
@@ -32,23 +34,24 @@ const ToggleStatus = ({ id, postStatus }) => {
   };
 
   return (
-    <label
-      htmlFor="status"
-      className="cursor-pointer flex items-center gap-1.5"
-    >
+    <div className="cursor-pointer flex items-center gap-1.5">
       <p className="text-tiny-medium">{status}</p>
       <div className="relative inline-block w-10 align-middle select-none">
-        <input
-          type="checkbox"
-          id="status"
-          checked={status === "Public"}
-          onChange={handleToggle}
-          className="sr-only peer"
-        />
-
-        <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+        <button
+          className={`w-[42px] h-[25px] rounded-full flex items-center focus:outline-none transition-colors ${
+            status === "Public" ? "bg-blue-600" : "bg-gray-200"
+          }`}
+          onClick={handleToggle}
+          disabled={isLoading}
+        >
+          <div
+            className={`w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${
+              status === "Public" ? "translate-x-5" : "translate-x-0.5"
+            }`}
+          />
+        </button>
       </div>
-    </label>
+    </div>
   );
 };
 
