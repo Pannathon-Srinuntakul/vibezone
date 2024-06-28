@@ -73,89 +73,97 @@ const SavedPosts = () => {
       <Loader />
     ) : (
       <div className="w-full">
-      <InfiniteScroll
-        dataLength={userData.savedPosts.length}
-        next={fetchMoreData}
-        hasMore={hasMore}
-        loader={<Loader />}
-        endMessage={
-          <div className="w-full flex justify-center items-center mt-12">
-            <p className=" text-heading4-bold">No more posts</p>
-          </div>
-        }
-      >
-        <div className="mt-20 lg:mt-0 flex flex-col w-full items-center gap-10">
-          {userData?.savedPosts?.map((post, index) => (
-            <div className="w-full" key={index}>
-              {post.frame === "Blue" && (
-                <BlueFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={userData}
-                  update={getUser}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {post.frame === "Pink" && (
-                <PinkFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={userData}
-                  update={getUser}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {post.frame === "Yellow" && (
-                <YellowFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={userData}
-                  update={getUser}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {post.frame === "Purple" && (
-                <PurpleFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={userData}
-                  update={getUser}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {post.frame === "Green" && (
-                <GreenFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={userData}
-                  update={getUser}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {!post.frame && (
-                <PostCard
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={userData}
-                  update={getUser}
-                  updateUser={updateUser}
-                />
-              )}
+        <InfiniteScroll
+          dataLength={userData.savedPosts.length}
+          next={fetchMoreData}
+          hasMore={hasMore}
+          loader={<Loader />}
+          endMessage={
+            <div className="w-full flex justify-center items-center mt-12">
+              <p className=" text-heading4-bold">No more posts</p>
             </div>
-          ))}
-        </div>
-      </InfiniteScroll>
+          }
+        >
+          <div className="mt-20 lg:mt-0 flex flex-col w-full items-center gap-10">
+            {userData?.savedPosts?.map((post, index) => {
+              if (
+                post?.status === "Private" &&
+                post?.creator?.clerkId !== userData?.clerkId
+              ) {
+                return null;
+              }
+              return (
+                <div className="w-full" key={index}>
+                  {post.frame === "Blue" && (
+                    <BlueFrame
+                      key={post._id}
+                      post={post}
+                      creator={post.creator}
+                      loggedInUser={userData}
+                      update={getUser}
+                      updateUser={updateUser}
+                      sriracha={sriracha}
+                    />
+                  )}
+                  {post.frame === "Pink" && (
+                    <PinkFrame
+                      key={post._id}
+                      post={post}
+                      creator={post.creator}
+                      loggedInUser={userData}
+                      update={getUser}
+                      updateUser={updateUser}
+                      sriracha={sriracha}
+                    />
+                  )}
+                  {post.frame === "Yellow" && (
+                    <YellowFrame
+                      key={post._id}
+                      post={post}
+                      creator={post.creator}
+                      loggedInUser={userData}
+                      update={getUser}
+                      updateUser={updateUser}
+                      sriracha={sriracha}
+                    />
+                  )}
+                  {post.frame === "Purple" && (
+                    <PurpleFrame
+                      key={post._id}
+                      post={post}
+                      creator={post.creator}
+                      loggedInUser={userData}
+                      update={getUser}
+                      updateUser={updateUser}
+                      sriracha={sriracha}
+                    />
+                  )}
+                  {post.frame === "Green" && (
+                    <GreenFrame
+                      key={post._id}
+                      post={post}
+                      creator={post.creator}
+                      loggedInUser={userData}
+                      update={getUser}
+                      updateUser={updateUser}
+                      sriracha={sriracha}
+                    />
+                  )}
+                  {!post.frame && (
+                    <PostCard
+                      key={post._id}
+                      post={post}
+                      creator={post.creator}
+                      loggedInUser={userData}
+                      update={getUser}
+                      updateUser={updateUser}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </InfiniteScroll>
       </div>
     );
   } else {

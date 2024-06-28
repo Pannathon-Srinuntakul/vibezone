@@ -119,7 +119,7 @@ const profile = () => {
               {userData.posts?.map((post, index) => {
                 if (
                   post?.status === "Private" &&
-                  post?.creator?.clerkId !== userData?.clerkId
+                  post?.creator?.clerkId !== loggedInUserData?.clerkId
                 ) {
                   return null;
                 }
