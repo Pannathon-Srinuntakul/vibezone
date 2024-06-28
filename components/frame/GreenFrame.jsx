@@ -5,29 +5,21 @@ import {
   Bookmark,
   BookmarkBorder,
   CameraAltOutlined,
-  Delete,
   DeleteOutline,
   ExpandLessOutlined,
   ExpandMoreOutlined,
   Favorite,
   FavoriteBorder,
-  Visibility,
-  VisibilityOff,
 } from "@mui/icons-material";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import domtoimage from "dom-to-image";
+import { useState } from "react";
 import { format } from "date-fns";
-import { useRouter } from "next/navigation";
 
 const GreenFrame = ({
   post,
   creator,
-  guest,
-  loggedInGuest,
   loggedInUser,
-  update,
   updateUser,
   sriracha,
 }) => {
@@ -149,6 +141,7 @@ const GreenFrame = ({
               )
             ) : (
               <>
+                <ToggleStatus id={post._id} postStatus={post.status} />
                 <DeleteOutline
                   sx={{ color: "#6E6692", cursor: "pointer" }}
                   onClick={() => confirmDelete()}
@@ -190,7 +183,9 @@ const GreenFrame = ({
         </div>
 
         <div
-          onDoubleClick={creator ? () => setIsExpand((prevState) => !prevState) : null}
+          onDoubleClick={
+            creator ? () => setIsExpand((prevState) => !prevState) : null
+          }
           className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center"
         >
           <Image
@@ -221,8 +216,12 @@ const GreenFrame = ({
                   onClick={() => handleLike()}
                 />
               )
-            ) : <Favorite sx={{ color: "black" }} />
-          ) : <Favorite sx={{ color: "black" }} />}
+            ) : (
+              <Favorite sx={{ color: "black" }} />
+            )
+          ) : (
+            <Favorite sx={{ color: "black" }} />
+          )}
           {post.creatorType === "User" ? (
             <p className="text-[#6E6692] text-small-semibold flex justify-center items-center gap-1">
               {likesCount.toLocaleString()}{" "}

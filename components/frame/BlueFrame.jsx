@@ -5,29 +5,21 @@ import {
   Bookmark,
   BookmarkBorder,
   CameraAltOutlined,
-  Delete,
   DeleteOutline,
   ExpandLessOutlined,
   ExpandMoreOutlined,
   Favorite,
   FavoriteBorder,
-  Visibility,
-  VisibilityOff,
 } from "@mui/icons-material";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import domtoimage from "dom-to-image";
+import { useState } from "react";
 import { format } from "date-fns";
-import { useRouter } from "next/navigation";
 
 const Blueframe = ({
   post,
   creator,
-  guest,
-  loggedInGuest,
   loggedInUser,
-  update,
   updateUser,
   sriracha,
 }) => {
@@ -153,6 +145,7 @@ const Blueframe = ({
               )
             ) : (
               <>
+                <ToggleStatus id={post._id} postStatus={post.status} />
                 <DeleteOutline
                   sx={{ color: "black", cursor: "pointer", zIndex: "50" }}
                   onClick={() => confirmDelete()}
@@ -194,7 +187,9 @@ const Blueframe = ({
         </div>
 
         <div
-          onDoubleClick={creator ? () => setIsExpand((prevState) => !prevState) : null}
+          onDoubleClick={
+            creator ? () => setIsExpand((prevState) => !prevState) : null
+          }
           className="w-full flex items-center relative"
         >
           <Image
@@ -281,8 +276,12 @@ const Blueframe = ({
                   onClick={() => handleLike()}
                 />
               )
-            ) : <Favorite sx={{ color: "black" }} />
-          ) : <Favorite sx={{ color: "black" }} />}
+            ) : (
+              <Favorite sx={{ color: "black" }} />
+            )
+          ) : (
+            <Favorite sx={{ color: "black" }} />
+          )}
           {post.creatorType === "User" ? (
             <p className="text-white text-small-semibold flex justify-center items-center gap-1">
               {likesCount.toLocaleString()}{" "}

@@ -1,5 +1,5 @@
 import { getAuth } from "@clerk/nextjs/server";
-import User from "@lib/models/User";
+import Post from "@lib/models/Post";
 import { connectToDB } from "@lib/mongodb/mongoose";
 
 export const PUT = async (req, { params }) => {
@@ -17,24 +17,22 @@ export const PUT = async (req, { params }) => {
     await connectToDB();
 
     const reqBody = await req.json();
-
-    const updateBio = await User.findByIdAndUpdate(
+    const updateStatus = await Post.findByIdAndUpdate(
       id,
-      { bio: reqBody.bio },
+      { status: reqBody.newStatus },
       { new: true }
     ).exec();
 
-    if (!updateBio) {
-      return new Response(JSON.stringify({ error: "User not found" }), {
+    if (!updateStatus) {
+      return new Response(JSON.stringify({ error: "Post not found" }), {
         status: 404,
       });
     }
 
-    return new Response(JSON.stringify(updateBio), { status: 200 });
+    return new Response(JSON.stringify(updateStatus), { status: 200 });
   } catch (error) {
-    console.error("Error updating bio:", error);
     return new Response(JSON.stringify({ error: "Internal Server Error" }), {
-      status: 500,
-    });
+        status: 500,
+      });
   }
 };

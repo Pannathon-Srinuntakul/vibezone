@@ -1,5 +1,6 @@
 "use client";
 
+import { useUser } from "@clerk/nextjs";
 import Loader from "@components/Loader";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,6 +20,7 @@ const Posting = ({ post, apiEndpoint }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const [status, setStatus] = useState("Public");
+  const { user } = useUser();
 
   const handleToggle = () => {
     const newStatus = status === "Private" ? "Public" : "Private";
@@ -39,7 +41,7 @@ const Posting = ({ post, apiEndpoint }) => {
       });
       postForm.append("details", JSON.stringify(details));
       postForm.append("postPhoto", data.postPhoto[0]);
-      postForm.append("status", status)
+      postForm.append("status", status);
       const response = await fetch(apiEndpoint, {
         method: "POST",
         body: postForm,
@@ -111,6 +113,7 @@ const Posting = ({ post, apiEndpoint }) => {
               )}
               <p className="text-subtext text-tiny-medium">Upload a photo</p>
             </label>
+            {user ? (
             <div className="w-full gap-2 flex flex-col items-center mt-3">
               <p className="text-subtext text-heading4-bold">
                 Private or Public
@@ -124,11 +127,12 @@ const Posting = ({ post, apiEndpoint }) => {
                     onChange={handleToggle}
                     className="sr-only peer"
                   />
-                  <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                  <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                 </div>
               </label>
               <p className="text-center">Post in {status}</p>{" "}
             </div>
+            ) : null}
           </div>
           <input
             {...register("postPhoto", {

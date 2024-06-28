@@ -5,29 +5,22 @@ import {
   Bookmark,
   BookmarkBorder,
   CameraAltOutlined,
-  Delete,
   DeleteOutline,
   ExpandLessOutlined,
   ExpandMoreOutlined,
   Favorite,
   FavoriteBorder,
-  Visibility,
-  VisibilityOff,
 } from "@mui/icons-material";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import domtoimage from "dom-to-image";
+import { useState } from "react";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 
 const PurpleFrame = ({
   post,
   creator,
-  guest,
-  loggedInGuest,
   loggedInUser,
-  update,
   updateUser,
   sriracha,
 }) => {
@@ -43,7 +36,6 @@ const PurpleFrame = ({
   const [showConfirm, setShowConfirm] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
 
-  const router = useRouter();
 
   const dateTime = post?.createdAt;
   const date = format(new Date(dateTime), "yyyy.MM.dd");
@@ -155,6 +147,7 @@ const PurpleFrame = ({
               )
             ) : (
               <>
+                <ToggleStatus id={post._id} postStatus={post.status} />
                 <DeleteOutline
                   sx={{ color: "white", cursor: "pointer" }}
                   onClick={() => confirmDelete()}
@@ -196,7 +189,9 @@ const PurpleFrame = ({
         </div>
 
         <div
-          onDoubleClick={creator ? () => setIsExpand((prevState) => !prevState) : null}
+          onDoubleClick={
+            creator ? () => setIsExpand((prevState) => !prevState) : null
+          }
           className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center"
         >
           <Image
@@ -225,8 +220,12 @@ const PurpleFrame = ({
                   onClick={() => handleLike()}
                 />
               )
-            ) : <Favorite sx={{ color: "black" }} />
-          ) : <Favorite sx={{ color: "black" }} />}
+            ) : (
+              <Favorite sx={{ color: "black" }} />
+            )
+          ) : (
+            <Favorite sx={{ color: "black" }} />
+          )}
           {post.creatorType === "User" ? (
             <p className="text-white text-small-semibold flex justify-center items-center gap-1">
               {likesCount.toLocaleString()}

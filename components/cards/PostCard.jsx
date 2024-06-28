@@ -4,20 +4,18 @@ import {
   AutoAwesomeOutlined,
   Bookmark,
   BookmarkBorder,
-  Delete,
+  CameraAltOutlined,
+  DeleteOutline,
   ExpandLessOutlined,
   ExpandMoreOutlined,
   Favorite,
   FavoriteBorder,
-  Preview,
-  Visibility,
-  VisibilityOff,
 } from "@mui/icons-material";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { format } from "date-fns";
-import { useRouter } from "next/navigation";
+import ToggleStatus from "@components/ToggleStatus";
 
 const PostCard = ({ post, creator, loggedInUser, updateUser }) => {
   const [isExpand, setIsExpand] = useState(false);
@@ -115,11 +113,11 @@ const PostCard = ({ post, creator, loggedInUser, updateUser }) => {
     await handleDelete();
     setShowConfirm(false);
   };
-  
+
   return !isDeleted ? (
     <div className="w-full flex flex-col items-center justify-center">
       <div className="card-container bg-white shadow-lg overflow-hidden">
-        <div className="w-full relative flex justify-end pb-3 gap-3">
+        <div className="w-full relative flex justify-end pb-3 gap-2">
           <p className="date text-subtext">{date}</p>
           {loggedInUser &&
           Object.keys(loggedInUser).length > 0 &&
@@ -138,7 +136,8 @@ const PostCard = ({ post, creator, loggedInUser, updateUser }) => {
               )
             ) : (
               <>
-                <Delete
+                <ToggleStatus id={post._id} postStatus={post.status} />
+                <DeleteOutline
                   sx={{ color: "black", cursor: "pointer" }}
                   onClick={() => confirmDelete()}
                 />
@@ -151,7 +150,7 @@ const PostCard = ({ post, creator, loggedInUser, updateUser }) => {
                     },
                   }}
                 >
-                  <Preview sx={{ color: "black", cursor: "pointer" }} />
+                  <CameraAltOutlined sx={{ color: "black", cursor: "pointer" }} />
                 </Link>
                 <Link href={`/upgrade/${post._id}`}>
                   <AutoAwesomeOutlined
@@ -175,7 +174,9 @@ const PostCard = ({ post, creator, loggedInUser, updateUser }) => {
           ) : null}
         </div>
         <div
-          onDoubleClick={creator ? () => setIsExpand((prevState) => !prevState) : null}
+          onDoubleClick={
+            creator ? () => setIsExpand((prevState) => !prevState) : null
+          }
           className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center"
         >
           <Image

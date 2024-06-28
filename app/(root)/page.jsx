@@ -98,9 +98,9 @@ const Home = () => {
           {feedPost.map((post, index) => {
             if (
               post?.status === "Private" &&
-              post.creator.clerkId !== userData.clerkId
+              post?.creator?.clerkId !== userData?.clerkId
             ) {
-              return null; // ถ้าเป็น "Private" และไม่ใช่ผู้โพส ให้ซ่อน
+              return null;
             }
 
             return (

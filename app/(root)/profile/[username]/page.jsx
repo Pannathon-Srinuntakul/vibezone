@@ -116,75 +116,83 @@ const profile = () => {
             }
           >
             <div className="flex flex-col gap-9 mt-12">
-              {userData.posts?.map((post, index) => (
-                <div key={index}>
-                  {post.frame === "Blue" && (
-                    <BlueFrame
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={loggedInUserData}
-                      update={getUserProfile}
-                      updateUser={updateUser}
-                      sriracha={sriracha}
-                    />
-                  )}
-                  {post.frame === "Pink" && (
-                    <PinkFrame
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={loggedInUserData}
-                      update={getUserProfile}
-                      updateUser={updateUser}
-                      sriracha={sriracha}
-                    />
-                  )}
-                  {post.frame === "Yellow" && (
-                    <YellowFrame
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={loggedInUserData}
-                      update={getUserProfile}
-                      updateUser={updateUser}
-                      sriracha={sriracha}
-                    />
-                  )}
-                  {post.frame === "Purple" && (
-                    <PurpleFrame
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={loggedInUserData}
-                      update={getUserProfile}
-                      updateUser={updateUser}
-                      sriracha={sriracha}
-                    />
-                  )}
-                  {post.frame === "Green" && (
-                    <GreenFrame
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={loggedInUserData}
-                      update={getUserProfile}
-                      updateUser={updateUser}
-                      sriracha={sriracha}
-                    />
-                  )}
-                  {!post.frame && (
-                    <PostCard
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={loggedInUserData}
-                      update={getUserProfile}
-                      updateUser={updateUser}
-                    />
-                  )}
-                </div>
-              ))}
+              {userData.posts?.map((post, index) => {
+                if (
+                  post?.status === "Private" &&
+                  post?.creator?.clerkId !== userData?.clerkId
+                ) {
+                  return null;
+                }
+                return (
+                  <div key={index}>
+                    {post.frame === "Blue" && (
+                      <BlueFrame
+                        key={post._id}
+                        post={post}
+                        creator={post.creator}
+                        loggedInUser={loggedInUserData}
+                        update={getUserProfile}
+                        updateUser={updateUser}
+                        sriracha={sriracha}
+                      />
+                    )}
+                    {post.frame === "Pink" && (
+                      <PinkFrame
+                        key={post._id}
+                        post={post}
+                        creator={post.creator}
+                        loggedInUser={loggedInUserData}
+                        update={getUserProfile}
+                        updateUser={updateUser}
+                        sriracha={sriracha}
+                      />
+                    )}
+                    {post.frame === "Yellow" && (
+                      <YellowFrame
+                        key={post._id}
+                        post={post}
+                        creator={post.creator}
+                        loggedInUser={loggedInUserData}
+                        update={getUserProfile}
+                        updateUser={updateUser}
+                        sriracha={sriracha}
+                      />
+                    )}
+                    {post.frame === "Purple" && (
+                      <PurpleFrame
+                        key={post._id}
+                        post={post}
+                        creator={post.creator}
+                        loggedInUser={loggedInUserData}
+                        update={getUserProfile}
+                        updateUser={updateUser}
+                        sriracha={sriracha}
+                      />
+                    )}
+                    {post.frame === "Green" && (
+                      <GreenFrame
+                        key={post._id}
+                        post={post}
+                        creator={post.creator}
+                        loggedInUser={loggedInUserData}
+                        update={getUserProfile}
+                        updateUser={updateUser}
+                        sriracha={sriracha}
+                      />
+                    )}
+                    {!post.frame && (
+                      <PostCard
+                        key={post._id}
+                        post={post}
+                        creator={post.creator}
+                        loggedInUser={loggedInUserData}
+                        update={getUserProfile}
+                        updateUser={updateUser}
+                      />
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </InfiniteScroll>
         </div>

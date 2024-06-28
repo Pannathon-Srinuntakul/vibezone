@@ -228,7 +228,10 @@ const SearchComponent = () => {
                     className="w-full flex flex-col justify-start items-start gap-10 pb-5"
                   >
                     {searchResults.users.map((user, index) => (
-                      <div key={index} className="bg-white rounded-full drop-shadow-lg p-2 flex items-center w-full">
+                      <div
+                        key={index}
+                        className="bg-white rounded-full drop-shadow-lg p-2 flex items-center w-full"
+                      >
                         <Link
                           href={`/profile/${user.username}`}
                           className="flex justify-between w-full pr-5"
@@ -254,99 +257,110 @@ const SearchComponent = () => {
                 <h3 className="text-subtext text-heading3-bold p-5">Posts</h3>
                 <div className="flex flex-col w-full items-center gap-10">
                   <div className="w-full">
-                  <InfiniteScroll
-                    dataLength={searchResults.posts.length}
-                    next={fetchMoreData}
-                    hasMore={hasMore}
-                    loader={<Loader />}
-                    endMessage={
-                      <div className="w-full flex justify-center items-center mt-12">
-                        <p className=" text-heading4-bold">No more posts</p>
-                      </div>
-                    }
-                  >
-                    {searchResults.posts.map((post, index) => (
-                      <div key={index} className="flex flex-col justify-start items-start gap-10 pb-5">
-                        {post.frame === "Blue" && (
-                          <BlueFrame
-                            key={post._id}
-                            post={post}
-                            creator={post.creator}
-                            guest={clientIp}
-                            loggedInGuest={guestData}
-                            loggedInUser={userData}
-                            update={updateUser}
-                            updateUser={updateUser}
-                            sriracha={sriracha}
-                          />
-                        )}
-                        {post.frame === "Pink" && (
-                          <PinkFrame
-                            key={post._id}
-                            post={post}
-                            creator={post.creator}
-                            guest={clientIp}
-                            loggedInGuest={guestData}
-                            loggedInUser={userData}
-                            update={updateUser}
-                            updateUser={updateUser}
-                            sriracha={sriracha}
-                          />
-                        )}
-                        {post.frame === "Yellow" && (
-                          <YellowFrame
-                            key={post._id}
-                            post={post}
-                            creator={post.creator}
-                            guest={clientIp}
-                            loggedInGuest={guestData}
-                            loggedInUser={userData}
-                            update={updateUser}
-                            updateUser={updateUser}
-                            sriracha={sriracha}
-                          />
-                        )}
-                        {post.frame === "Purple" && (
-                          <PurpleFrame
-                            key={post._id}
-                            post={post}
-                            creator={post.creator}
-                            guest={clientIp}
-                            loggedInGuest={guestData}
-                            loggedInUser={userData}
-                            update={updateUser}
-                            updateUser={updateUser}
-                            sriracha={sriracha}
-                          />
-                        )}
-                        {post.frame === "Green" && (
-                          <GreenFrame
-                            key={post._id}
-                            post={post}
-                            creator={post.creator}
-                            guest={clientIp}
-                            loggedInGuest={guestData}
-                            loggedInUser={userData}
-                            update={updateUser}
-                            updateUser={updateUser}
-                            sriracha={sriracha}
-                          />
-                        )}
-                        {!post.frame && (
-                          <PostCard
-                            key={post._id}
-                            post={post}
-                            creator={post.creator}
-                            guest={clientIp}
-                            loggedInGuest={guestData}
-                            loggedInUser={userData}
-                            update={updateUser}
-                            updateUser={updateUser}
-                          />
-                        )}
-                      </div>
-                    ))}
-                  </InfiniteScroll>
+                    <InfiniteScroll
+                      dataLength={searchResults.posts.length}
+                      next={fetchMoreData}
+                      hasMore={hasMore}
+                      loader={<Loader />}
+                      endMessage={
+                        <div className="w-full flex justify-center items-center mt-12">
+                          <p className=" text-heading4-bold">No more posts</p>
+                        </div>
+                      }
+                    >
+                      {searchResults.posts.map((post, index) => {
+                        if (
+                          post?.status === "Private" &&
+                          post?.creator?.clerkId !== userData?.clerkId
+                        ) {
+                          return null;
+                        }
+                        return (
+                          <div
+                            key={index}
+                            className="flex flex-col justify-start items-start gap-10 pb-5"
+                          >
+                            {post.frame === "Blue" && (
+                              <BlueFrame
+                                key={post._id}
+                                post={post}
+                                creator={post.creator}
+                                guest={clientIp}
+                                loggedInGuest={guestData}
+                                loggedInUser={userData}
+                                update={updateUser}
+                                updateUser={updateUser}
+                                sriracha={sriracha}
+                              />
+                            )}
+                            {post.frame === "Pink" && (
+                              <PinkFrame
+                                key={post._id}
+                                post={post}
+                                creator={post.creator}
+                                guest={clientIp}
+                                loggedInGuest={guestData}
+                                loggedInUser={userData}
+                                update={updateUser}
+                                updateUser={updateUser}
+                                sriracha={sriracha}
+                              />
+                            )}
+                            {post.frame === "Yellow" && (
+                              <YellowFrame
+                                key={post._id}
+                                post={post}
+                                creator={post.creator}
+                                guest={clientIp}
+                                loggedInGuest={guestData}
+                                loggedInUser={userData}
+                                update={updateUser}
+                                updateUser={updateUser}
+                                sriracha={sriracha}
+                              />
+                            )}
+                            {post.frame === "Purple" && (
+                              <PurpleFrame
+                                key={post._id}
+                                post={post}
+                                creator={post.creator}
+                                guest={clientIp}
+                                loggedInGuest={guestData}
+                                loggedInUser={userData}
+                                update={updateUser}
+                                updateUser={updateUser}
+                                sriracha={sriracha}
+                              />
+                            )}
+                            {post.frame === "Green" && (
+                              <GreenFrame
+                                key={post._id}
+                                post={post}
+                                creator={post.creator}
+                                guest={clientIp}
+                                loggedInGuest={guestData}
+                                loggedInUser={userData}
+                                update={updateUser}
+                                updateUser={updateUser}
+                                sriracha={sriracha}
+                              />
+                            )}
+                            {!post.frame && (
+                              <PostCard
+                                key={post._id}
+                                post={post}
+                                creator={post.creator}
+                                guest={clientIp}
+                                loggedInGuest={guestData}
+                                loggedInUser={userData}
+                                update={updateUser}
+                                updateUser={updateUser}
+                              />
+                            )}
+                          </div>
+                        );
+                      })}
+                    </InfiniteScroll>
                   </div>
                 </div>
               </div>
