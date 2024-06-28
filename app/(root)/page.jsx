@@ -11,7 +11,6 @@ import Loader from "@components/Loader";
 import { useEffect, useState } from "react";
 import { Sriracha } from "next/font/google";
 import InfiniteScroll from "react-infinite-scroll-component";
-import AdBar from "@components/layout/Adbar";
 
 const sriracha = Sriracha({ subsets: ["latin"], weight: "400" });
 
@@ -63,7 +62,7 @@ const Home = () => {
           if (user) {
             const response = await fetch(`/api/user/${user.id}`);
             if (!response.ok) {
-              throw new Error('Unauthorized');
+              throw new Error("Unauthorized");
             }
             const data = await response.json();
             setUserData(data);
@@ -96,70 +95,79 @@ const Home = () => {
         }
       >
         <div className="flex flex-col w-full items-center gap-10">
-          {feedPost.map((post, index) => (
-            <div className="w-full" key={index}>
-              {post.frame === "Blue" && (
-                <BlueFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={userData}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {post.frame === "Pink" && (
-                <PinkFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={userData}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {post.frame === "Yellow" && (
-                <YellowFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={userData}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {post.frame === "Purple" && (
-                <PurpleFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={userData}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {post.frame === "Green" && (
-                <GreenFrame
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={userData}
-                  updateUser={updateUser}
-                  sriracha={sriracha}
-                />
-              )}
-              {!post.frame && (
-                <PostCard
-                  key={post._id}
-                  post={post}
-                  creator={post.creator}
-                  loggedInUser={userData}
-                  update={updateUser}
-                  updateUser={updateUser}
-                />
-              )}
-            </div>
-          ))}
+          {feedPost.map((post, index) => {
+            if (
+              post?.status === "Private" &&
+              post.creator.clerkId !== userData.clerkId
+            ) {
+              return null; // ถ้าเป็น "Private" และไม่ใช่ผู้โพส ให้ซ่อน
+            }
+
+            return (
+              <div className="w-full" key={post._id}>
+                {post.frame === "Blue" && (
+                  <BlueFrame
+                    key={post._id}
+                    post={post}
+                    creator={post.creator}
+                    loggedInUser={userData}
+                    updateUser={updateUser}
+                    sriracha={sriracha}
+                  />
+                )}
+                {post.frame === "Pink" && (
+                  <PinkFrame
+                    key={post._id}
+                    post={post}
+                    creator={post.creator}
+                    loggedInUser={userData}
+                    updateUser={updateUser}
+                    sriracha={sriracha}
+                  />
+                )}
+                {post.frame === "Yellow" && (
+                  <YellowFrame
+                    key={post._id}
+                    post={post}
+                    creator={post.creator}
+                    loggedInUser={userData}
+                    updateUser={updateUser}
+                    sriracha={sriracha}
+                  />
+                )}
+                {post.frame === "Purple" && (
+                  <PurpleFrame
+                    key={post._id}
+                    post={post}
+                    creator={post.creator}
+                    loggedInUser={userData}
+                    updateUser={updateUser}
+                    sriracha={sriracha}
+                  />
+                )}
+                {post.frame === "Green" && (
+                  <GreenFrame
+                    key={post._id}
+                    post={post}
+                    creator={post.creator}
+                    loggedInUser={userData}
+                    updateUser={updateUser}
+                    sriracha={sriracha}
+                  />
+                )}
+                {!post.frame && (
+                  <PostCard
+                    key={post._id}
+                    post={post}
+                    creator={post.creator}
+                    loggedInUser={userData}
+                    update={updateUser}
+                    updateUser={updateUser}
+                  />
+                )}
+              </div>
+            );
+          })}
         </div>
       </InfiniteScroll>
     </div>

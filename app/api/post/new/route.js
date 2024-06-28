@@ -54,6 +54,7 @@ export const POST = async (req) => {
       caption: data.get("caption"),
       details: details,
       postPhoto: postPhoto,
+      status: data.get("status")
     });
 
     await newPost.save();
