@@ -15,6 +15,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { format } from "date-fns";
+import ToggleStatus from "@components/ToggleStatus";
 
 const Pinkframe = ({
   post,
