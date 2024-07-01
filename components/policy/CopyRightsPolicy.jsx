@@ -18,7 +18,7 @@ const CopyRightsPolicy = ({ language }) => {
 
           <h2 className="text-xl font-bold mb-2">1. Introduction</h2>
           <p className="mb-4">
-            Framefeeling ("we", "our", "website") holds the copyright to all
+            Framefeeling we holds the copyright to all
             content, including but not limited to images, graphics, text,
             software, and other materials displayed on our website. This
             Copyright Policy governs the use of our copyrighted materials.
@@ -118,7 +118,7 @@ const CopyRightsPolicy = ({ language }) => {
 
           <h2 className="text-xl font-bold mb-2">1. บทนำ</h2>
           <p className="mb-4">
-            Framefeeling ("เรา", "เว็บไซต์ของเรา")
+            Framefeeling เรา
             ครอบครองลิขสิทธิ์ของเนื้อหาทั้งหมด ซึ่งรวมถึงรูปภาพ, กราฟิก,
             ข้อความ, ซอฟต์แวร์ และวัสดุอื่น ๆ ที่ปรากฏบนเว็บไซต์ของเรา
             นโยบายลิขสิทธิ์นี้กำหนดการใช้งานของวัสดุที่มีลิขสิทธิ์ของเรา
