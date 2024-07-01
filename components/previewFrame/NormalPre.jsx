@@ -190,10 +190,10 @@ const NormalPre = ({ date, post, likesCount, creator, details }) => {
                   width={200}
                   height={150}
                   layout="responsive"
-                  className="w-full"
+                  className="w-full pb-20"
                 />
                 {showLikes ? (
-                  <p className="text-black text-[20px] flex justify-center items-center gap-1 mt-16">
+                  <p className="text-black text-[20px] flex justify-center items-center gap-1">
                     <Favorite sx={{ color: "red", width: 60, height: 60 }} />
                     {likesCount.toLocaleString()}{" "}
                     <span className="text-subtext text-[15px]">Liked</span>
