@@ -97,8 +97,7 @@ const Home = () => {
         <div className="flex flex-col w-full items-center gap-10">
           {feedPost.map((post, index) => {
             if (
-              post?.status === "Private" &&
-              post?.creator?.clerkId !== userData?.clerkId
+              post?.status === "Private"
             ) {
               return null;
             }

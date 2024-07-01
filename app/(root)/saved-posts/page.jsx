@@ -87,8 +87,7 @@ const SavedPosts = () => {
           <div className="mt-20 lg:mt-0 flex flex-col w-full items-center gap-10">
             {userData?.savedPosts?.map((post, index) => {
               if (
-                post?.status === "Private" &&
-                post?.creator?.clerkId !== userData?.clerkId
+                post?.status === "Private"
               ) {
                 return null;
               }
