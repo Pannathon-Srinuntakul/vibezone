@@ -328,7 +328,7 @@ const BluePre = ({ date, post, likesCount, creator, details, sriracha }) => {
                           sx={{ color: "darkblue", width: 60, height: 60 }}
                         />
                         {likesCount.toLocaleString()}{" "}
-                        <span className="text-[15px]">Liked</span>
+                        <span className="text-[15px]">Like</span>
                       </p>
                     ) : null}
                   </div>

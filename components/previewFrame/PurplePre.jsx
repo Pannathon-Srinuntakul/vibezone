@@ -211,7 +211,7 @@ const PurplePre = ({ date, post, likesCount, creator, details, sriracha }) => {
                   <p className="text-white text-[20px] flex justify-center items-center gap-1">
                     <Favorite sx={{ color: "purple", width: 60, height: 60 }} />
                     {likesCount.toLocaleString()}
-                    <span className="text-[15px]">Liked</span>
+                    <span className="text-[15px]">Like</span>
                   </p>
                 ) : null}
               </div>

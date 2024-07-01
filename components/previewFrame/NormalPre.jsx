@@ -196,7 +196,7 @@ const NormalPre = ({ date, post, likesCount, creator, details }) => {
                   <p className="text-black text-[20px] flex justify-center items-center gap-1">
                     <Favorite sx={{ color: "red", width: 60, height: 60 }} />
                     {likesCount.toLocaleString()}{" "}
-                    <span className="text-subtext text-[15px]">Liked</span>
+                    <span className="text-subtext text-[15px]">Like</span>
                   </p>
                 ) : null}
               </div>
