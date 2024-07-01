@@ -22,9 +22,9 @@ export const GET = async (req) => {
       feedPosts.map(async (post) => {
         let creator = null;
         if (post.creatorType === "User") {
-          creator = await User.findById(post.creator).lean().exec();
+          creator = await User.findById(post.creator).select("-email").lean().exec(); // Exclude 'email' field
         } else if (post.creatorType === "Guest") {
-          creator = await Guest.findById(post.creator).lean().exec();
+          creator = await Guest.findById(post.creator).select("-ipAddress").lean().exec(); // Exclude 'ipAddress' field
         }
         return {
           ...post.toObject(),

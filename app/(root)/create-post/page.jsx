@@ -3,7 +3,6 @@
 import { useUser } from "@clerk/nextjs";
 import GuestLogin from "@components/form/GuestLogin";
 import Posting from "@components/form/Posting";
-import Loader from "@components/Loader";
 import { useEffect, useState } from "react";
 
 const CreatePost = () => {

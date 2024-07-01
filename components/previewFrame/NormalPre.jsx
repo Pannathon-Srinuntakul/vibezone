@@ -147,7 +147,7 @@ const NormalPre = ({ date, post, likesCount, creator, details }) => {
                   <div className="details">
                     {details.map((detail, index) => (
                       <div key={index}>
-                        <p className="text-subtle-medium  md:text-small-semibold break-words whitespace-normal">
+                        <p className="text-subtle-medium md:text-small-semibold break-words whitespace-normal">
                           {detail}
                         </p>
                       </div>
@@ -226,13 +226,13 @@ const NormalPre = ({ date, post, likesCount, creator, details }) => {
                     </div>
                   </div>
                   <div className="w-full flex flex-col justify-center items-center">
-                    <p className="text-[28px] font-bold">{post.caption}</p>
+                    <p className="text-[34px] font-bold">{post.caption}</p>
                     <p className="border border-subtext/75 font-thin w-full"></p>
                   </div>
                   <div className="flex flex-col gap-8 pl-4 justify-start">
                     {details.map((detail, index) => (
                       <div key={index}>
-                        <p className="text-[18px]  break-words whitespace-normal">
+                        <p className="text-[22px] break-words whitespace-normal">
                           {detail}
                         </p>
                       </div>
