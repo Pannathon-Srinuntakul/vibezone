@@ -98,9 +98,9 @@ const profile = () => {
   ) : (
     <>
       {userData ? (
-        <div className="flex flex-col w-full mt-20 px-5 sm:px-0 lg:mt-5">
+        <div className="flex flex-col w-full mt-20 sm:px-0 lg:mt-5">
           <div className="flex items-center justify-center">
-            <div className="w-full lg:w-1/2 rounded-2xl drop-shadow-lg p-5 bg-white">
+            <div className="w-full lg:w-1/2 rounded-2xl mx-2 drop-shadow-lg p-5 bg-white">
               <ProfileCard userData={userData} />
             </div>
           </div>

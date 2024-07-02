@@ -83,7 +83,7 @@ export async function POST(req) {
         status: 200,
       });
     } catch (error) {
-      console.error("Error creating or updating user:", err);
+      console.error("Error deleting user:", err);
       return new Response("Error occured", {
         status: 500,
       });
