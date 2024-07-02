@@ -6,9 +6,8 @@ import Posting from "@components/form/Posting";
 import { useEffect, useState } from "react";
 
 const CreatePost = () => {
-  const { user, isLoaded } = useUser();
+  const { user } = useUser();
   const [clientIp, setClientIp] = useState("");
-  const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({});
   const [guestData, setGuestData] = useState({});
   const [creatorType, setCreatorType] = useState("")
@@ -19,7 +18,6 @@ const CreatePost = () => {
       const data = await response.json();
       setUserData(data);
       setCreatorType("User");
-      setLoading(false);
     } catch (error) {
       console.log(error);
     }
