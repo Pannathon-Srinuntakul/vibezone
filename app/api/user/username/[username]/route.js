@@ -19,7 +19,7 @@ export const GET = async (req, { params }) => {
     const limitParam = parseInt(url.searchParams.get("limit")) || 10;
     const limit = limitParam ? parseInt(limitParam) : null;
 
-    const user = await User.findOne({ username: params.username })
+    const user = await User.findOne({ username: params.username }).select("-email")
       .populate({
         path: "posts savedPosts likedPosts",
         model: Post,
@@ -31,6 +31,7 @@ export const GET = async (req, { params }) => {
         populate: {
           path: "creator",
           model: User,
+          select: "-email -credit",
         },
       })
       .exec();

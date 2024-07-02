@@ -10,7 +10,7 @@ export const GET = async (req, { params }) => {
       status: 401,
     });
   }
-  
+
   try {
     await connectToDB();
 
@@ -18,6 +18,7 @@ export const GET = async (req, { params }) => {
       .populate({
         path: "creator",
         model: "User",
+        select: "-email -credit",
       })
       .exec();
 
