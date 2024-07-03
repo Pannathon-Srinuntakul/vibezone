@@ -32,8 +32,10 @@ const PrivatePolicy = ({ language }) => {
               <span className="font-semibold">Usage Data:</span> This includes
               your IP address, browser type, access times, and the pages you
               visit. This information helps us analyze and improve our website.{" "}
-              <span className="font-bold">
-                Note that we only log IP addresses for guests who are logged in.
+              <span className="font-bold text-red-600">
+                Please note that we will only record IP addresses for guests
+                posting without logging in. For logged-in users, we will not
+                record IP addresses.
               </span>
             </li>
           </ul>
@@ -114,9 +116,10 @@ const PrivatePolicy = ({ language }) => {
               ข้อมูลการใช้งาน: เช่น ที่อยู่ IP, ประเภทของเบราว์เซอร์,
               เวลาที่เข้าถึง, และหน้าที่คุณเยี่ยมชม
               เราใช้ข้อมูลนี้เพื่อวิเคราะห์และปรับปรุงเว็บไซต์ของเรา{" "}
-              <span className="font-bold">
-                โปรดทราบว่าเราจะบันทึกที่อยู่ IP
-                เฉพาะสำหรับแขกที่เข้าสู่ระบบเท่านั้น
+              <span className="font-bold text-red-600">
+                โปรดทราบว่า เราจะบันทึกที่อยู่ IP
+                เฉพาะผู้ที่โพสต์ในฐานะแขกเท่านั้น สำหรับผู้ที่ล็อกอิน
+                เราจะไม่ทำการบันทึกที่อยู่ IP ของคุณ
               </span>
             </li>
           </ul>
