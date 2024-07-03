@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { topbarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
-import { SignedIn, SignOutButton, useAuth, UserButton, useUser } from "@clerk/nextjs";
-import { Login, Logout } from "@mui/icons-material";
+import { UserButton, useUser } from "@clerk/nextjs";
+import { Login } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 
 const Topbar = () => {
