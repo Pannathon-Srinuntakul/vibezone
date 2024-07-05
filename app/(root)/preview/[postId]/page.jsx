@@ -9,6 +9,8 @@ import YellowPre from "@components/previewFrame/YellowPre";
 import PinkPre from "@components/previewFrame/PinkPre";
 import BluePre from "@components/previewFrame/BluePre";
 import { useAuth, useUser } from "@clerk/nextjs";
+import BlackPre from "@components/previewFrame/BlackPre";
+import PridePre from "@components/previewFrame/PridePre";
 
 const sriracha = Sriracha({ subsets: ["latin"], weight: "400" });
 
@@ -75,6 +77,26 @@ const page = ({ searchParams }) => {
       )}
       {data.frame === "Green" && (
         <GreenPre
+          date={searchParams.date}
+          post={data}
+          likesCount={data.likes?.length}
+          creator={data.creator}
+          details={data.details}
+          sriracha={sriracha}
+        />
+      )}
+      {data.frame === "Black" && (
+        <BlackPre
+          date={searchParams.date}
+          post={data}
+          likesCount={data.likes?.length}
+          creator={data.creator}
+          details={data.details}
+          sriracha={sriracha}
+        />
+      )}
+      {data.frame === "Pride" && (
+        <PridePre
           date={searchParams.date}
           post={data}
           likesCount={data.likes?.length}

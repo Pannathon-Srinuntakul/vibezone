@@ -11,6 +11,8 @@ import Loader from "@components/Loader";
 import { useEffect, useState } from "react";
 import { Sriracha } from "next/font/google";
 import InfiniteScroll from "react-infinite-scroll-component";
+import BlackFrame from "@components/frame/ฺBlackframe";
+import PrideFrame from "@components/frame/PrideFrame";
 
 const sriracha = Sriracha({ subsets: ["latin"], weight: "400" });
 
@@ -146,6 +148,26 @@ const Home = () => {
                 )}
                 {post.frame === "Green" && (
                   <GreenFrame
+                    key={post._id}
+                    post={post}
+                    creator={post.creator}
+                    loggedInUser={userData}
+                    updateUser={updateUser}
+                    sriracha={sriracha}
+                  />
+                )}
+                {post.frame === "Black" && (
+                  <BlackFrame
+                    key={post._id}
+                    post={post}
+                    creator={post.creator}
+                    loggedInUser={userData}
+                    updateUser={updateUser}
+                    sriracha={sriracha}
+                  />
+                )}
+                {post.frame === "Pride" && (
+                  <PrideFrame
                     key={post._id}
                     post={post}
                     creator={post.creator}

@@ -6,8 +6,10 @@ import ProfileCard from "@components/cards/ProfileCard";
 import BlueFrame from "@components/frame/BlueFrame";
 import GreenFrame from "@components/frame/GreenFrame";
 import PinkFrame from "@components/frame/PinkFrame";
+import PrideFrame from "@components/frame/PrideFrame";
 import PurpleFrame from "@components/frame/PurpleFrame";
 import YellowFrame from "@components/frame/YellowFrame";
+import BlackFrame from "@components/frame/ฺBlackframe";
 import Loader from "@components/Loader";
 import { Sriracha } from "next/font/google";
 import { useParams } from "next/navigation";
@@ -176,6 +178,26 @@ const profile = () => {
                         creator={post.creator}
                         loggedInUser={loggedInUserData}
                         update={getUserProfile}
+                        updateUser={updateUser}
+                        sriracha={sriracha}
+                      />
+                    )}
+                    {post.frame === "Black" && (
+                      <BlackFrame
+                        key={post._id}
+                        post={post}
+                        creator={post.creator}
+                        loggedInUser={userData}
+                        updateUser={updateUser}
+                        sriracha={sriracha}
+                      />
+                    )}
+                    {post.frame === "Pride" && (
+                      <PrideFrame
+                        key={post._id}
+                        post={post}
+                        creator={post.creator}
+                        loggedInUser={userData}
                         updateUser={updateUser}
                         sriracha={sriracha}
                       />

@@ -345,6 +345,26 @@ const SearchComponent = () => {
                                 sriracha={sriracha}
                               />
                             )}
+                            {post.frame === "Black" && (
+                              <BlackFrame
+                                key={post._id}
+                                post={post}
+                                creator={post.creator}
+                                loggedInUser={userData}
+                                updateUser={updateUser}
+                                sriracha={sriracha}
+                              />
+                            )}
+                            {post.frame === "Pride" && (
+                              <PrideFrame
+                                key={post._id}
+                                post={post}
+                                creator={post.creator}
+                                loggedInUser={userData}
+                                updateUser={updateUser}
+                                sriracha={sriracha}
+                              />
+                            )}
                             {!post.frame && (
                               <PostCard
                                 key={post._id}

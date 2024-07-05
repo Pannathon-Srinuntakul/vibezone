@@ -29,6 +29,24 @@ export const topbarLinks = [
 
   export const frames = [
     {
+      frame: "/example/whiteframe.png",
+      credit: 0,
+      label: "White frame",
+      type: ""
+    },
+    {
+      frame: "/example/whiteframe.png",
+      credit: 0,
+      label: "Black frame",
+      type: "Black"
+    },
+    {
+      frame: "/example/whiteframe.png",
+      credit: 0,
+      label: "Pride frame",
+      type: "Pride"
+    },
+    {
       frame: "/example/greenframe.png",
       credit: 30,
       label: "Green frame",
@@ -58,10 +76,4 @@ export const topbarLinks = [
       label: "Yellow frame",
       type: "Yellow"
     },
-    {
-      frame: "/example/whiteframe.png",
-      credit: 0,
-      label: "White frame",
-      type: ""
-    }
   ]

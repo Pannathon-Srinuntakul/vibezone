@@ -109,7 +109,10 @@ module.exports = {
         "subbg": "#D9D9D9",
         "active": "#E1FFFA",
         glassmorphism: "rgba(255, 255, 255, 0.60)"
-      }
+      },
+      backgroundImage: {
+        'pride-gradient': 'linear-gradient(to bottom, #FF9999, #FFB266, #FFFF99, #99FF99, #99CCFF, #CC99FF, #FF99FF)',
+      },
     },
   },
   plugins: [],
