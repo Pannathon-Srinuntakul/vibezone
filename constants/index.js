@@ -35,13 +35,13 @@ export const topbarLinks = [
       type: ""
     },
     {
-      frame: "/example/whiteframe.png",
+      frame: "/example/blackframe.png",
       credit: 0,
       label: "Black frame",
       type: "Black"
     },
     {
-      frame: "/example/whiteframe.png",
+      frame: "/example/prideframe.png",
       credit: 0,
       label: "Pride frame",
       type: "Pride"
