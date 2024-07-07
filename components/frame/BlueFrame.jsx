@@ -188,7 +188,7 @@ const Blueframe = ({
         </div>
 
         <div
-          onDoubleClick={
+          onClick={
             creator ? () => setIsExpand((prevState) => !prevState) : null
           }
           className="w-full flex items-center relative"

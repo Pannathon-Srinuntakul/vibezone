@@ -4,6 +4,7 @@ import { useUser } from "@clerk/nextjs";
 import PostCard from "@components/cards/PostCard";
 import ProfileCard from "@components/cards/ProfileCard";
 import BlueFrame from "@components/frame/BlueFrame";
+import CloudFrame from "@components/frame/CloudFrame";
 import GreenFrame from "@components/frame/GreenFrame";
 import PinkFrame from "@components/frame/PinkFrame";
 import PrideFrame from "@components/frame/PrideFrame";
@@ -134,7 +135,7 @@ const SearchComponent = () => {
       }
     }
   };
-  
+
   const fetchMoreData = async () => {
     try {
       const response = await fetch(
@@ -377,6 +378,16 @@ const SearchComponent = () => {
                                 loggedInUser={userData}
                                 update={updateUser}
                                 updateUser={updateUser}
+                              />
+                            )}
+                            {post.frame === "Cloud" && (
+                              <CloudFrame
+                                key={post._id}
+                                post={post}
+                                creator={post.creator}
+                                loggedInUser={userData}
+                                updateUser={updateUser}
+                                sriracha={sriracha}
                               />
                             )}
                           </div>

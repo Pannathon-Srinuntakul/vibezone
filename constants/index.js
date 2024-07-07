@@ -76,4 +76,10 @@ export const topbarLinks = [
       label: "Yellow frame",
       type: "Yellow"
     },
+    {
+      frame: "/example/cloudframe.png",
+      credit: 80,
+      label: "Cloud frame *Demo",
+      type: "Cloud"
+    },
   ]

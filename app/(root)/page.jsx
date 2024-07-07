@@ -13,6 +13,7 @@ import { Sriracha } from "next/font/google";
 import InfiniteScroll from "react-infinite-scroll-component";
 import BlackFrame from "@components/frame/ฺBlackframe";
 import PrideFrame from "@components/frame/PrideFrame";
+import CloudFrame from "@components/frame/CloudFrame";
 
 const sriracha = Sriracha({ subsets: ["latin"], weight: "400" });
 
@@ -168,6 +169,16 @@ const Home = () => {
                 )}
                 {post.frame === "Pride" && (
                   <PrideFrame
+                    key={post._id}
+                    post={post}
+                    creator={post.creator}
+                    loggedInUser={userData}
+                    updateUser={updateUser}
+                    sriracha={sriracha}
+                  />
+                )}
+                {post.frame === "Cloud" && (
+                  <CloudFrame
                     key={post._id}
                     post={post}
                     creator={post.creator}

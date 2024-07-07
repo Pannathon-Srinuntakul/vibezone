@@ -4,6 +4,7 @@ import { useAuth, useUser } from "@clerk/nextjs";
 import PostCard from "@components/cards/PostCard";
 import ProfileCard from "@components/cards/ProfileCard";
 import BlueFrame from "@components/frame/BlueFrame";
+import CloudFrame from "@components/frame/CloudFrame";
 import GreenFrame from "@components/frame/GreenFrame";
 import PinkFrame from "@components/frame/PinkFrame";
 import PrideFrame from "@components/frame/PrideFrame";
@@ -90,7 +91,7 @@ const profile = () => {
 
     fetchData();
   }, [isLoaded, user]);
-  
+
   if (!isSignedIn) {
     return <p className="mx-auto text-center mt-20 lg:mt-0">Please login</p>;
   }
@@ -194,6 +195,16 @@ const profile = () => {
                     )}
                     {post.frame === "Pride" && (
                       <PrideFrame
+                        key={post._id}
+                        post={post}
+                        creator={post.creator}
+                        loggedInUser={userData}
+                        updateUser={updateUser}
+                        sriracha={sriracha}
+                      />
+                    )}
+                    {post.frame === "Cloud" && (
+                      <CloudFrame
                         key={post._id}
                         post={post}
                         creator={post.creator}

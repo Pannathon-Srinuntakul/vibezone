@@ -4,6 +4,7 @@ import { useUser } from "@clerk/nextjs";
 import Loader from "@components/Loader";
 import PostCard from "@components/cards/PostCard";
 import BlueFrame from "@components/frame/BlueFrame";
+import CloudFrame from "@components/frame/CloudFrame";
 import GreenFrame from "@components/frame/GreenFrame";
 import PinkFrame from "@components/frame/PinkFrame";
 import PrideFrame from "@components/frame/PrideFrame";
@@ -69,7 +70,7 @@ const SavedPosts = () => {
       console.error("Error fetching more data:", error);
     }
   };
-  
+
   if (userData && Object.keys(userData).length > 0) {
     return loading || !isLoaded ? (
       <Loader />
@@ -160,6 +161,16 @@ const SavedPosts = () => {
                   )}
                   {post.frame === "Pride" && (
                     <PrideFrame
+                      key={post._id}
+                      post={post}
+                      creator={post.creator}
+                      loggedInUser={userData}
+                      updateUser={updateUser}
+                      sriracha={sriracha}
+                    />
+                  )}
+                  {post.frame === "Cloud" && (
+                    <CloudFrame
                       key={post._id}
                       post={post}
                       creator={post.creator}

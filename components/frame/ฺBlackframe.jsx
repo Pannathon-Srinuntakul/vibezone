@@ -180,7 +180,7 @@ const BlackFrame = ({ post, creator, loggedInUser, updateUser }) => {
           ) : null}
         </div>
         <div
-          onDoubleClick={
+          onClick={
             creator ? () => setIsExpand((prevState) => !prevState) : null
           }
           className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center"

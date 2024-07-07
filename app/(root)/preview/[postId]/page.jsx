@@ -11,6 +11,7 @@ import BluePre from "@components/previewFrame/BluePre";
 import { useAuth, useUser } from "@clerk/nextjs";
 import BlackPre from "@components/previewFrame/BlackPre";
 import PridePre from "@components/previewFrame/PridePre";
+import CloudPre from "@components/previewFrame/CloudPre";
 
 const sriracha = Sriracha({ subsets: ["latin"], weight: "400" });
 
@@ -97,6 +98,16 @@ const page = ({ searchParams }) => {
       )}
       {data.frame === "Pride" && (
         <PridePre
+          date={searchParams.date}
+          post={data}
+          likesCount={data.likes?.length}
+          creator={data.creator}
+          details={data.details}
+          sriracha={sriracha}
+        />
+      )}
+      {data.frame === "Cloud" && (
+        <CloudPre
           date={searchParams.date}
           post={data}
           likesCount={data.likes?.length}

@@ -174,7 +174,7 @@ const PrideFrame = ({ post, creator, loggedInUser, updateUser }) => {
           ) : null}
         </div>
         <div
-          onDoubleClick={
+          onClick={
             creator ? () => setIsExpand((prevState) => !prevState) : null
           }
           className="w-full md:min-h-[200px] xl:min-h-[300px] max-h-[600px] overflow-hidden flex items-center"
@@ -285,7 +285,7 @@ const PrideFrame = ({ post, creator, loggedInUser, updateUser }) => {
               )}
             </div>
           </div>
-          <div className="w-full flex flex-col justify-center items-center">
+          <div className="w-full flex flex-col justify-center items-center post-caption-web">
             <p className="text-body-bold">{post.caption}</p>
             <p className="border border-subtext/30 font-thin w-full"></p>
           </div>
