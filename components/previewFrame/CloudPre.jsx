@@ -199,7 +199,7 @@ const CloudPre = ({ date, post, likesCount, creator, details, sriracha }) => {
           <div
             ref={postRef}
             id="postToSave"
-            className="flex flex-col w-[1000px] justify-center items-center p-24 invisible"
+            className="flex flex-col w-[1000px] justify-center items-center py-32 px-8 invisible"
           >
             <div className="pb-20 flex flex-col justify-center items-center relative z-50">
               <div className="w-[108%] h-[115%] absolute overflow-hidden z-10">
@@ -212,7 +212,7 @@ const CloudPre = ({ date, post, likesCount, creator, details, sriracha }) => {
               </div>
               <img
                 src="/cloud/bunny.png"
-                className="absolute w-[150px] bottom-10 right-8 z-10"
+                className="absolute w-[300px] bottom-10 right-16 z-10"
                 width={500}
                 height={50}
                 alt="icon"
