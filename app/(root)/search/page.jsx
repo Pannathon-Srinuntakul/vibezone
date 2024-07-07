@@ -134,7 +134,7 @@ const SearchComponent = () => {
       }
     }
   };
-
+  
   const fetchMoreData = async () => {
     try {
       const response = await fetch(

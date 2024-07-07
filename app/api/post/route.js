@@ -12,19 +12,29 @@ export const GET = async (req) => {
     const limitParam = parseInt(url.searchParams.get("limit")) || 10;
     const limit = limitParam ? parseInt(limitParam) : null;
 
-    const query = Post.find().sort({ createdAt: -1 }).skip(offset);
+    const query = Post.find({ status: { $ne: "Private" } })
+      .sort({ createdAt: -1 })
+      .skip(offset);
+
     if (limit !== null) {
       query.limit(limit);
     }
+    
     const feedPosts = await query.exec();
 
     const populatedPosts = await Promise.all(
       feedPosts.map(async (post) => {
         let creator = null;
         if (post.creatorType === "User") {
-          creator = await User.findById(post.creator).select("-email -credit").lean().exec(); // Exclude 'email' field
+          creator = await User.findById(post.creator)
+            .select("-email -credit")
+            .lean()
+            .exec(); // Exclude 'email' field
         } else if (post.creatorType === "Guest") {
-          creator = await Guest.findById(post.creator).select("-ipAddress").lean().exec(); // Exclude 'ipAddress' field
+          creator = await Guest.findById(post.creator)
+            .select("-ipAddress")
+            .lean()
+            .exec(); // Exclude 'ipAddress' field
         }
         return {
           ...post.toObject(),

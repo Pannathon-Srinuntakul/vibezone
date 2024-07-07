@@ -14,6 +14,7 @@ export const GET = async (req, { params }) => {
     const limit = parseInt(url.searchParams.get("limit")) || 10;
 
     const posts = await Post.find({
+      status: { $ne: "Private" },
       $or: [
         { caption: { $regex: query, $options: "i" } },
         { details: { $elemMatch: { $regex: query, $options: "i" } } },
@@ -38,7 +39,9 @@ export const GET = async (req, { params }) => {
       })
     );
 
-    return new Response(JSON.stringify(populatedPosts.reverse()), { status: 200 });
+    return new Response(JSON.stringify(populatedPosts.reverse()), {
+      status: 200,
+    });
   } catch (error) {
     console.error("Error searching posts:", error);
     return new Response("Failed to search posts", { status: 500 });

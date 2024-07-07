@@ -69,7 +69,7 @@ const SavedPosts = () => {
       console.error("Error fetching more data:", error);
     }
   };
-
+  
   if (userData && Object.keys(userData).length > 0) {
     return loading || !isLoaded ? (
       <Loader />

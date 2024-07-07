@@ -90,7 +90,7 @@ const profile = () => {
 
     fetchData();
   }, [isLoaded, user]);
-
+  
   if (!isSignedIn) {
     return <p className="mx-auto text-center mt-20 lg:mt-0">Please login</p>;
   }
