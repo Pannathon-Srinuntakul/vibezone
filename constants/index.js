@@ -47,19 +47,19 @@ export const topbarLinks = [
       type: "Pride"
     },
     {
-      frame: "/example/prideframe.png",
+      frame: "/example/coffeeframe.png",
       credit: 0,
       label: "Coffee frame",
       type: "Coffee"
     },
     {
-      frame: "/example/prideframe.png",
+      frame: "/example/bunnyframe.png",
       credit: 0,
       label: "Bunny frame",
       type: "Bunny"
     },
     {
-      frame: "/example/prideframe.png",
+      frame: "/example/fluffyframe.png",
       credit: 0,
       label: "Fluffy frame",
       type: "Fluffy"

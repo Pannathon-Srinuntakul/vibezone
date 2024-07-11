@@ -8,9 +8,9 @@ const PurchaseCard = ({ postId, user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [confirmPurchase, setConfirmPurchase] = useState({});
   const [showAlert, setShowAlert] = useState(false);
-  const [showError, setShowError] = useState(false)
+  const [showError, setShowError] = useState(false);
   const router = useRouter();
-  
+
   const handleUpgrade = async () => {
     if (isLoading) return;
     setIsLoading(true);
@@ -36,7 +36,7 @@ const PurchaseCard = ({ postId, user }) => {
       if (response.ok) {
         router.push(`/profile/${user.username}`);
       } else {
-        setShowError(true)
+        setShowError(true);
       }
     } catch (error) {
       console.error("Error upgrade:", error);
@@ -56,7 +56,7 @@ const PurchaseCard = ({ postId, user }) => {
             className="shadow-lg"
           />
           <p className="flex gap-2">
-            {frame.credit} Credit
+            {frame.credit === 0 ? "Free" : `${frame.credit} Credit`}
             <Image src="/assets/coin.svg" alt="credit" width={15} height={15} />
           </p>
           <button
