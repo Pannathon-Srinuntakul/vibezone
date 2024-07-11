@@ -17,13 +17,7 @@ import { useState } from "react";
 import { format } from "date-fns";
 import ToggleStatus from "@components/ToggleStatus";
 
-const Blueframe = ({
-  post,
-  creator,
-  loggedInUser,
-  updateUser,
-  sriracha,
-}) => {
+const FluffyFrame = ({ post, creator, loggedInUser, updateUser }) => {
   const [isExpand, setIsExpand] = useState(false);
   const [isLiked, setIsLiked] = useState(
     loggedInUser?.likedPosts?.some((item) => item._id === post._id)
@@ -31,17 +25,13 @@ const Blueframe = ({
   const [isSaved, setIsSaved] = useState(
     loggedInUser?.savedPosts?.some((item) => item._id === post._id)
   );
-  const [likesCount, setLikesCount] = useState(post.likes.length);
+  const [likesCount, setLikesCount] = useState(post.likes?.length);
   const [loading, setLoading] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
 
   const dateTime = post?.createdAt;
   const date = format(new Date(dateTime), "yyyy.MM.dd");
-
-  const expand = (e) => {
-    setIsExpand(e);
-  };
 
   const details = post.details;
 
@@ -86,10 +76,10 @@ const Blueframe = ({
           },
         }
       );
-      await updateUser();
       if (!response.ok) {
         throw new Error("Error liking post");
       }
+      await updateUser();
     } catch (error) {
       console.error(error);
       setIsLiked(!isLiked); // Revert the change if there's an error
@@ -126,29 +116,33 @@ const Blueframe = ({
 
   return !isDeleted ? (
     <div className="w-full flex flex-col items-center justify-center">
-      <div className="card-container relative pb-14 bg-[#94B9FF] shadow-lg z-10 overflow-hidden">
-        <div className="w-full relative flex justify-end pb-3 gap-3 z-20">
-          <p className="date text-white">{date}</p>
+      <div className="card-container bg-[#E9E0F5] shadow-lg overflow-hidden z-10">
+        <div className="w-full relative flex justify-end pb-3 gap-2">
+          <p className="date text-subtext">{date}</p>
           {loggedInUser &&
           Object.keys(loggedInUser).length > 0 &&
           post.creatorType !== "Guest" ? (
             loggedInUser.clerkId !== creator?.clerkId ? (
               isSaved ? (
                 <Bookmark
-                  sx={{ color: "purple", cursor: "pointer", zIndex: "50" }}
+                  sx={{ color: "purple", cursor: "pointer" }}
                   onClick={() => handleSave()}
                 />
               ) : (
                 <BookmarkBorder
-                  sx={{ color: "black", cursor: "pointer", zIndex: "50" }}
+                  sx={{ color: "black", cursor: "pointer" }}
                   onClick={() => handleSave()}
                 />
               )
             ) : (
               <>
-                <ToggleStatus id={post._id} postStatus={post.status} />
+                <ToggleStatus
+                  id={post._id}
+                  postStatus={post.status}
+                  sx={{ color: "black" }}
+                />
                 <DeleteOutline
-                  sx={{ color: "black", cursor: "pointer", zIndex: "50" }}
+                  sx={{ color: "black", cursor: "pointer" }}
                   onClick={() => confirmDelete()}
                 />
                 <Link
@@ -161,7 +155,7 @@ const Blueframe = ({
                   }}
                 >
                   <CameraAltOutlined
-                    sx={{ color: "black", cursor: "pointer", zIndex: "50" }}
+                    sx={{ color: "black", cursor: "pointer" }}
                   />
                 </Link>
                 <Link href={`/upgrade/${post._id}`}>
@@ -171,14 +165,13 @@ const Blueframe = ({
                       cursor: "pointer",
                       position: "absolute",
                       left: 0,
-                      zIndex: "50",
                     }}
                   />
                 </Link>
               </>
             )
           ) : post.creatorType === "Guest" ? (
-            <div className="flex flex-col z-20">
+            <div className="flex flex-col">
               <p className="text-end text-subtle-medium">*Post by guest.</p>
               <span className="text-subtext text-tiny-medium">
                 This post will be deleted in 1 hour.
@@ -186,7 +179,6 @@ const Blueframe = ({
             </div>
           ) : null}
         </div>
-
         <div
           onClick={
             creator ? () => setIsExpand((prevState) => !prevState) : null
@@ -194,114 +186,96 @@ const Blueframe = ({
           className="w-full flex items-center relative"
         >
           <Image
-            src="/framecom/blue/cloud.png"
-            className="absolute -top-7 -right-3 w-[100px] z-10"
+            src="/framecom/fluffy/fluffy.png"
+            className="absolute -bottom-12 left-2 w-[205px] z-10"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/framecom/blue/line2.png"
-            className="absolute -top-4 left-20 w-[60px]"
+            src="/framecom/fluffy/lily.png"
+            className="absolute -bottom-16 -right-2 w-[100px] z-10"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/framecom/blue/line3.png"
-            className="absolute top-16 -left-5 w-[50px]"
+            src="/framecom/fluffy/dec1.png"
+            className="absolute top-24 -right-4 w-[40px] z-10"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/framecom/blue/flowers.png"
-            className="absolute -top-5 -left-5 w-[60px]"
+            src="/framecom/fluffy/dec2.png"
+            className="absolute bottom-20 -left-2.5 w-[40px] z-10"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/framecom/blue/flower2.png"
-            className="absolute bottom-16 -left-3 w-[24px]"
+            src="/framecom/fluffy/dec3.png"
+            className="absolute top-1 -left-4 w-[40px] z-10"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/framecom/blue/star.png"
-            className="absolute -bottom-2 -left-2 w-[24px]"
+            src={post.postPhoto}
+            alt="post photo"
             width={200}
-            height={50}
-            alt="icon"
+            height={150}
+            layout="responsive"
+            className="w-full"
           />
-          <Image
-            src="/framecom/blue/line.png"
-            className="absolute -bottom-2 -right-2 w-[100px]"
-            width={200}
-            height={50}
-            alt="icon"
-          />
-          <Image
-            src="/framecom/blue/star2.png"
-            className="absolute bottom-36 -right-4 w-[30px]"
-            width={200}
-            height={50}
-            alt="icon"
-          />
-          <div className="overflow-hidden md:min-h-[200px] xl:min-h-[300px] max-h-[600px] w-full">
-            <Image
-              src={post.postPhoto}
-              alt="post photo"
-              width={200}
-              height={150}
-              layout="responsive"
-              className="w-full"
-            />
-          </div>
         </div>
-        <div className={`${sriracha.className} post-caption-web text-white`}>
-          <p>{post.caption}</p>
-        </div>
-        <div className="flex absolute left-5 bottom-5 items-center pt-3 gap-1">
-          {loggedInUser && Object.keys(loggedInUser).length > 0 ? (
-            post.creatorType === "User" ? (
-              !isLiked ? (
-                <FavoriteBorder
-                  sx={{ color: "white", cursor: "pointer" }}
-                  onClick={() => handleLike()}
-                />
+        <div className="flex w-full justify-center flex-col itenms-center relative">
+          <div className="flex flex-col items-center pt-3 z-10">
+            {loggedInUser && Object.keys(loggedInUser).length > 0 ? (
+              post.creatorType === "User" ? (
+                !isLiked ? (
+                  <FavoriteBorder
+                    sx={{ color: "black", cursor: "pointer" }}
+                    onClick={() => handleLike()}
+                  />
+                ) : (
+                  <Favorite
+                    sx={{ color: "red", cursor: "pointer" }}
+                    onClick={() => handleLike()}
+                  />
+                )
               ) : (
-                <Favorite
-                  sx={{ color: "red", cursor: "pointer" }}
-                  onClick={() => handleLike()}
-                />
+                <Favorite sx={{ color: "black" }} />
               )
             ) : (
               <Favorite sx={{ color: "black" }} />
-            )
-          ) : (
-            <Favorite sx={{ color: "black" }} />
-          )}
-          {post.creatorType === "User" ? (
-            <p className="text-white text-small-semibold flex justify-center items-center gap-1">
-              {likesCount.toLocaleString()}{" "}
-              <span className="text-white text-tiny-medium">Like</span>
-            </p>
-          ) : null}
-        </div>
-        <div className="right-5 bottom-5 absolute">
+            )}
+            {post.creatorType === "User" ? (
+              <p className="text-black text-small-semibold flex justify-center items-center gap-1">
+                {likesCount.toLocaleString()}{" "}
+                <span className="text-black text-tiny-medium">Like</span>
+              </p>
+            ) : null}
+          </div>
           {creator !== null ? (
             !isExpand ? (
-              <ExpandMoreOutlined
-                sx={{ color: "white", cursor: "pointer" }}
-                onClick={() => expand(true)}
-              />
+              <div
+                className="right-0 -bottom-4 absolute"
+                onClick={() => setIsExpand(true)}
+              >
+                <ExpandMoreOutlined
+                  sx={{ cursor: "pointer", color: "black" }}
+                />
+              </div>
             ) : (
-              <ExpandLessOutlined
-                sx={{ color: "white", cursor: "pointer" }}
-                onClick={() => expand(false)}
-              />
+              <div
+                className="right-0 -bottom-4 absolute"
+                onClick={() => setIsExpand(false)}
+              >
+                <ExpandLessOutlined
+                  sx={{ cursor: "pointer", color: "black" }}
+                />
+              </div>
             )
           ) : (
             <p className="text-subtle-medium text-subtext">
@@ -311,47 +285,66 @@ const Blueframe = ({
         </div>
       </div>
       {isExpand ? (
-        <div className="card-container gap-3 rounded-b-xl bg-[#87aff9] shadow-lg">
+        <div className="card-container gap-3 rounded-b-xl bg-[#F3EEF9] shadow-lg">
           <div className="w-full">
             <div className="flex justify-between">
-              <Link href={`/profile/${creator.username}`}>
-                <div className="flex gap-3 items-center">
-                  <div className="w-[45px] h-[45px] relative">
-                    <Image
-                      src={creator.profilePhoto}
-                      alt="profile photo"
-                      fill
-                      className="rounded-full object-cover w-full h-full"
-                    />
+              {post.creatorType === "User" ? (
+                <Link href={`/profile/${creator.username}`}>
+                  <div className="flex gap-3 items-center">
+                    <div className="w-[45px] h-[45px] relative">
+                      <Image
+                        src={creator.profilePhoto}
+                        alt="profile photo"
+                        fill
+                        className="rounded-full object-cover w-full h-full"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <p className="text-small-semibold text-black">
+                        {creator.firstName} {creator.lastName}
+                      </p>
+                      <p className="text-subtle-medium text-light-3">
+                        {creator.username}
+                      </p>
+                    </div>
                   </div>
+                </Link>
+              ) : (
+                <div className="flex gap-3 items-center">
+                  <Image
+                    src={creator.profilePhoto}
+                    alt="profile photo"
+                    width={40}
+                    height={40}
+                    className="rounded-full"
+                  />
                   <div className="flex flex-col gap-1">
                     <p className="text-small-semibold text-black">
                       {creator.firstName} {creator.lastName}
                     </p>
-                    <p className="text-subtle-medium text-light-2">
+                    <p className="text-subtle-medium text-light-3">
                       {creator.username}
                     </p>
                   </div>
                 </div>
-              </Link>
+              )}
             </div>
           </div>
           <div className="w-full flex flex-col justify-center items-center">
-            <p className="text-body-bold">{post.caption}</p>
+            <p className="text-body-bold text-black">{post.caption}</p>
             <p className="border border-subtext/30 font-thin w-full"></p>
           </div>
           <div className="details">
             {details.map((detail, index) => (
-              <div key={index}>
-                <p className="text-subtle-medium  md:text-small-semibold break-words whitespace-normal">
+              <ul key={index}>
+                <li className="text-subtle-medium text-black md:text-small-semibold break-words whitespace-normal">
                   {detail}
-                </p>
-              </div>
+                </li>
+              </ul>
             ))}
           </div>
         </div>
       ) : null}
-
       {showConfirm && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg">
@@ -376,8 +369,8 @@ const Blueframe = ({
       )}
     </div>
   ) : (
-    <p className="text-center text-subtext">Post Deleted</p>
+    <p className="text-center text-subtext">Post deleted</p>
   );
 };
 
-export default Blueframe;
+export default FluffyFrame;

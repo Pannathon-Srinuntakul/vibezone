@@ -53,7 +53,7 @@ const YellowPre = ({ date, post, likesCount, creator, details, sriracha }) => {
               <div className="flex flex-col w-5/6 md:w-1/2 lg:w-1/3">
                 <div className="frame-container bg-[#F3F0A8]">
                   <Image
-                    src="/yellow/cactus.png"
+                    src="/framecom/yellow/cactus.png"
                     className="absolute bottom-0 left-0 w-[100px]"
                     width={200}
                     height={50}
@@ -64,56 +64,56 @@ const YellowPre = ({ date, post, likesCount, creator, details, sriracha }) => {
                   </p>
                   <div className="w-full md:min-h-[200px] xl:min-h-[300px] flex items-center relative">
                     <Image
-                      src="/yellow/sun.png"
+                      src="/framecom/yellow/sun.png"
                       className="absolute -top-7 -left-5 w-[80px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <Image
-                      src="/yellow/cloud.png"
+                      src="/framecom/yellow/cloud.png"
                       className="absolute -top-5 left-14 w-[80px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <Image
-                      src="/yellow/line3.png"
+                      src="/framecom/yellow/line3.png"
                       className="absolute -bottom-4 -right-10 w-[100px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <Image
-                      src="/pink/star.png"
+                      src="/framecom/pink/star.png"
                       className="absolute bottom-5 -left-4 w-[30px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <Image
-                      src="/pink/star.png"
+                      src="/framecom/pink/star.png"
                       className="absolute top-16 -right-4 w-[30px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <Image
-                      src="/yellow/flower.png"
+                      src="/framecom/yellow/flower.png"
                       className="absolute top-32 -right-5 w-[40px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <Image
-                      src="/yellow/line1.png"
+                      src="/framecom/yellow/line1.png"
                       className="absolute -top-2 right-3 w-[100px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <Image
-                      src="/yellow/line2.png"
+                      src="/framecom/yellow/line2.png"
                       className="absolute top-20 -left-3 w-[50px]"
                       width={200}
                       height={50}
@@ -255,7 +255,7 @@ const YellowPre = ({ date, post, likesCount, creator, details, sriracha }) => {
               >
                 <div className="bg-[#F3F0A8] frame-container">
                   <img
-                    src="/yellow/cactus.png"
+                    src="/framecom/yellow/cactus.png"
                     className="absolute bottom-0 left-0 w-[150px]"
                     width={200}
                     height={50}
@@ -266,56 +266,56 @@ const YellowPre = ({ date, post, likesCount, creator, details, sriracha }) => {
                   </p>
                   <div className="w-full flex flex-col items-center relative">
                     <img
-                      src="/yellow/sun.png"
+                      src="/framecom/yellow/sun.png"
                       className="absolute -top-7 -left-8 w-[180px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <img
-                      src="/yellow/cloud.png"
+                      src="/framecom/yellow/cloud.png"
                       className="absolute -top-6 left-36 w-[150px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <img
-                      src="/yellow/line3.png"
+                      src="/framecom/yellow/line3.png"
                       className="absolute -bottom-4 -right-10 w-[200px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <img
-                      src="/pink/star.png"
+                      src="/framecom/pink/star.png"
                       className="absolute bottom-20 -left-7 w-[60px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <img
-                      src="/pink/star.png"
+                      src="/framecom/pink/star.png"
                       className="absolute top-32 -right-4 w-[60px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <img
-                      src="/yellow/flower.png"
+                      src="/framecom/yellow/flower.png"
                       className="absolute top-72 -right-8 w-[60px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <img
-                      src="/yellow/line1.png"
+                      src="/framecom/yellow/line1.png"
                       className="absolute -top-4 right-24 w-[250px]"
                       width={200}
                       height={50}
                       alt="icon"
                     />
                     <img
-                      src="/yellow/line2.png"
+                      src="/framecom/yellow/line2.png"
                       className="absolute top-44 -left-9 w-[180px]"
                       width={200}
                       height={50}

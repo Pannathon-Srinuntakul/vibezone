@@ -8,6 +8,9 @@ import PrideFrame from "./frame/PrideFrame";
 import CloudFrame from "./frame/CloudFrame";
 import PostCard from "./cards/PostCard";
 import BlackFrame from "./frame/BlackFrame";
+import CoffeeFrame from "./frame/CoffeeFrame";
+import BunnyFrame from "./frame/BunnyFrame";
+import FluffyFrame from "./frame/FluffyFrame";
 
 const Frame = ({ posts, userData, updateUser, sriracha }) => {
   return (
@@ -43,6 +46,15 @@ const Frame = ({ posts, userData, updateUser, sriracha }) => {
             break;
           case "Cloud":
             FrameComponent = CloudFrame;
+            break;
+          case "Coffee":
+            FrameComponent = CoffeeFrame;
+            break;
+          case "Bunny":
+            FrameComponent = BunnyFrame;
+            break;
+          case "Fluffy":
+            FrameComponent = FluffyFrame;
             break;
           default:
             FrameComponent = PostCard;

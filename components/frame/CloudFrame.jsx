@@ -128,14 +128,14 @@ const CloudFrame = ({ post, creator, loggedInUser, updateUser, sriracha }) => {
           }
         >
           <Image
-            src="/cloud/frame.png"
+            src="/framecom/cloud/frame.png"
             className="w-full h-full"
             layout="fill"
             alt="icon"
           />
         </div>
         <Image
-            src="/cloud/bunny.png"
+            src="/framecom/cloud/bunny.png"
             className="absolute w-[170px] -bottom-1 right-11"
             width={500}
             height={50}

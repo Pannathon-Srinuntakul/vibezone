@@ -194,56 +194,56 @@ const Pinkframe = ({
           className="w-full flex items-center relative"
         >
           <Image
-            src="/pink/heart.png"
+            src="/framecom/pink/heart.png"
             className="absolute -top-7 -left-5 w-[60px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/pink/flowers.png"
+            src="/framecom/pink/flowers.png"
             className="absolute bottom-16 -left-5 w-[50px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/pink/hearts2.png"
+            src="/framecom/pink/hearts2.png"
             className="absolute -bottom-4 left-2 w-[80px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/pink/heartline.png"
+            src="/framecom/pink/heartline.png"
             className="absolute -bottom-4 -right-2 w-[150px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/pink/star.png"
+            src="/framecom/pink/star.png"
             className="absolute bottom-5 -left-3 w-[30px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/pink/dots1.png"
+            src="/framecom/pink/dots1.png"
             className="absolute top-0 -right-5 w-[150px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/pink/dots2.png"
+            src="/framecom/pink/dots2.png"
             className="absolute -top-10 right-14 w-[300px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/pink/dots3.png"
+            src="/framecom/pink/dots3.png"
             className="absolute top-8 -left-4 w-[50px]"
             width={200}
             height={50}

@@ -128,7 +128,7 @@ const Yellowframe = ({
     <div className="w-full flex flex-col items-center justify-center">
       <div className="card-container relative pb-14 bg-[#F3F0A8] shadow-lg z-10 overflow-hidden">
         <Image
-          src="/yellow/cactus.png"
+          src="/framecom/yellow/cactus.png"
           className="absolute bottom-0 left-0 w-[100px]"
           width={200}
           height={50}
@@ -201,56 +201,56 @@ const Yellowframe = ({
           className="w-full flex items-center relative"
         >
           <Image
-            src="/yellow/sun.png"
+            src="/framecom/yellow/sun.png"
             className="absolute -top-7 -left-5 w-[100px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/yellow/cloud.png"
+            src="/framecom/yellow/cloud.png"
             className="absolute -top-5 left-20 w-[80px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/yellow/line3.png"
+            src="/framecom/yellow/line3.png"
             className="absolute -bottom-4 -right-6 w-[120px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/pink/star.png"
+            src="/framecom/pink/star.png"
             className="absolute bottom-5 -left-3 w-[30px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/pink/star.png"
+            src="/framecom/pink/star.png"
             className="absolute top-16 -right-4 w-[30px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/yellow/flower.png"
+            src="/framecom/yellow/flower.png"
             className="absolute top-32 -right-5 w-[40px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/yellow/line1.png"
+            src="/framecom/yellow/line1.png"
             className="absolute -top-2 right-6 w-[120px]"
             width={200}
             height={50}
             alt="icon"
           />
           <Image
-            src="/yellow/line2.png"
+            src="/framecom/yellow/line2.png"
             className="absolute top-20 -left-4 w-[80px]"
             width={200}
             height={50}

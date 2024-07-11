@@ -63,8 +63,6 @@ const SavedPosts = () => {
     }
   };
 
-  console.log(userData?.savedPosts);
-
   if (userData && Object.keys(userData).length > 0) {
     return loading || !isLoaded ? (
       <Loader />

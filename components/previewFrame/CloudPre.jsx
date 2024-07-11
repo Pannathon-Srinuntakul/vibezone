@@ -54,14 +54,14 @@ const CloudPre = ({ date, post, likesCount, creator, details, sriracha }) => {
             <div className="pb-20 flex flex-col justify-center items-center relative z-50">
               <div className="w-[108%] h-[115%] absolute overflow-hidden z-10">
                 <Image
-                  src="/cloud/frame.png"
+                  src="/framecom/cloud/frame.png"
                   className="w-full h-full"
                   layout="fill"
                   alt="icon"
                 />
               </div>
               <Image
-                src="/cloud/bunny.png"
+                src="/framecom/cloud/bunny.png"
                 className="absolute w-[150px] bottom-10 right-8 z-10"
                 width={500}
                 height={50}
@@ -204,14 +204,14 @@ const CloudPre = ({ date, post, likesCount, creator, details, sriracha }) => {
             <div className="pb-20 flex flex-col justify-center items-center relative z-50">
               <div className="w-[108%] h-[115%] absolute overflow-hidden z-10">
                 <img
-                  src="/cloud/frame.png"
+                  src="/framecom/cloud/frame.png"
                   className="w-full h-full"
                   layout="fill"
                   alt="icon"
                 />
               </div>
               <img
-                src="/cloud/bunny.png"
+                src="/framecom/cloud/bunny.png"
                 className="absolute w-[300px] bottom-10 right-16 z-10"
                 width={500}
                 height={50}
