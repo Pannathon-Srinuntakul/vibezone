@@ -1,16 +1,8 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
+import Frame from "@components/Frame";
 import Loader from "@components/Loader";
-import PostCard from "@components/cards/PostCard";
-import BlueFrame from "@components/frame/BlueFrame";
-import CloudFrame from "@components/frame/CloudFrame";
-import GreenFrame from "@components/frame/GreenFrame";
-import PinkFrame from "@components/frame/PinkFrame";
-import PrideFrame from "@components/frame/PrideFrame";
-import PurpleFrame from "@components/frame/PurpleFrame";
-import YellowFrame from "@components/frame/YellowFrame";
-import BlackFrame from "@components/frame/ฺBlackframe";
 import { Sriracha } from "next/font/google";
 import React, { useEffect } from "react";
 import { useState } from "react";
@@ -71,6 +63,8 @@ const SavedPosts = () => {
     }
   };
 
+  console.log(userData?.savedPosts);
+
   if (userData && Object.keys(userData).length > 0) {
     return loading || !isLoaded ? (
       <Loader />
@@ -88,110 +82,12 @@ const SavedPosts = () => {
           }
         >
           <div className="mt-20 lg:mt-0 flex flex-col w-full items-center gap-10">
-            {userData?.savedPosts?.map((post, index) => {
-              if (post?.status === "Private") {
-                return null;
-              }
-              return (
-                <div className="w-full" key={index}>
-                  {post.frame === "Blue" && (
-                    <BlueFrame
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={userData}
-                      update={getUser}
-                      updateUser={updateUser}
-                      sriracha={sriracha}
-                    />
-                  )}
-                  {post.frame === "Pink" && (
-                    <PinkFrame
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={userData}
-                      update={getUser}
-                      updateUser={updateUser}
-                      sriracha={sriracha}
-                    />
-                  )}
-                  {post.frame === "Yellow" && (
-                    <YellowFrame
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={userData}
-                      update={getUser}
-                      updateUser={updateUser}
-                      sriracha={sriracha}
-                    />
-                  )}
-                  {post.frame === "Purple" && (
-                    <PurpleFrame
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={userData}
-                      update={getUser}
-                      updateUser={updateUser}
-                      sriracha={sriracha}
-                    />
-                  )}
-                  {post.frame === "Green" && (
-                    <GreenFrame
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={userData}
-                      update={getUser}
-                      updateUser={updateUser}
-                      sriracha={sriracha}
-                    />
-                  )}
-                  {post.frame === "Black" && (
-                    <BlackFrame
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={userData}
-                      updateUser={updateUser}
-                      sriracha={sriracha}
-                    />
-                  )}
-                  {post.frame === "Pride" && (
-                    <PrideFrame
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={userData}
-                      updateUser={updateUser}
-                      sriracha={sriracha}
-                    />
-                  )}
-                  {post.frame === "Cloud" && (
-                    <CloudFrame
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={userData}
-                      updateUser={updateUser}
-                      sriracha={sriracha}
-                    />
-                  )}
-                  {!post.frame && (
-                    <PostCard
-                      key={post._id}
-                      post={post}
-                      creator={post.creator}
-                      loggedInUser={userData}
-                      update={getUser}
-                      updateUser={updateUser}
-                    />
-                  )}
-                </div>
-              );
-            })}
+            <Frame
+              posts={userData?.savedPosts}
+              updateUser={updateUser}
+              sriracha={sriracha}
+              userData={userData}
+            />
           </div>
         </InfiniteScroll>
       </div>

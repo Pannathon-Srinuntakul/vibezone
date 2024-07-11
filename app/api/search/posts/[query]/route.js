@@ -20,6 +20,7 @@ export const GET = async (req, { params }) => {
         { details: { $elemMatch: { $regex: query, $options: "i" } } },
       ],
     })
+      .sort({ createdAt: -1 })
       .skip(offset)
       .limit(limit)
       .exec();
