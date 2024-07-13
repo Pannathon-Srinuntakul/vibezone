@@ -160,8 +160,8 @@ const CoffeePre = ({ date, post, likesCount, creator, details }) => {
                     )}
                   </div>
                 </div>
-                <div className="w-full flex flex-col justify-center items-center">
-                  <p className="text-base-bold text-black">{post.caption}</p>
+                <div className="post-caption-pre flex flex-col items-center">
+                  <p className="text-body-bold w-[90%] text-black">{post.caption}</p>
                   <p className="border border-subtext/30 font-thin w-full"></p>
                 </div>
                 <div className="details">
@@ -259,10 +259,8 @@ const CoffeePre = ({ date, post, likesCount, creator, details }) => {
                     ) : null}
                   </div>
                 </div>
-                <div className="w-full flex flex-col justify-center items-center">
-                  <p className="text-[34px] text-black font-bold">
-                    {post.caption}
-                  </p>
+                <div className="w-full flex flex-col justify-center">
+                  <p className="text-[28px] font-bold break-words">{post.caption}</p>
                   <p className="border border-subtext/75 font-thin w-full"></p>
                 </div>
                 <div className="flex text-black flex-col gap-8 pl-4 justify-start">

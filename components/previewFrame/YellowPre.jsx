@@ -213,8 +213,8 @@ const YellowPre = ({ date, post, likesCount, creator, details, sriracha }) => {
                         </div>
                       </div>
                     </div>
-                    <div className="w-full flex flex-col justify-center items-center">
-                      <p className="text-body-bold">{post.caption}</p>
+                    <div className="post-caption-pre flex flex-col items-center">
+                  <p className="text-body-bold w-[90%]">{post.caption}</p>
                       <p className="border border-subtext/30 font-thin w-full"></p>
                     </div>
                     <div className="details">
@@ -372,8 +372,8 @@ const YellowPre = ({ date, post, likesCount, creator, details, sriracha }) => {
                         ) : null}
                       </div>
                     </div>
-                    <div className="w-full flex flex-col justify-center items-center">
-                      <p className="text-[28px] font-bold">{post.caption}</p>
+                <div className="w-full flex flex-col justify-center">
+                  <p className="text-[28px] font-bold break-words">{post.caption}</p>
                       <p className="border border-subtext/75 font-thin w-full"></p>
                     </div>
                     <div className="flex flex-col gap-8 pl-4 justify-start">

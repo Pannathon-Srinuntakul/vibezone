@@ -2,12 +2,20 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      'xs': '480px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     fontSize: {
       "heading1-bold": [
         "36px",
@@ -105,15 +113,16 @@ module.exports = {
         "dark-1": "#121212",
         "dark-2": "#34303E",
         "blue-1": "#016FD5",
-        "subtext": "#5F5C6D",
-        "subbg": "#D9D9D9",
-        "active": "#E1FFFA",
-        glassmorphism: "rgba(255, 255, 255, 0.60)"
+        subtext: "#5F5C6D",
+        subbg: "#D9D9D9",
+        active: "#E1FFFA",
+        glassmorphism: "rgba(255, 255, 255, 0.60)",
       },
       backgroundImage: {
-        'pride-gradient': 'linear-gradient(to bottom, #FF9999, #FFB266, #FFFF99, #99FF99, #99CCFF, #CC99FF, #FF99FF)',
+        "pride-gradient":
+          "linear-gradient(to bottom, #FF9999, #FFB266, #FFFF99, #99FF99, #99CCFF, #CC99FF, #FF99FF)",
       },
     },
   },
   plugins: [],
-}
+};

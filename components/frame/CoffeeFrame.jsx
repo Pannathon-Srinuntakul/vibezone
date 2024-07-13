@@ -309,8 +309,8 @@ const CoffeeFrame = ({ post, creator, loggedInUser, updateUser }) => {
               )}
             </div>
           </div>
-          <div className="w-full flex flex-col justify-center items-center">
-            <p className="text-body-bold text-black">{post.caption}</p>
+          <div className="post-caption-web flex flex-col items-center">
+            <p className="text-body-bold w-[90%] text-black">{post.caption}</p>
             <p className="border border-subtext/30 font-thin w-full"></p>
           </div>
           <div className="details">

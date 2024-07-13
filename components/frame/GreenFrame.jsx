@@ -276,8 +276,8 @@ const GreenFrame = ({
               </Link>
             </div>
           </div>
-          <div className="w-full flex flex-col justify-center items-center">
-            <p className="text-body-bold">{post.caption}</p>
+          <div className="post-caption-web flex flex-col items-center">
+            <p className="text-body-bold w-[90%]">{post.caption}</p>
             <p className="border border-subtext/30 font-thin w-full"></p>
           </div>
           <div className="details">
