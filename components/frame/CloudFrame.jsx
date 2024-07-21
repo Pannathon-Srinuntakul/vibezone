@@ -262,8 +262,8 @@ const CloudFrame = ({ post, creator, loggedInUser, updateUser, sriracha }) => {
         </div>
       </div>
       {isExpand ? (
-        <div className="flex flex-col w-3/5 sm:w-1/2 md:w-1/3 lg:w-1/4 p-5 sm:p-7 md:p-7 lg:p-6 items-center justify-center gap-3 rounded-b-xl shadow-xl bg-[#FFF5E3]">
-          <div className="w-full">
+        <div className="flex flex-col w-3/5 sm:w-1/2 md:w-1/3 lg:w-1/4 p-5 sm:p-7 md:p-7 lg:p-6 items-center justify-center gap-3 rounded-b-xl shadow-xl bg-[#FFF5E3] -mt-5">
+          <div className="w-full mt-5 xs:mt-10">
             <div className="flex justify-between">
               <Link href={`/profile/${creator.username}`}>
                 <div className="flex gap-3 items-center">
@@ -287,7 +287,7 @@ const CloudFrame = ({ post, creator, loggedInUser, updateUser, sriracha }) => {
               </Link>
             </div>
           </div>
-          <div className="post-caption-web flex flex-col items-center">
+          <div className="post-caption-web flex flex-col items-center w-full">
             <p className="text-body-bold w-[90%]">{post.caption}</p>
             <p className="border border-subtext/30 font-thin w-full"></p>
           </div>

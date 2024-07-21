@@ -55,6 +55,9 @@ const PurchaseCard = ({ postId, user }) => {
             height={50}
             className="shadow-lg"
           />
+          {frame.type === "Cloud" ? (
+            <p className="text-red-600 font-bold text-tiny-medium">*DEMO*</p>
+          ) : null}
           <p className="flex gap-2">
             {frame.credit === 0 ? "Free" : `${frame.credit} Credit`}
             <Image src="/assets/coin.svg" alt="credit" width={15} height={15} />
@@ -83,6 +86,9 @@ const PurchaseCard = ({ postId, user }) => {
             </p>
             <p className="mb-4 text-body-bold">
               Upgrade frame to {confirmPurchase.label}
+              {confirmPurchase.type === "Cloud" ? (
+            <p className="text-red-600 text-body-bold">*DEMO*</p>
+          ) : null}
             </p>
             <div className="flex justify-center gap-4">
               <button

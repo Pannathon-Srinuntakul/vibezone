@@ -355,7 +355,7 @@ const PinkPre = ({ date, post, likesCount, creator, details, sriracha }) => {
                   </div>
                 </div>
                 <div className="w-full flex flex-col justify-center">
-                  <p className="text-[28px] font-bold break-words">{post.caption}</p>
+                  <p className="text-[28px] font-bold break-words text-center">{post.caption}</p>
                   <p className="border border-subtext/75 font-thin w-full"></p>
                 </div>
                 <div className="flex flex-col gap-8 pl-4 justify-start">

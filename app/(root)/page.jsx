@@ -83,11 +83,6 @@ const Home = () => {
         next={fetchMoreData}
         hasMore={hasMore}
         loader={<Loader />}
-        endMessage={
-          <div className="w-full flex justify-center items-center mt-12">
-            <p className=" text-heading4-bold">No more posts</p>
-          </div>
-        }
       >
         <div className="flex flex-col w-full items-center gap-10">
           <Frame

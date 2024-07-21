@@ -161,7 +161,7 @@ const CloudPre = ({ date, post, likesCount, creator, details, sriracha }) => {
                   </div>
                 </div>
               </div>
-                <div className="post-caption-pre flex flex-col items-center">
+                <div className="post-caption-pre flex flex-col items-center w-full">
                   <p className="text-body-bold w-[90%]">{post.caption}</p>
                 <p className="border border-subtext/30 font-thin w-full"></p>
               </div>
@@ -268,7 +268,7 @@ const CloudPre = ({ date, post, likesCount, creator, details, sriracha }) => {
                   </div>
                 </div>
                 <div className="w-full flex flex-col justify-center">
-                  <p className="text-[28px] font-bold break-words">{post.caption}</p>
+                  <p className="text-[28px] font-bold break-words text-center">{post.caption}</p>
                   <p className="border border-subtext/75 font-thin w-full"></p>
                 </div>
                 <div className="flex flex-col gap-8 pl-4 justify-start">

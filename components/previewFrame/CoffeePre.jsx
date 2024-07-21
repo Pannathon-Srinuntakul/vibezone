@@ -260,7 +260,7 @@ const CoffeePre = ({ date, post, likesCount, creator, details }) => {
                   </div>
                 </div>
                 <div className="w-full flex flex-col justify-center">
-                  <p className="text-[28px] font-bold break-words">{post.caption}</p>
+                  <p className="text-[28px] font-bold break-words text-center">{post.caption}</p>
                   <p className="border border-subtext/75 font-thin w-full"></p>
                 </div>
                 <div className="flex text-black flex-col gap-8 pl-4 justify-start">
